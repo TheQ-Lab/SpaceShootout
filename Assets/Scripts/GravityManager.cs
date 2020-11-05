@@ -120,4 +120,14 @@ public class GravityManager : MonoBehaviour
 
         rBodyProjectiles.Add(newProjectile.GetComponent<Rigidbody2D>());
     }
+
+    public void RemoveAnyObjectFromGravity(GameObject ObjectToRemove)
+    {
+        Projectiles.Remove(ObjectToRemove);
+        Astronauts.Remove(ObjectToRemove);
+
+        rBodyProjectiles.Remove(ObjectToRemove.GetComponent<Rigidbody2D>());
+        rBodyAstronauts.Remove(ObjectToRemove.GetComponent<Rigidbody2D>());
+
+    }
 }

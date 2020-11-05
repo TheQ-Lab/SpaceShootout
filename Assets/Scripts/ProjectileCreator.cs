@@ -19,9 +19,19 @@ public class ProjectileCreator : MonoBehaviour
         
     }
 
-    public void ShootProjectile(string projectileType, Vector2 spawnPosition, Vector2 launchVector)
+    public void ShootProjectile(string projectileType, Vector2 spawnPosition, int shotAngle, int shotPower)
     {
-        Missile = Instantiate(MissilePrefab, spawnPosition, /*EXCHANGE*/Quaternion.identity);
+        float powerFactor = 800f; //for missile specific probably
+
+        Vector2 directionalVector = Quaternion.Euler(0, 0, shotAngle) * Vector2.up;
+
+        spawnPosition = spawnPosition + directionalVector * 2f;
+        Vector2 launchVector = directionalVector * (shotPower * 0.01f) * powerFactor;
+
+        Debug.Log(launchVector);
+
+
+        Missile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0,0,shotAngle));
         Missile.AddComponent<Projectile>();
         Projectile projectileScript = Missile.GetComponent<Projectile>();
         projectileScript.SetInitialParameters(projectileType, launchVector);

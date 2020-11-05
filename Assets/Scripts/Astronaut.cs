@@ -1,17 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // because Text
 
 public class Astronaut : MonoBehaviour
 {
+    public ShotBar shotBar;
+    public Text shotText;
+
     public bool isActive = false;
     public float movementSpeed = 1f;
     public float maxSpeed = 5f;
+    public int health = 100;
+    public bool shootPhase = false;
 
     private Rigidbody2D rBody;
 
     private bool isStationary = true;
     private GameObject nearestPlanet;
+
+    private int shotAngle = 0;
+    private int shotPower = 50;
+    private int timer = 0;
 
     //for ProjectileCreation
     private ProjectileCreator projectileCreatorScript;
@@ -27,28 +37,58 @@ public class Astronaut : MonoBehaviour
         projectileCreatorScript = GetComponentInChildren<ProjectileCreator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
+        if (!this.gameObject.activeSelf) return;
+
         if (isActive)
         {
-            AstronautMover();
-            AstronautShooter();
+            if (!shootPhase)
+            {
+                AstronautMoverFixed();
+            } else if (shootPhase)
+            {
+                AstronautShooterFixed();
+            }
         }
+
+
         if (isStationary)
         {
             TurnUpright();
         }
         //ALWAYS
         //When Astronaut is too fast, limit its velocity/speed
-        if(rBody.velocity.magnitude > maxSpeed)
+        if (rBody.velocity.magnitude > maxSpeed)
         {
             rBody.velocity = Vector2.ClampMagnitude(rBody.velocity, maxSpeed);
         }
-        
+
+        if (health <= 0)
+        {
+            DespawnAstronaut();
+        }
     }
 
-    private void AstronautMover()
+    // Update is called once per frame
+    void Update()
+    {
+        if (isActive)
+        {
+            if (!shootPhase)
+            {
+                AstronautMover();
+            }
+            else if (shootPhase)
+            {
+                AstronautShooter();
+            }
+        }
+    }
+
+    // ----------------------------------------        Personalized Methods         -------------------------------------------
+
+    private void AstronautMoverFixed()
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -60,19 +100,107 @@ public class Astronaut : MonoBehaviour
         }
     }
 
-    private void AstronautShooter()
+    private void AstronautMover()
     {
-        if (Input.GetMouseButtonDown(0))
+        //if (Input.GetKeyDown(KeyCode.Space))
+        if (InputManager.Instance.Inputs.Contains("space"))
         {
-            float launchStrength = 500f;
+            InputManager.Instance.Inputs.Remove("space");
 
-            Vector2 launchPosition = rBody.transform.position + rBody.transform.up * 1.5f;
+            shootPhase = true;
+            rBody.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            Vector2 launchForce = rBody.transform.up; //has alredy magnitude == 1
-            launchForce = launchForce * launchStrength;
-            projectileCreatorScript.ShootProjectile("Missile", launchPosition, launchForce);
+            shotBar.Activate();
+            shotBar.SetPower(shotPower);
+            shotBar.SetAngle(shotAngle);
+            shotText.gameObject.SetActive(true);
+            shotText.text = shotAngle + ", " + shotPower;
         }
     }
+
+    private void AstronautShooterFixed()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            timer++;
+            if (timer >= 2)
+            {
+                timer = 0;
+                if (shotPower < 100) { shotPower++;
+                    shotBar.SetPower(shotPower);
+                    shotText.text = shotAngle + ", " + shotPower;
+                }
+            }
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            timer++;
+            if (timer >= 2)
+            {
+                timer = 0;
+                if (shotPower > 0) { shotPower--;
+                    shotBar.SetPower(shotPower);
+                    shotText.text = shotAngle + ", " + shotPower;
+                }
+            }
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            timer++;
+            if (timer >= 2)
+            {
+                timer = 0;
+                shotAngle--;
+                if (shotAngle < 0) { shotAngle = 359; }
+                shotBar.SetAngle(shotAngle);
+                shotText.text = shotAngle + ", " + shotPower;
+            }
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            timer++;
+            if (timer >= 2)
+            {
+                timer = 0;
+                shotAngle++;
+                if (shotAngle > 359) { shotAngle = 0; }
+                shotBar.SetAngle(shotAngle);
+                shotText.text = shotAngle + ", " + shotPower;
+            }
+        }
+        else
+        {
+            timer = 0;
+        }
+
+
+    }
+
+    private void AstronautShooter()
+    {
+        //if (Input.GetKeyDown(KeyCode.Space))
+        if (InputManager.Instance.Inputs.Contains("space"))
+        {
+            InputManager.Instance.Inputs.Remove("space");
+            
+
+            Vector2 launchPosition = rBody.transform.position /*+ rBody.transform.up * 2.5f*/;
+
+            
+            projectileCreatorScript.ShootProjectile("Missile", launchPosition, shotAngle, shotPower);
+
+            shotBar.Deactivate();
+            shotText.gameObject.SetActive(false);
+            shootPhase = false;
+
+            isActive = false;
+            GameManager.Instance.HandOverTurn();
+        }
+    }
+
+
+
+
 
     private GameObject GetNearestPlanet()
     {
@@ -102,5 +230,23 @@ public class Astronaut : MonoBehaviour
         Vector2 route = positionPlanet - positionAstronaut;
         float angle = Vector2.SignedAngle(new Vector2(0,100), route);
         rBody.transform.rotation = Quaternion.Euler(0,0,180f+angle); // +180 weil mit den Füßen statt mit Kopf richtung Planet
+    }
+
+    public void Damage(int Damage)
+    {
+        health = Mathf.Max(health - Damage, 0);
+    }
+
+    private void DespawnAstronaut()
+    {
+        GravityManager.Instance.RemoveAnyObjectFromGravity(this.gameObject);
+        this.gameObject.SetActive(false); //read from gameObject.activeSelf
+        //Destroy(this.gameObject);
+    }
+
+    public void ActivateAstronaut()
+    {
+        isActive = true;
+        rBody.constraints = RigidbodyConstraints2D.None;
     }
 }

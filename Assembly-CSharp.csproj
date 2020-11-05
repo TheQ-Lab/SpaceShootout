@@ -55,11 +55,14 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\ShotBar.cs" />
+    <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\ProjectileCreator.cs" />
     <Compile Include="Assets\Scripts\Astronaut.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
+    <Compile Include="Assets\Scripts\ClampUiElement.cs" />
     <Compile Include="Assets\Scripts\GravityManager.cs" />
-    <Compile Include="Assets\Scripts\ProjectileCreator.cs" />
-    <Compile Include="Assets\Scripts\Projectile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

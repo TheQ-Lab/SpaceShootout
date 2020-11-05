@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public string projectileType = "";
+    public int WeaponDamage = 100;
 
     private Rigidbody2D rBody;
 
@@ -23,8 +24,20 @@ public class Projectile : MonoBehaviour
     {
         if(projectileType == "Missile")
         {
-            Debug.Log("Fart");
+            
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Astronaut astronautScript = collision.gameObject.GetComponent<Astronaut>();
+        if (astronautScript != null)
+        {
+            Debug.Log("Y ooooo, thats an Astronaut, letzs go!");
+            astronautScript.Damage(WeaponDamage);
+        }
+
+        DespawnThisProjectile();
     }
 
     public void SetInitialParameters(string _projectileType, Vector2 launchForce)
@@ -36,5 +49,11 @@ public class Projectile : MonoBehaviour
         rBody.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         rBody.AddForce(launchForce);
+    }
+
+    private void DespawnThisProjectile()
+    {
+        GravityManager.Instance.RemoveAnyObjectFromGravity(this.gameObject);
+        Destroy(this.gameObject);
     }
 }
