@@ -5,4 +5,4 @@ Packages/**
 *.sln
 UserSettings/**
 obj/**
-
+.vs/**
