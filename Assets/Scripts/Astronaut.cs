@@ -13,12 +13,15 @@ public class Astronaut : MonoBehaviour
     public float maxSpeed = 5f;
     public int health = 100;
     public bool shootPhase = false;
+    public bool shotFlying = false;
+
+    public bool isStationary = true;
+    public GameObject nearestPlanet;
 
     private Rigidbody2D rBody;
 
-    private bool isStationary = true;
-    private GameObject nearestPlanet;
-
+    
+    
     private int shotAngle = 0;
     private int shotPower = 50;
     private int timer = 0;
@@ -120,6 +123,8 @@ public class Astronaut : MonoBehaviour
 
     private void AstronautShooterFixed()
     {
+        if (shotFlying) return;
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
             timer++;
@@ -178,6 +183,7 @@ public class Astronaut : MonoBehaviour
 
     private void AstronautShooter()
     {
+        if (shotFlying) return;
         //if (Input.GetKeyDown(KeyCode.Space))
         if (InputManager.Instance.Inputs.Contains("space"))
         {
@@ -187,15 +193,22 @@ public class Astronaut : MonoBehaviour
             Vector2 launchPosition = rBody.transform.position /*+ rBody.transform.up * 2.5f*/;
 
             
-            projectileCreatorScript.ShootProjectile("Missile", launchPosition, shotAngle, shotPower);
+            projectileCreatorScript.ShootProjectile("Missile", launchPosition, shotAngle, shotPower, this.gameObject);
 
             shotBar.Deactivate();
-            shotText.gameObject.SetActive(false);
-            shootPhase = false;
+            
 
-            isActive = false;
-            GameManager.Instance.HandOverTurn();
+            shotFlying = true;
         }
+    }
+
+    public void EndShootingPhase()
+    {
+        shotText.gameObject.SetActive(false);
+        shotFlying = false;
+        shootPhase = false;
+        isActive = false;
+        GameManager.Instance.HandOverTurn();
     }
 
 

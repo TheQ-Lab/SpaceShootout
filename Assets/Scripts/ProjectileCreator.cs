@@ -19,7 +19,7 @@ public class ProjectileCreator : MonoBehaviour
         
     }
 
-    public void ShootProjectile(string projectileType, Vector2 spawnPosition, int shotAngle, int shotPower)
+    public void ShootProjectile(string projectileType, Vector2 spawnPosition, int shotAngle, int shotPower, GameObject parentAstronaut)
     {
         float powerFactor = 800f; //for missile specific probably
 
@@ -34,7 +34,7 @@ public class ProjectileCreator : MonoBehaviour
         Missile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0,0,shotAngle));
         Missile.AddComponent<Projectile>();
         Projectile projectileScript = Missile.GetComponent<Projectile>();
-        projectileScript.SetInitialParameters(projectileType, launchVector);
+        projectileScript.SetInitialParameters(projectileType, launchVector, parentAstronaut);
         GravityManager.Instance.AddProjectileToGravity(Missile);
     }
 }

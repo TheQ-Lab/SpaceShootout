@@ -6,8 +6,12 @@ public class Projectile : MonoBehaviour
 {
     public string projectileType = "";
     public int WeaponDamage = 100;
+    public float lifetime = 5f;
 
     private Rigidbody2D rBody;
+
+    private float deathTimer;
+    private GameObject parentAstronaut;
 
     private void Awake()
     {
@@ -16,7 +20,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rBody = GetComponent<Rigidbody2D>();
+        deathTimer = Time.time;
     }
 
     // Update is called once per frame
@@ -26,6 +30,11 @@ public class Projectile : MonoBehaviour
         {
             
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if(Time.time >= deathTimer + lifetime) { DespawnThisProjectile(); }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -40,7 +49,7 @@ public class Projectile : MonoBehaviour
         DespawnThisProjectile();
     }
 
-    public void SetInitialParameters(string _projectileType, Vector2 launchForce)
+    public void SetInitialParameters(string _projectileType, Vector2 launchForce, GameObject parentAstronaut)
     {
         projectileType = _projectileType;
         rBody.AddForce(launchForce);
@@ -49,11 +58,15 @@ public class Projectile : MonoBehaviour
         rBody.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         rBody.AddForce(launchForce);
+
+        this.parentAstronaut = parentAstronaut;
     }
 
     private void DespawnThisProjectile()
     {
         GravityManager.Instance.RemoveAnyObjectFromGravity(this.gameObject);
+        Astronaut parentAstronautScript = parentAstronaut.GetComponent<Astronaut>();
+        parentAstronautScript.EndShootingPhase();
         Destroy(this.gameObject);
     }
 }

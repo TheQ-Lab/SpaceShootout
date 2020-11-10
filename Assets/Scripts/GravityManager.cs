@@ -15,6 +15,7 @@ public class GravityManager : MonoBehaviour
 
     private List<Vector2> posPlanets = new List<Vector2>();
     private List<Rigidbody2D> rBodyAstronauts = new List<Rigidbody2D>();
+    private List<Astronaut> scriptAstronauts = new List<Astronaut>();
     private List<Rigidbody2D> rBodyProjectiles = new List<Rigidbody2D>();
 
     // Awake is called before all Start()
@@ -34,15 +35,17 @@ public class GravityManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (GameObject e in Astronauts)
-        {
-            Rigidbody2D rBody = e.GetComponent<Rigidbody2D>();
-            rBodyAstronauts.Add(rBody);
-        }
         foreach (GameObject p in Planets)
         {
             Vector2 v = p.transform.position;
             posPlanets.Add(v); //Vector3 is implicitly converted to Vector2 (z is discarded)
+        }
+        foreach (GameObject e in Astronauts)
+        {
+            Rigidbody2D rBody = e.GetComponent<Rigidbody2D>();
+            rBodyAstronauts.Add(rBody);
+            Astronaut script = e.GetComponent<Astronaut>();
+            scriptAstronauts.Add(script);
         }
     }
 
@@ -55,14 +58,22 @@ public class GravityManager : MonoBehaviour
     // FixedUpdate is by default executed 50Hz
     private void FixedUpdate()
     {
-        foreach(Rigidbody2D astronaut in rBodyAstronauts)
+        for(int i=0; i<rBodyAstronauts.Count; i++)
+        //foreach(Rigidbody2D astronaut in rBodyAstronauts)
         {
-            foreach(Vector2 posPlanet in posPlanets)
+            Rigidbody2D astronaut = rBodyAstronauts[i];
+            if (!scriptAstronauts[i].isStationary) {
+                foreach (Vector2 posPlanet in posPlanets)
+                {
+                    //Vector2 direction = (Vector2)p.transform.position - e.position;
+                    ApplyGravity(astronaut, posPlanet);
+                    //Debug.Log(direction);
+                    //Debug.Log(rBody);
+                }
+            } 
+            else
             {
-                //Vector2 direction = (Vector2)p.transform.position - e.position;
-                ApplyGravity(astronaut, posPlanet);
-                //Debug.Log(direction);
-                //Debug.Log(rBody);
+                ApplyGravity(astronaut, scriptAstronauts[i].nearestPlanet.transform.position);
             }
             ApplyDrag(astronaut);
         }
