@@ -6,6 +6,8 @@ public class ProjectileCreator : MonoBehaviour
 {
     public GameObject MissilePrefab;
 
+    public float lifetime = 5f;
+
     private GameObject Missile;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,7 @@ public class ProjectileCreator : MonoBehaviour
 
     public void ShootProjectile(string projectileType, Vector2 spawnPosition, int shotAngle, int shotPower, GameObject parentAstronaut)
     {
-        float powerFactor = 800f; //for missile specific probably
+        float powerFactor = 1600f; //for missile specific probably
 
         Vector2 directionalVector = Quaternion.Euler(0, 0, shotAngle) * Vector2.up;
 
@@ -34,7 +36,7 @@ public class ProjectileCreator : MonoBehaviour
         Missile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0,0,shotAngle));
         Missile.AddComponent<Projectile>();
         Projectile projectileScript = Missile.GetComponent<Projectile>();
-        projectileScript.SetInitialParameters(projectileType, launchVector, parentAstronaut);
+        projectileScript.SetInitialParameters(projectileType, launchVector, lifetime, parentAstronaut);
         GravityManager.Instance.AddProjectileToGravity(Missile);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // for all UI-Elements
 
-public class ShotBar : MonoBehaviour
+public class UIShotBar : MonoBehaviour
 {
     private Slider slider;
 

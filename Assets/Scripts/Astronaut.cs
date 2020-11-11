@@ -5,8 +5,8 @@ using UnityEngine.UI; // because Text
 
 public class Astronaut : MonoBehaviour
 {
-    public ShotBar shotBar;
-    public Text shotText;
+    public UIShotBar uIshotBar;
+    public Text uIshotText;
     public UIActiveIndicator uIActiveIndicator;
 
     public int playerNo = 1;
@@ -98,8 +98,8 @@ public class Astronaut : MonoBehaviour
 
     private void InitializeTurnFixed()
     {
+        uIActiveIndicator.Activate();
         uIActiveIndicator.SelectColor(playerNo);
-
         initializeTurn = false;
     }
 
@@ -125,11 +125,11 @@ public class Astronaut : MonoBehaviour
             shootPhase = true;
             rBody.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            shotBar.Activate();
-            shotBar.SetPower(shotPower);
-            shotBar.SetAngle(shotAngle);
-            shotText.gameObject.SetActive(true);
-            shotText.text = shotAngle + ", " + shotPower;
+            uIshotBar.Activate();
+            uIshotBar.SetPower(shotPower);
+            uIshotBar.SetAngle(shotAngle);
+            uIshotText.gameObject.SetActive(true);
+            uIshotText.text = shotAngle + ", " + shotPower;
         }
     }
 
@@ -144,8 +144,8 @@ public class Astronaut : MonoBehaviour
             {
                 timer = 0;
                 if (shotPower < 100) { shotPower++;
-                    shotBar.SetPower(shotPower);
-                    shotText.text = shotAngle + ", " + shotPower;
+                    uIshotBar.SetPower(shotPower);
+                    uIshotText.text = shotAngle + ", " + shotPower;
                 }
             }
         }
@@ -156,8 +156,8 @@ public class Astronaut : MonoBehaviour
             {
                 timer = 0;
                 if (shotPower > 0) { shotPower--;
-                    shotBar.SetPower(shotPower);
-                    shotText.text = shotAngle + ", " + shotPower;
+                    uIshotBar.SetPower(shotPower);
+                    uIshotText.text = shotAngle + ", " + shotPower;
                 }
             }
         }
@@ -169,8 +169,8 @@ public class Astronaut : MonoBehaviour
                 timer = 0;
                 shotAngle--;
                 if (shotAngle < 0) { shotAngle = 359; }
-                shotBar.SetAngle(shotAngle);
-                shotText.text = shotAngle + ", " + shotPower;
+                uIshotBar.SetAngle(shotAngle);
+                uIshotText.text = shotAngle + ", " + shotPower;
             }
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
@@ -181,8 +181,8 @@ public class Astronaut : MonoBehaviour
                 timer = 0;
                 shotAngle++;
                 if (shotAngle > 359) { shotAngle = 0; }
-                shotBar.SetAngle(shotAngle);
-                shotText.text = shotAngle + ", " + shotPower;
+                uIshotBar.SetAngle(shotAngle);
+                uIshotText.text = shotAngle + ", " + shotPower;
             }
         }
         else
@@ -207,8 +207,8 @@ public class Astronaut : MonoBehaviour
             
             projectileCreatorScript.ShootProjectile("Missile", launchPosition, shotAngle, shotPower, this.gameObject);
 
-            shotBar.Deactivate();
-            
+            uIshotBar.Deactivate();
+            uIshotText.gameObject.SetActive(false);
 
             shotFlying = true;
         }
@@ -216,7 +216,7 @@ public class Astronaut : MonoBehaviour
 
     public void EndShootingPhase()
     {
-        shotText.gameObject.SetActive(false);
+        uIActiveIndicator.Deactivate();
         shotFlying = false;
         shootPhase = false;
         isActive = false;

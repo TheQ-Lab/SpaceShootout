@@ -49,10 +49,11 @@ public class Projectile : MonoBehaviour
         DespawnThisProjectile();
     }
 
-    public void SetInitialParameters(string _projectileType, Vector2 launchForce, GameObject parentAstronaut)
+    public void SetInitialParameters(string _projectileType, Vector2 launchForce, float lifetime, GameObject parentAstronaut)
     {
         projectileType = _projectileType;
-        rBody.AddForce(launchForce);
+        this.lifetime = lifetime;
+        //rBody.AddForce(launchForce);
 
         float angle = Vector2.SignedAngle(new Vector2(0, 100), launchForce);
         rBody.transform.rotation = Quaternion.Euler(0, 0, angle);
