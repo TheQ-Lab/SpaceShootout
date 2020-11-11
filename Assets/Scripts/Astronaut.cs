@@ -7,7 +7,9 @@ public class Astronaut : MonoBehaviour
 {
     public ShotBar shotBar;
     public Text shotText;
+    public UIActiveIndicator uIActiveIndicator;
 
+    public int playerNo = 1;
     public bool isActive = false;
     public float movementSpeed = 1f;
     public float maxSpeed = 5f;
@@ -16,6 +18,7 @@ public class Astronaut : MonoBehaviour
     public bool shotFlying = false;
 
     public bool isStationary = true;
+    public bool initializeTurn = true;
     public GameObject nearestPlanet;
 
     private Rigidbody2D rBody;
@@ -43,6 +46,8 @@ public class Astronaut : MonoBehaviour
     private void FixedUpdate()
     {
         if (!this.gameObject.activeSelf) return;
+
+        if (initializeTurn) { InitializeTurnFixed(); }
 
         if (isActive)
         {
@@ -90,6 +95,13 @@ public class Astronaut : MonoBehaviour
     }
 
     // ----------------------------------------        Personalized Methods         -------------------------------------------
+
+    private void InitializeTurnFixed()
+    {
+        uIActiveIndicator.SelectColor(playerNo);
+
+        initializeTurn = false;
+    }
 
     private void AstronautMoverFixed()
     {
@@ -208,6 +220,7 @@ public class Astronaut : MonoBehaviour
         shotFlying = false;
         shootPhase = false;
         isActive = false;
+        initializeTurn = true;
         GameManager.Instance.HandOverTurn();
     }
 
