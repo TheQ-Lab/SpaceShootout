@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MissilePrefab: {fileID: 8128423303125053964, guid: 7abc4ee3531fa474796042d9cc504527, type: 3}
+  lifetime: 5
 --- !u!1 &8788362985070429242
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,8 +345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67cda6d99b4b5f4d83f7abda4b6368b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotBar: {fileID: 0}
-  shotText: {fileID: 0}
+  uIshotBar: {fileID: 0}
+  uIshotText: {fileID: 0}
   uIActiveIndicator: {fileID: 0}
   playerNo: 1
   isActive: 0

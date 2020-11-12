@@ -28,7 +28,8 @@ public class ProjectileCreator : MonoBehaviour
         Vector2 directionalVector = Quaternion.Euler(0, 0, shotAngle) * Vector2.up;
 
         spawnPosition = spawnPosition + directionalVector * 2f;
-        Vector2 launchVector = directionalVector * (shotPower * 0.01f) * powerFactor;
+        float clampedShotPower = 35f + shotPower * 0.5f;
+        Vector2 launchVector = directionalVector * (clampedShotPower * 0.01f) * powerFactor;
 
         Debug.Log(launchVector);
 
