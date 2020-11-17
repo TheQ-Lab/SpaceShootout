@@ -23,11 +23,25 @@ public class Astronaut : MonoBehaviour
 
     private Rigidbody2D rBody;
 
-    
-    
+
+    private float RotateSpeed = 5f;
+    private float Radius = 0.1f;
+
+    //private Vector2 _centre;
+    private float _angle;
+
+
+    // private Vector3 inputVector;//up axis always being equal to the Y axis
+
+
+
     private int shotAngle = 0;
     private int shotPower = 50;
     private int timer = 0;
+
+
+    private float horizontalMove;
+    private float horizontalMoveAcceleration = 5;
 
     //for ProjectileCreation
     private ProjectileCreator projectileCreatorScript;
@@ -41,6 +55,9 @@ public class Astronaut : MonoBehaviour
 
         //for ProjectileCreation
         projectileCreatorScript = GetComponentInChildren<ProjectileCreator>();
+
+
+        //_centre = transform.position;
     }
 
     private void FixedUpdate()
@@ -54,7 +71,8 @@ public class Astronaut : MonoBehaviour
             if (!shootPhase)
             {
                 AstronautMoverFixed();
-            } else if (shootPhase)
+            }
+            else if (shootPhase)
             {
                 AstronautShooterFixed();
             }
@@ -105,14 +123,12 @@ public class Astronaut : MonoBehaviour
 
     private void AstronautMoverFixed()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            rBody.AddRelativeForce(new Vector2(movementSpeed, 0f));
-        } 
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            rBody.AddRelativeForce(new Vector2(-movementSpeed, 0f));
-        }
+       
+        Vector3 localVelocity = transform.InverseTransformDirection(rBody.velocity);
+        localVelocity.x = horizontalMove * horizontalMoveAcceleration;
+
+        rBody.velocity = transform.TransformDirection(localVelocity);
+
     }
 
     private void AstronautMover()
@@ -130,6 +146,10 @@ public class Astronaut : MonoBehaviour
             uIshotBar.SetAngle(shotAngle);
             uIshotText.gameObject.SetActive(true);
             uIshotText.text = shotAngle + ", " + shotPower;
+        }
+        else
+        {
+            horizontalMove = Input.GetAxis("Horizontal");
         }
     }
 
@@ -205,7 +225,7 @@ public class Astronaut : MonoBehaviour
             Vector2 launchPosition = rBody.transform.position /*+ rBody.transform.up * 2.5f*/;
 
             
-            projectileCreatorScript.ShootProjectile("Missile", launchPosition, shotAngle, shotPower, this.gameObject);
+            projectileCreatorScript.ShootProjectile(launchPosition, shotAngle, shotPower, this.gameObject);
 
             uIshotBar.Deactivate();
             uIshotText.gameObject.SetActive(false);

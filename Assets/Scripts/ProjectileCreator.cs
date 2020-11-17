@@ -1,27 +1,75 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileCreator : MonoBehaviour
 {
     public GameObject MissilePrefab;
+    public GameObject BombPrefab;
 
-    public float lifetime = 5f;
+    public int selectedProjectile = 0;
+    public string currentProjectile;
 
+    public float lifetime;
+   
+
+    private GameObject Bomb;
     private GameObject Missile;
+     
+
+    private String[] projectiles = {"Bomb", "Missile"};
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        SelectProjectile(selectedProjectile);
+        currentProjectile = projectiles[selectedProjectile];
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        int previousSelectedProjectile = selectedProjectile;
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            if (selectedProjectile >= projectiles.Length - 1)
+            {
+                selectedProjectile = 0;
+
+            }
+            else
+            {
+                selectedProjectile++;
+            }
+            
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            if (selectedProjectile >= 0)
+            {
+                selectedProjectile = projectiles.Length - 1;
+
+            }
+            else
+            {
+                selectedProjectile--;
+            }
+            //currentProjectileType = projectiles[selectedProjectile].ToString();
+        }
+
+        if (previousSelectedProjectile != selectedProjectile)
+        {
+            SelectProjectile(selectedProjectile);
+        }
+        currentProjectile = projectiles[selectedProjectile];
     }
 
-    public void ShootProjectile(string projectileType, Vector2 spawnPosition, int shotAngle, int shotPower, GameObject parentAstronaut)
+
+
+    public void ShootProjectile(Vector2 spawnPosition, int shotAngle, int shotPower, GameObject parentAstronaut)
     {
         float powerFactor = 1600f; //for missile specific probably
 
@@ -33,11 +81,43 @@ public class ProjectileCreator : MonoBehaviour
 
         Debug.Log(launchVector);
 
+        
 
-        Missile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0,0,shotAngle));
-        Missile.AddComponent<Projectile>();
-        Projectile projectileScript = Missile.GetComponent<Projectile>();
-        projectileScript.SetInitialParameters(projectileType, launchVector, lifetime, parentAstronaut);
-        GravityManager.Instance.AddProjectileToGravity(Missile);
+        if (selectedProjectile == 0)
+        {
+            Bomb = Instantiate(BombPrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
+            Bomb.AddComponent<Projectile>();
+            Projectile projectileScript = Bomb.GetComponent<Projectile>();
+            projectileScript.SetInitialParameters(projectiles[selectedProjectile], launchVector, parentAstronaut);
+            GravityManager.Instance.AddProjectileToGravity(Bomb);
+            
+        }
+        else if (selectedProjectile == 1)
+        { 
+             Missile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
+             Missile.AddComponent<Projectile>();
+             Projectile projectileScript = Missile.GetComponent<Projectile>();
+             projectileScript.SetInitialParameters(projectiles[selectedProjectile], launchVector, parentAstronaut);
+             GravityManager.Instance.AddProjectileToGravity(Missile);
+        }
+       
     }
+
+    void SelectProjectile(int index)
+    {
+       
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (i == index)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+            else
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+           
+        }
+    }
+    
 }

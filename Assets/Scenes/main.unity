@@ -386,6 +386,10 @@ PrefabInstance:
       propertyPath: uiElement
       value: 
       objectReference: {fileID: 1045444154}
+    - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: BombPrefab
+      value: 
+      objectReference: {fileID: 5345671137095647768, guid: 36f4c79b779c20b4685864ad6d959637, type: 3}
     - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: shotBar
       value: 
@@ -1466,6 +1470,10 @@ PrefabInstance:
       propertyPath: uiElement
       value: 
       objectReference: {fileID: 1045444154}
+    - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: BombPrefab
+      value: 
+      objectReference: {fileID: 5345671137095647768, guid: 36f4c79b779c20b4685864ad6d959637, type: 3}
     - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: isActive
       value: 1
@@ -1494,17 +1502,21 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8788362985070429237, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.6
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.41
+      value: 3.19
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.98
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalRotation.x
