@@ -122,13 +122,10 @@ public class Astronaut : MonoBehaviour
     }
 
     private void AstronautMoverFixed()
-    {
-       
+    {   
         Vector3 localVelocity = transform.InverseTransformDirection(rBody.velocity);
         localVelocity.x = horizontalMove * horizontalMoveAcceleration;
-
         rBody.velocity = transform.TransformDirection(localVelocity);
-
     }
 
     private void AstronautMover()
