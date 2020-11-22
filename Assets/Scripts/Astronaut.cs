@@ -9,11 +9,12 @@ public class Astronaut : MonoBehaviour
     public Text uIshotText;
     public UIActiveIndicator uIActiveIndicator;
 
-    public int playerNo = 1;
+    public int TeamNo = 1;
     public bool isActive = false;
     public float movementSpeed = 1f;
     public float maxSpeed = 5f;
     public int health = 100;
+    public bool isAlive = true;
     public bool shootPhase = false;
     public bool shotFlying = false;
 
@@ -117,7 +118,7 @@ public class Astronaut : MonoBehaviour
     private void InitializeTurnFixed()
     {
         uIActiveIndicator.Activate();
-        uIActiveIndicator.SelectColor(playerNo);
+        uIActiveIndicator.SelectColor(TeamNo);
         initializeTurn = false;
     }
 
@@ -283,6 +284,8 @@ public class Astronaut : MonoBehaviour
     private void DespawnAstronaut()
     {
         GravityManager.Instance.RemoveAnyObjectFromGravity(this.gameObject);
+        isAlive = false;
+        GameManager.Instance.CheckTeamExtinction(TeamNo);
         this.gameObject.SetActive(false); //read from gameObject.activeSelf
         //Destroy(this.gameObject);
     }
@@ -291,5 +294,10 @@ public class Astronaut : MonoBehaviour
     {
         isActive = true;
         rBody.constraints = RigidbodyConstraints2D.None;
+    }
+
+    public void DeactivateAstronaut()
+    {
+        isActive = false;
     }
 }
