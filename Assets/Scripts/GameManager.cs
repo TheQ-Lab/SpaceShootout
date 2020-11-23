@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int NumberAstronautsPerTeam = 3;
     public List<Astronaut> Astronauts; //obsolete
     public int ActiveTeam = 1;
-    public int[] ActiveAstronautPerTeam = new int[4] { 1, -1, -1, -1 };
+    public int[] ActiveAstronautPerTeam = new int[4] { 1, 0, 0, 0 };
     public List<Astronaut> TurnHistory;
     public List<Astronaut> TeamA;
     public List<Astronaut> TeamB;
@@ -130,8 +130,7 @@ public class GameManager : MonoBehaviour
     private int GetNextValidAstronaut(int TeamNo)
     {
         int lastActiveAstronaut = ActiveAstronautPerTeam[ActiveTeam - 1];
-        //if -1, this is the Teams first turn, Astronaut #1 should begin
-        if (lastActiveAstronaut == -1) { return 1; }
+        //if 0, this is the Teams first turn, Astronaut #1 should begin, if alive
         int nextActiveAstronaut = lastActiveAstronaut;
         bool validNextAstronaut = false;
         while (validNextAstronaut == false)
@@ -167,6 +166,8 @@ public class GameManager : MonoBehaviour
         OldAstronaut.DeactivateAstronaut();
         NewAstronaut.ActivateAstronaut();
         TurnHistory.Add(NewAstronaut);
+        ActiveAstronautPerTeam[ActiveTeam - 1] = TeamsAll[ActiveTeam - 1].FindIndex(a => a == NewAstronaut) + 1;
+        //Debug.Log("Added Astronaut #" + (TeamsAll[ActiveTeam - 1].FindIndex(a => a == NewAstronaut) + 1) + " to ActiveAstronautPerTeam");
     }
 
     private void GameOver()
