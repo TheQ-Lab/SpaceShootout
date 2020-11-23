@@ -12,15 +12,14 @@ public class GameManager : MonoBehaviour
     public List<Astronaut> Astronauts; //obsolete
     public int ActiveTeam = 1;
     public int[] ActiveAstronautPerTeam = new int[4] { 1, -1, -1, -1 };
-    public List<Astronaut> TurnHistory; //obsolete
+    public List<Astronaut> TurnHistory;
     public List<Astronaut> TeamA;
     public List<Astronaut> TeamB;
     public List<Astronaut> TeamC;
     public List<Astronaut> TeamD;
+    private List<List<Astronaut>> TeamsAll = new List<List<Astronaut>>();
     public bool[] TeamsAlive = new bool[4];
 
-    //public List<List<GameObject>> AstronautsAlle;  // for later, when we have multiple Astronauts per Team use this 2-Dimensional List
-    //public List<int> LastActiveAstronaut // which Astronaut per Team was last active
 
     private void Awake()
     {
@@ -49,8 +48,13 @@ public class GameManager : MonoBehaviour
                 TeamsAlive[i] = false;
             }
         }
+        TeamsAll.Add(TeamA);
+        TeamsAll.Add(TeamB);
+        TeamsAll.Add(TeamC);
+        TeamsAll.Add(TeamD);
 
-        TurnHistory.Add(TeamA[0]);
+        //TurnHistory.Add(TeamA[0]);
+        TransferAcitveAstronaut(TeamsAll[1][0], TeamsAll[0][0]);
     }
 
     // Update is called once per frame
@@ -63,11 +67,11 @@ public class GameManager : MonoBehaviour
     {
         
         ActiveTeam = GetNextValidTeam();
+        Debug.Log("(next) Active Team" + ActiveTeam);
         if(ActiveTeam == -1) { GameOver(); return; }
-        List<Astronaut> nextActiveTeam = GetTeamReference(ActiveTeam);
         //Debug.Log(nextActiveTeam);
         int activeAstronaut = GetNextValidAstronaut(ActiveTeam);
-        Astronaut nextAstronaut = nextActiveTeam[activeAstronaut-1];
+        Astronaut nextAstronaut = TeamsAll[ActiveTeam-1][activeAstronaut-1];
         Debug.Log(nextAstronaut);
         TransferAcitveAstronaut(TurnHistory[TurnHistory.Count-1], nextAstronaut);
 
@@ -85,6 +89,7 @@ public class GameManager : MonoBehaviour
         PlayerAtTurn = nextPlayerAtTurn;*/
     }
 
+    /*
     private List<Astronaut> GetTeamReference(int TeamNo)
     {
         switch (ActiveTeam)
@@ -98,9 +103,9 @@ public class GameManager : MonoBehaviour
             case 4:
                 return TeamD;
         }
-        Debug.Log("HAHLTSTOPP");
+        Debug.LogError("THIS SHOULD NEVER APPEAR");
         return TeamA;
-    }
+    }*/
 
     private int GetNextValidTeam()
     {
@@ -124,7 +129,6 @@ public class GameManager : MonoBehaviour
 
     private int GetNextValidAstronaut(int TeamNo)
     {
-        List<Astronaut> Team = GetTeamReference(TeamNo);
         int lastActiveAstronaut = ActiveAstronautPerTeam[ActiveTeam - 1];
         //if -1, this is the Teams first turn, Astronaut #1 should begin
         if (lastActiveAstronaut == -1) { return 1; }
@@ -136,7 +140,10 @@ public class GameManager : MonoBehaviour
             //Check out of Bounds
             if (nextActiveAstronaut > NumberAstronautsPerTeam) { nextActiveAstronaut = 1; }
             //Check still Alive
-            if(Team[nextActiveAstronaut-1].isAlive) { validNextAstronaut = true; }
+            if(TeamsAll[TeamNo-1][nextActiveAstronaut-1].isAlive) {
+                Debug.Log("TeamNo: " + TeamNo + " nextActiveAstronaut: " + nextActiveAstronaut + " declared as alive");
+                validNextAstronaut = true;
+            }
             //check if cycle back to same & same is NOT alive --> entire team is dead
             if(nextActiveAstronaut == lastActiveAstronaut && !validNextAstronaut) { return -4514; }
         }
@@ -145,7 +152,9 @@ public class GameManager : MonoBehaviour
 
     public void CheckTeamExtinction(int TeamNo)
     {
+        //Debug.Log("CheckTeamExtinction");
         int nextMate = GetNextValidAstronaut(TeamNo);
+        //Debug.Log("NextMate:" + nextMate);
         if (nextMate == -4514)
         {
             //Team dead!

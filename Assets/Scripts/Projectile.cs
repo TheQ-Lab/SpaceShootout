@@ -10,7 +10,6 @@ public class Projectile : MonoBehaviour
     public float lifetime;
    
     private Rigidbody2D rBody;
-    private Rigidbody rb;
 
     private float deathTimer;
     private GameObject parentAstronaut;

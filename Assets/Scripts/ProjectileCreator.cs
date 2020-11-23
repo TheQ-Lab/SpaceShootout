@@ -74,7 +74,7 @@ public class ProjectileCreator : MonoBehaviour
         float clampedShotPower = 35f + shotPower * 0.5f;
         Vector2 launchVector = directionalVector * (clampedShotPower * 0.01f) * powerFactor;
 
-        Debug.Log(launchVector);
+        //Debug.Log(launchVector);
 
         if (selectedProjectile == 0)
         {

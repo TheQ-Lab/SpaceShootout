@@ -91,10 +91,7 @@ public class Astronaut : MonoBehaviour
             rBody.velocity = Vector2.ClampMagnitude(rBody.velocity, maxSpeed);
         }
 
-        if (health <= 0)
-        {
-            DespawnAstronaut();
-        }
+        
     }
 
     // Update is called once per frame
@@ -117,8 +114,8 @@ public class Astronaut : MonoBehaviour
 
     private void InitializeTurnFixed()
     {
-        uIActiveIndicator.Activate();
-        uIActiveIndicator.SelectColor(TeamNo);
+        /*uIActiveIndicator.Activate();
+        uIActiveIndicator.SelectColor(TeamNo);*/
         initializeTurn = false;
     }
 
@@ -279,12 +276,14 @@ public class Astronaut : MonoBehaviour
     public void Damage(int Damage)
     {
         health = Mathf.Max(health - Damage, 0);
+        if (health <= 0) { DespawnAstronaut(); }
     }
 
     private void DespawnAstronaut()
     {
-        GravityManager.Instance.RemoveAnyObjectFromGravity(this.gameObject);
         isAlive = false;
+        Debug.Log("Team " + TeamNo + "Astronaut" + this.transform.name + " set dead");
+        GravityManager.Instance.RemoveAnyObjectFromGravity(this.gameObject);
         GameManager.Instance.CheckTeamExtinction(TeamNo);
         this.gameObject.SetActive(false); //read from gameObject.activeSelf
         //Destroy(this.gameObject);
@@ -294,6 +293,8 @@ public class Astronaut : MonoBehaviour
     {
         isActive = true;
         rBody.constraints = RigidbodyConstraints2D.None;
+        uIActiveIndicator.Activate();
+        uIActiveIndicator.SelectColor(TeamNo);
     }
 
     public void DeactivateAstronaut()
