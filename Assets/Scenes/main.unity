@@ -1138,13 +1138,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colors:
   - serializedVersion: 2
-    rgba: 4292892709
+    rgba: 4282933450
   - serializedVersion: 2
-    rgba: 4282467059
+    rgba: 4291410688
   - serializedVersion: 2
-    rgba: 4280740881
+    rgba: 4281582470
   - serializedVersion: 2
-    rgba: 4280997337
+    rgba: 4283353559
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
