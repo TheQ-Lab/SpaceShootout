@@ -10,6 +10,7 @@ public class Astronaut : MonoBehaviour
     public UIActiveIndicator uIActiveIndicator;
 
     public int TeamNo = 1;
+    public int AstronautNo = 1;
     public bool isActive = false;
     public float movementSpeed = 1f;
     public float maxSpeed = 5f;
@@ -23,7 +24,7 @@ public class Astronaut : MonoBehaviour
     public GameObject nearestPlanet;
 
     private Rigidbody2D rBody;
-
+    private UILifeBars uILifeBars;
 
     private float RotateSpeed = 5f;
     private float Radius = 0.1f;
@@ -57,6 +58,7 @@ public class Astronaut : MonoBehaviour
         //for ProjectileCreation
         projectileCreatorScript = GetComponentInChildren<ProjectileCreator>();
 
+        uILifeBars = GameObject.FindGameObjectWithTag("ControllerLifeBars").GetComponent<UILifeBars>();
 
         //_centre = transform.position;
     }
@@ -276,7 +278,11 @@ public class Astronaut : MonoBehaviour
     public void Damage(int Damage)
     {
         health = Mathf.Max(health - Damage, 0);
-        if (health <= 0) { DespawnAstronaut(); }
+        uILifeBars.SetHealthValueOf(TeamNo, AstronautNo, health);
+        if (health <= 0) {
+            uILifeBars.DeactivateHealthBar(TeamNo, AstronautNo);
+            DespawnAstronaut(); 
+        }
     }
 
     private void DespawnAstronaut()

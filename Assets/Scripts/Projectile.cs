@@ -6,7 +6,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public string projectileType = "";
-    public int WeaponDamage = 100;
+    public int WeaponDamage = 90;
     public float lifetime;
    
     private Rigidbody2D rBody;

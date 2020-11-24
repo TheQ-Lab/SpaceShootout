@@ -170,6 +170,10 @@ PrefabInstance:
       propertyPath: TeamNo
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: AstronautNo
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429237, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_Constraints
       value: 4
@@ -204,7 +208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -256,7 +260,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &109734110
 GameObject:
@@ -335,6 +339,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67cda6d99b4b5f4d83f7abda4b6368b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &327445136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 327445137}
+  m_Layer: 5
+  m_Name: LifeBarsTeamD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &327445137
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327445136}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 490337485}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &360345855 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8788362985070429242, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
@@ -435,7 +474,7 @@ RectTransform:
   m_GameObject: {fileID: 385639557}
   m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.080526754, y: 0.080526754, z: 0.080526754}
+  m_LocalScale: {x: 0.125, y: 0.125, z: 1}
   m_Children:
   - {fileID: 1465465448}
   - {fileID: 1277874636}
@@ -444,7 +483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -40.23}
   m_SizeDelta: {x: 881, y: 554}
   m_Pivot: {x: 1.5, y: 0.5}
 --- !u!114 &385639559
@@ -577,6 +616,10 @@ PrefabInstance:
       propertyPath: TeamNo
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: AstronautNo
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429237, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_Constraints
       value: 4
@@ -611,7 +654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -644,9 +687,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 490337485}
+  - component: {fileID: 490337486}
   m_Layer: 5
   m_Name: LifeBars
-  m_TagString: Untagged
+  m_TagString: ControllerLifeBars
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -661,7 +705,11 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1790623008}
+  - {fileID: 1212542795}
+  - {fileID: 1880166307}
+  - {fileID: 327445137}
   m_Father: {fileID: 528480749}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -670,6 +718,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &490337486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490337484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5646d02d6f4013842a949e7ecb01e524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabsLifeBars:
+  - {fileID: 4055297140637666880, guid: c043eb1f687413a47b6f95b751d16253, type: 3}
+  - {fileID: 1335097910575016240, guid: b538096e7b5d1b645b5413e228596e91, type: 3}
+  - {fileID: 5380516485470108582, guid: d59b8c6bb71980c41b900702e9b49c1d, type: 3}
+  - {fileID: 5887088329711760135, guid: 2a35ec9dcb6163e40b9146c0a8ce9ad6, type: 3}
 --- !u!1 &528480748
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +764,7 @@ RectTransform:
   m_Children:
   - {fileID: 490337485}
   m_Father: {fileID: 1606508543}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -735,7 +800,7 @@ RectTransform:
   m_Children:
   - {fileID: 796428187}
   m_Father: {fileID: 1606508543}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -867,7 +932,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &616049065
 PrefabInstance:
@@ -1018,8 +1083,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 34.5}
-  m_SizeDelta: {x: 84.4, y: 57}
+  m_AnchoredPosition: {x: 0, y: 58.3}
+  m_SizeDelta: {x: 183.47827, y: 123.91305}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &694878699
 MonoBehaviour:
@@ -1170,7 +1235,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &796428186
 GameObject:
@@ -1206,8 +1271,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -40}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -46}
+  m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &796428188
 MonoBehaviour:
@@ -1231,10 +1296,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -1336,7 +1401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1456,7 +1521,7 @@ Transform:
   m_LocalScale: {x: 0.7566478, y: 0.7566478, z: 0.7566478}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -1539,7 +1604,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &991550100
 GameObject:
@@ -1643,7 +1708,7 @@ Transform:
   m_LocalScale: {x: 4.5823, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1045444154
 GameObject:
@@ -1686,6 +1751,41 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7912389724842303400, guid: e540b35f94f9ea8469cf2b12078b6279, type: 3}
   m_PrefabInstance: {fileID: 363220229}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1212542794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1212542795}
+  m_Layer: 5
+  m_Name: LifeBarsTeamB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1212542795
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212542794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 490337485}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1277874635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,6 +1983,10 @@ PrefabInstance:
       propertyPath: TeamNo
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: AstronautNo
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429237, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_Constraints
       value: 0
@@ -1921,7 +2025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2138,10 +2242,10 @@ RectTransform:
   m_Children:
   - {fileID: 1045444155}
   - {fileID: 385639558}
-  - {fileID: 556204669}
   - {fileID: 528480749}
+  - {fileID: 556204669}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2164,6 +2268,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67cda6d99b4b5f4d83f7abda4b6368b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1790623007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1790623008}
+  m_Layer: 5
+  m_Name: LifeBarsTeamA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1790623008
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790623007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 490337485}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1829918244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2207,6 +2346,10 @@ PrefabInstance:
       propertyPath: uIshotText
       value: 
       objectReference: {fileID: 796428188}
+    - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: AstronautNo
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429237, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_Constraints
       value: 0
@@ -2245,7 +2388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2274,6 +2417,41 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7912389724842303400, guid: e540b35f94f9ea8469cf2b12078b6279, type: 3}
   m_PrefabInstance: {fileID: 616049065}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1880166306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1880166307}
+  m_Layer: 5
+  m_Name: LifeBarsTeamC
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1880166307
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880166306}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 490337485}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1806758566227888306
 PrefabInstance:
   m_ObjectHideFlags: 0
