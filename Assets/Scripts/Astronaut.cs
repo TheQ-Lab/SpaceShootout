@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI; // because Text
 
 public class Astronaut : MonoBehaviour
@@ -14,6 +15,8 @@ public class Astronaut : MonoBehaviour
     public bool isActive = false;
     public float movementSpeed = 1f;
     public float maxSpeed = 5f;
+    public double sensitivityShotAngle = 0.02d;
+    public double sensitivityShotPower = 0.03d;
     public int health = 100;
     public bool isAlive = true;
     public bool shootPhase = false;
@@ -25,7 +28,8 @@ public class Astronaut : MonoBehaviour
 
     private Rigidbody2D rBody;
     private UILifeBars uILifeBars;
-
+    private PostProcessVolume postProcessVolume;
+    private Vignette vignetteLayer;
     //private float RotateSpeed = 5f;
     //private float Radius = 0.1f;
 
@@ -61,6 +65,8 @@ public class Astronaut : MonoBehaviour
         uILifeBars = GameObject.FindGameObjectWithTag("ControllerLifeBars").GetComponent<UILifeBars>();
 
         //_centre = transform.position;
+        postProcessVolume = GameObject.Find("PostProcessing").GetComponent<PostProcessVolume>();
+        postProcessVolume.profile.TryGetSettings(out vignetteLayer);
     }
 
     private void FixedUpdate()
@@ -108,7 +114,6 @@ public class Astronaut : MonoBehaviour
             else if (shootPhase)
             {
                 AstronautShooter();
-                AstronautShooterFixed();
             }
         }
     }
@@ -153,16 +158,43 @@ public class Astronaut : MonoBehaviour
 
     private void AstronautShooterFixed()
     {
-        double sensitivityShotAngle = 0.02d;
-        double sensitivityShotPower = 0.03d;
         if (shotFlying) return;
+        
+
+
+    }
+
+    private void AstronautShooter()
+    {
+        if (shotFlying) return;
+
+        if (InputManager.Instance.Inputs.Contains("space"))
+        {
+            InputManager.Instance.Inputs.Remove("space");
+            
+
+            Vector2 launchPosition = rBody.transform.position /*+ rBody.transform.up * 2.5f*/;
+
+            
+            projectileCreatorScript.ShootProjectile(launchPosition, shotAngle, shotPower, this.gameObject);
+
+            uIshotBar.Deactivate();
+            uIshotText.gameObject.SetActive(false);
+
+            vignetteLayer.enabled.value = true;
+
+            shotFlying = true;
+        }
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            timer+=Time.deltaTime;
+            timer += Time.deltaTime;
             if (timer >= sensitivityShotPower)
             {
                 timer = 0;
-                if (shotPower < 100) { shotPower++;
+                if (shotPower < 100)
+                {
+                    shotPower++;
                     uIshotBar.SetPower(shotPower);
                     uIshotText.text = shotAngle + ", " + shotPower;
                 }
@@ -174,7 +206,9 @@ public class Astronaut : MonoBehaviour
             if (timer >= sensitivityShotPower)
             {
                 timer = 0;
-                if (shotPower > 0) { shotPower--;
+                if (shotPower > 0)
+                {
+                    shotPower--;
                     uIshotBar.SetPower(shotPower);
                     uIshotText.text = shotAngle + ", " + shotPower;
                 }
@@ -208,34 +242,12 @@ public class Astronaut : MonoBehaviour
         {
             timer = 0;
         }
-
-
-    }
-
-    private void AstronautShooter()
-    {
-        if (shotFlying) return;
-        //if (Input.GetKeyDown(KeyCode.Space))
-        if (InputManager.Instance.Inputs.Contains("space"))
-        {
-            InputManager.Instance.Inputs.Remove("space");
-            
-
-            Vector2 launchPosition = rBody.transform.position /*+ rBody.transform.up * 2.5f*/;
-
-            
-            projectileCreatorScript.ShootProjectile(launchPosition, shotAngle, shotPower, this.gameObject);
-
-            uIshotBar.Deactivate();
-            uIshotText.gameObject.SetActive(false);
-
-            shotFlying = true;
-        }
     }
 
     public void EndShootingPhase()
     {
-        uIActiveIndicator.Deactivate();
+        uIActiveIndicator.Deactivate();        
+        vignetteLayer.enabled.value = false;
         shotFlying = false;
         shootPhase = false;
         isActive = false;
