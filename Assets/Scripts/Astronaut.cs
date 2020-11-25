@@ -26,11 +26,11 @@ public class Astronaut : MonoBehaviour
     private Rigidbody2D rBody;
     private UILifeBars uILifeBars;
 
-    private float RotateSpeed = 5f;
-    private float Radius = 0.1f;
+    //private float RotateSpeed = 5f;
+    //private float Radius = 0.1f;
 
     //private Vector2 _centre;
-    private float _angle;
+    //private float _angle;
 
 
     // private Vector3 inputVector;//up axis always being equal to the Y axis
@@ -39,7 +39,7 @@ public class Astronaut : MonoBehaviour
 
     private int shotAngle = 0;
     private int shotPower = 50;
-    private int timer = 0;
+    private double timer = 0;
 
 
     private float horizontalMove;
@@ -77,7 +77,7 @@ public class Astronaut : MonoBehaviour
             }
             else if (shootPhase)
             {
-                AstronautShooterFixed();
+                //AstronautShooterFixed();
             }
         }
 
@@ -108,6 +108,7 @@ public class Astronaut : MonoBehaviour
             else if (shootPhase)
             {
                 AstronautShooter();
+                AstronautShooterFixed();
             }
         }
     }
@@ -152,12 +153,13 @@ public class Astronaut : MonoBehaviour
 
     private void AstronautShooterFixed()
     {
+        double sensitivityShotAngle = 0.02d;
+        double sensitivityShotPower = 0.03d;
         if (shotFlying) return;
-
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            timer++;
-            if (timer >= 2)
+            timer+=Time.deltaTime;
+            if (timer >= sensitivityShotPower)
             {
                 timer = 0;
                 if (shotPower < 100) { shotPower++;
@@ -168,8 +170,8 @@ public class Astronaut : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            timer++;
-            if (timer >= 2)
+            timer += Time.deltaTime;
+            if (timer >= sensitivityShotPower)
             {
                 timer = 0;
                 if (shotPower > 0) { shotPower--;
@@ -180,8 +182,8 @@ public class Astronaut : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            timer++;
-            if (timer >= 2)
+            timer += Time.deltaTime;
+            if (timer >= sensitivityShotAngle)
             {
                 timer = 0;
                 shotAngle--;
@@ -192,8 +194,8 @@ public class Astronaut : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            timer++;
-            if (timer >= 2)
+            timer += Time.deltaTime;
+            if (timer >= sensitivityShotAngle)
             {
                 timer = 0;
                 shotAngle++;
