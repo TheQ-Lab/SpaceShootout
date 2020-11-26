@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MissilePrefab: {fileID: 8128423303125053964, guid: 7abc4ee3531fa474796042d9cc504527, type: 3}
   BombPrefab: {fileID: 0}
-  selectedProjectile: 0
+  selectedProjectile: 1
   currentProjectile: 
   lifetime: 5
 --- !u!1 &8788362985070429242
@@ -405,6 +405,8 @@ MonoBehaviour:
   isActive: 0
   movementSpeed: 3
   maxSpeed: 5
+  sensitivityShotAngle: 0.02
+  sensitivityShotPower: 0.03
   health: 100
   isAlive: 1
   shootPhase: 0
