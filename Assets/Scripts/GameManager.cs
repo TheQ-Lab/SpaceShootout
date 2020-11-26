@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     private List<List<Astronaut>> TeamsAll = new List<List<Astronaut>>();
     public bool[] TeamsAlive = new bool[4];
 
+    public GameObject GameOverText;
+
 
     private void Awake()
     {
@@ -173,5 +175,6 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         Debug.LogWarning("Game is Over. Somebody has won, there is nothing to see here.");
+        GameOverText.SetActive(true);
     }
 }

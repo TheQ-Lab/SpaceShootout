@@ -312,6 +312,7 @@ public class Astronaut : MonoBehaviour
     public void ActivateAstronaut()
     {
         isActive = true;
+        if(rBody == null) { rBody = GetComponent<Rigidbody2D>(); }
         rBody.constraints = RigidbodyConstraints2D.None;
         uIActiveIndicator.Activate();
         uIActiveIndicator.SelectColor(TeamNo);
