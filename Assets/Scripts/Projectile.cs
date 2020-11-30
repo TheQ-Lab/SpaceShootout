@@ -14,12 +14,15 @@ public class Projectile : MonoBehaviour
     private float deathTimer;
     private GameObject parentAstronaut;
 
+    bool explosionStarted = false;
+    const float MissileExplosionDelay = 0.0f;
+    const float BombExplosionDelay = 1.5f;
+    float explosionDuration = 0;
+
 
     //for Bomb
     float delay = 3f;
     float countdown;
-    bool explosion = false;
-    bool timerStarted = false;
     float radius = 5f;
 
     //for camera movement
@@ -57,14 +60,9 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Timer for explosion
-        if (timerStarted)
+        if (explosionStarted)
         {
-            countdown -= Time.deltaTime;
-            if (countdown <= 0f)
-            {
-                explosion = true;
-            }
+            Exploding();
         }
     }
 
@@ -79,34 +77,78 @@ public class Projectile : MonoBehaviour
        
     }
 
+    private void Exploding()
+    {
+        if (projectileType.Equals("Missile"))
+        {
+            ExplodingMissile();
+        }
+        else
+        {
+            if (countdown <= 0f)
+            {
+                ExplodingBomb();
+            }
+            else
+            {
+                countdown -= Time.deltaTime;
+            }
+       }
+    }
+
+    private void ExplodingMissile()
+    {
+        explosionDuration += Time.deltaTime;
+        if (explosionDuration > MissileExplosionDelay)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1f);
+            foreach (Collider2D nearbyObject in colliders)
+            {
+                //Debug.Log(nearbyObject);
+                if (nearbyObject.GetComponent<Astronaut>())
+                {
+                    Debug.Log("Do something, cause collider is with astronaut");
+                    Astronaut victim = nearbyObject.GetComponent<Astronaut>();
+                    victim.Damage(WeaponDamage);
+                    break;
+                }
+            }
+            DespawnThisProjectile();
+        }
+    }
+
+    private void ExplodingBomb()
+    {
+        explosionDuration += Time.deltaTime;
+        if (explosionDuration > BombExplosionDelay) {
+            Debug.Log("explosion");
+            Vector3 explosionPos = transform.position;
+            // Get nearest Objects
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, radius);
+            foreach (Collider2D nearbyObject in colliders)
+            {
+                //Debug.Log(nearbyObject);
+                if (nearbyObject.GetComponent<Astronaut>())
+                {
+                    Debug.Log("Do something, cause collider is with astronaut");
+                    Astronaut victim = nearbyObject.GetComponent<Astronaut>();
+                    victim.Damage(WeaponDamage);
+                    break;
+                }
+            }
+            DespawnThisProjectile();
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Astronaut astronautScript = collision.gameObject.GetComponent<Astronaut>();
-        
-        //maybe for future update with planet
-        //PlanetGrassland planetScript = collision.gameObject.GetComponent<PlanetGrassland>();
-            
-        if (projectileType.Equals("Missile"))   
-        {
-            if (astronautScript != null)
-            {
-                astronautScript.Damage(WeaponDamage); 
-            }
-            
-            DespawnThisProjectile();  
-        }
-
-        if (projectileType.Equals("Bomb"))
-        {
-            Explode();
-        }
+        explosionStarted = true;
     }
 
     public void SetInitialParameters(string _projectileType, Vector2 launchForce, float lifetime, GameObject parentAstronaut)
     {
-        projectileType = _projectileType;
-        this.lifetime = lifetime;
-       
+        projectileType = _projectileType;            
+        this.lifetime = lifetime;   
         float angle = Vector2.SignedAngle(new Vector2(0, 100), launchForce);
         rBody.transform.rotation = Quaternion.Euler(0, 0, angle);
         rBody.AddForce(launchForce);
@@ -126,31 +168,6 @@ public class Projectile : MonoBehaviour
         projectileExistiert = false;
     }
 
-    void Explode()
-    {
-        timerStarted = true;
-        if (explosion)
-        {
-            Debug.Log("explosion");
-            Vector3 explosionPos = transform.position;
-            // Get nearest Objects
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, radius);
-            foreach (Collider2D nearbyObject in colliders)
-            {
-                //Debug.Log(nearbyObject);
-                if (nearbyObject.GetComponent<Astronaut>())
-                {
-                    Debug.Log("Do something, cause collider is with astronaut");
-                    Astronaut victim = nearbyObject.GetComponent<Astronaut>();
-                    victim.Damage(WeaponDamage);
-                    break;
-                }
-            }
-            DespawnThisProjectile();
-            
-        }
-        
-    }
     void MoveCamera()
     {
         Vector3 offset = new Vector3(0, 0, -10);
