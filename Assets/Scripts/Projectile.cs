@@ -21,7 +21,20 @@ public class Projectile : MonoBehaviour
     bool explosion = false;
     bool timerStarted = false;
     float radius = 5f;
-    
+
+    //for camera movement
+    Transform camTarget;
+    Transform camTrans;
+    private Camera mainCamera;
+    private Vector3 startCameraPosition;
+    float startCameraSize;
+    private float smoothSpeed = 0.125f;
+
+    private float targetZoom;
+    private float zoomFactor = -0.15f;
+    private float zoomLerpSpeed = 0.15f;
+
+    private bool projectileExistiert = false;
 
     private void Awake()
     {
@@ -33,6 +46,11 @@ public class Projectile : MonoBehaviour
     {
         deathTimer = Time.time;
         countdown = delay;
+        mainCamera = Camera.main;
+        startCameraPosition = mainCamera.transform.position;
+        startCameraSize = mainCamera.orthographicSize;
+        camTrans = mainCamera.GetComponent<Transform>();
+        targetZoom = mainCamera.orthographicSize;
 
     }
 
@@ -53,6 +71,12 @@ public class Projectile : MonoBehaviour
     private void FixedUpdate()
     {
         if (Time.time >= deathTimer + lifetime) { DespawnThisProjectile(); }
+
+        if (projectileExistiert)
+        {
+            MoveCamera();
+        }
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -66,10 +90,10 @@ public class Projectile : MonoBehaviour
         {
             if (astronautScript != null)
             {
-                astronautScript.Damage(WeaponDamage);
-                   
+                astronautScript.Damage(WeaponDamage); 
             }
-            DespawnThisProjectile();
+            
+            DespawnThisProjectile();  
         }
 
         if (projectileType.Equals("Bomb"))
@@ -82,24 +106,13 @@ public class Projectile : MonoBehaviour
     {
         projectileType = _projectileType;
         this.lifetime = lifetime;
-        /*if (_projectileType.Equals("Bomb"))
-        {
-            //lifetime = 8f;
-            
-        }
-        else
-        {
-            //lifetime = 5f;
-            this.lifetime = _lifetime;
-        }*/
        
-
-        //rBody.AddForce(launchForce);
-
         float angle = Vector2.SignedAngle(new Vector2(0, 100), launchForce);
         rBody.transform.rotation = Quaternion.Euler(0, 0, angle);
         rBody.AddForce(launchForce);
         this.parentAstronaut = parentAstronaut;
+        camTarget = this.GetComponent<Transform>();
+        projectileExistiert = true;
     }
 
     private void DespawnThisProjectile()
@@ -108,6 +121,9 @@ public class Projectile : MonoBehaviour
         Astronaut parentAstronautScript = parentAstronaut.GetComponent<Astronaut>();
         parentAstronautScript.EndShootingPhase();
         Destroy(this.gameObject);
+        camTrans.position = startCameraPosition;
+        mainCamera.orthographicSize = startCameraSize;
+        projectileExistiert = false;
     }
 
     void Explode()
@@ -131,10 +147,20 @@ public class Projectile : MonoBehaviour
                 }
             }
             DespawnThisProjectile();
+            
         }
         
     }
-    
+    void MoveCamera()
+    {
+        Vector3 offset = new Vector3(0, 0, -10);
+        Vector3 desiredPosition = camTarget.position + offset;
+        Vector3 smoothPosition = Vector3.Lerp(camTrans.position, desiredPosition, smoothSpeed);
+        camTrans.position = smoothPosition;
+        targetZoom = targetZoom + zoomFactor;
+        targetZoom = Mathf.Clamp(targetZoom, 0.05f, 0.1f);
+        mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
+    }
 }
 
 

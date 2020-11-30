@@ -20,11 +20,14 @@ public class ProjectileCreator : MonoBehaviour
 
     private String[] projectiles = {"Bomb", "Missile"};
 
+   
+
     // Start is called before the first frame update
     void Start()
     {
         SelectProjectile(selectedProjectile);
         currentProjectile = projectiles[selectedProjectile];
+
     }
 
     // Update is called once per frame
@@ -60,10 +63,12 @@ public class ProjectileCreator : MonoBehaviour
         currentProjectile = projectiles[selectedProjectile];
 
         if (selectedProjectile == 0)
-            lifetime = 8f;
+            lifetime = 7f;
         else
             lifetime = 5f;
+        
     }
+   
     public void ShootProjectile(Vector2 spawnPosition, int shotAngle, int shotPower, GameObject parentAstronaut)
     {
         float powerFactor = 1600f; //for missile specific probably
@@ -82,7 +87,10 @@ public class ProjectileCreator : MonoBehaviour
             Bomb.AddComponent<Projectile>();
             Projectile projectileScript = Bomb.GetComponent<Projectile>();
             projectileScript.SetInitialParameters(projectiles[selectedProjectile], launchVector, lifetime, parentAstronaut);
-            GravityManager.Instance.AddProjectileToGravity(Bomb); 
+            GravityManager.Instance.AddProjectileToGravity(Bomb);
+            
+
+
         }
         else if (selectedProjectile == 1)
         {
@@ -91,7 +99,10 @@ public class ProjectileCreator : MonoBehaviour
             Projectile projectileScript = Missile.GetComponent<Projectile>();
             projectileScript.SetInitialParameters(projectiles[selectedProjectile], launchVector, lifetime, parentAstronaut);
             GravityManager.Instance.AddProjectileToGravity(Missile);
+            
+            
         }
+        
     }
     void SelectProjectile(int index)
     {
@@ -103,4 +114,7 @@ public class ProjectileCreator : MonoBehaviour
                 transform.GetChild(i).gameObject.SetActive(false);
         }
     }
+     
+   
+
 }
