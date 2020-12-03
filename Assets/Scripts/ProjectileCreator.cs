@@ -64,8 +64,8 @@ public class ProjectileCreator : MonoBehaviour
 
         if (selectedProjectile == 0)
             lifetime = 7f;
-        else
-            lifetime = 5f;
+        else if (selectedProjectile == 1)
+            lifetime = 10f;
         
     }
    

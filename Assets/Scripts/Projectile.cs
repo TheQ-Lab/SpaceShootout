@@ -120,7 +120,7 @@ public class Projectile : MonoBehaviour
     private void ExplodingBomb()
     {
         explosionDuration += Time.deltaTime;
-        if (explosionDuration > BombExplosionDelay) {
+        if (explosionDuration > BombExplosionDelay) { // why delay it after the delay tho? for anims? That shouldn't be necessary
             Debug.Log("explosion");
             Vector3 explosionPos = transform.position;
             // Get nearest Objects
@@ -143,6 +143,11 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         explosionStarted = true;
+        if (collision.transform.name=="ProjectileBarrier" && projectileType.Equals("Bomb"))
+        {
+            countdown = 0f;
+            explosionDuration = BombExplosionDelay;
+        }
     }
 
     public void SetInitialParameters(string _projectileType, Vector2 launchForce, float lifetime, GameObject parentAstronaut)

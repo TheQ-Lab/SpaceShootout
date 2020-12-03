@@ -185,6 +185,13 @@ public class Astronaut : MonoBehaviour
 
             shotFlying = true;
         }
+        else if (Input.GetKey(KeyCode.Escape))
+        {
+            shootPhase = false;
+            uIshotBar.Deactivate();
+            uIshotText.gameObject.SetActive(false);
+            rBody.constraints = RigidbodyConstraints2D.None;
+        }
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
