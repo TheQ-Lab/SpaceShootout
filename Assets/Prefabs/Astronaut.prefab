@@ -405,8 +405,10 @@ MonoBehaviour:
   isActive: 0
   movementSpeed: 3
   maxSpeed: 5
-  sensitivityShotAngle: 0.02
+  sensitivityShotAngle: 0.03
+  sensitivityShotAngle2: 0.008
   sensitivityShotPower: 0.03
+  sensitivityShotPower2: 0.015
   health: 100
   isAlive: 1
   shootPhase: 0

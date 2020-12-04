@@ -15,8 +15,10 @@ public class Astronaut : MonoBehaviour
     public bool isActive = false;
     public float movementSpeed = 1f;
     public float maxSpeed = 5f;
-    public double sensitivityShotAngle = 0.02d;
-    public double sensitivityShotPower = 0.03d;
+    public double sensitivityShotAngle = 0.03d;
+    public double sensitivityShotAngle2 = 0.008d;
+    public double sensitivityShotPower = 0.04d;
+    public double sensitivityShotPower2 = 0.01d;
     public int health = 100;
     public bool isAlive = true;
     public bool shootPhase = false;
@@ -164,6 +166,7 @@ public class Astronaut : MonoBehaviour
 
     }
 
+    private int countedUnits = 0;
     private void AstronautShooter()
     {
         if (shotFlying) return;
@@ -193,12 +196,19 @@ public class Astronaut : MonoBehaviour
             rBody.constraints = RigidbodyConstraints2D.None;
         }
 
+        int currentFixedFrame = Mathf.RoundToInt(Time.fixedTime / Time.fixedDeltaTime);
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            timer += Time.deltaTime;
-            if (timer >= sensitivityShotPower)
+            timer -= Time.deltaTime;
+            if (timer < 0)
             {
-                timer = 0;
+                countedUnits++;
+                if (countedUnits <= 5)
+                    timer = sensitivityShotPower;
+                else
+                    timer = sensitivityShotPower2;
+
                 if (shotPower < 100)
                 {
                     shotPower++;
@@ -209,10 +219,15 @@ public class Astronaut : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            timer += Time.deltaTime;
-            if (timer >= sensitivityShotPower)
+            timer -= Time.deltaTime;
+            if (timer < 0)
             {
-                timer = 0;
+                countedUnits++;
+                if (countedUnits <= 5)
+                    timer = sensitivityShotPower;
+                else
+                    timer = sensitivityShotPower2;
+
                 if (shotPower > 0)
                 {
                     shotPower--;
@@ -223,10 +238,15 @@ public class Astronaut : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            timer += Time.deltaTime;
-            if (timer >= sensitivityShotAngle)
+            timer -= Time.deltaTime;
+            if (timer < 0)
             {
-                timer = 0;
+                countedUnits++;
+                if (countedUnits <= 10)
+                    timer = sensitivityShotPower;
+                else
+                    timer = sensitivityShotPower2;
+
                 shotAngle--;
                 if (shotAngle < 0) { shotAngle = 359; }
                 uIshotBar.SetAngle(shotAngle);
@@ -235,10 +255,16 @@ public class Astronaut : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            timer += Time.deltaTime;
-            if (timer >= sensitivityShotAngle)
+            timer -= Time.deltaTime;
+            if (timer < 0)
             {
-                timer = 0;
+                countedUnits++;
+                if (countedUnits <= 10)
+                    timer = sensitivityShotPower;
+                else
+                    timer = sensitivityShotPower2;
+
+
                 shotAngle++;
                 if (shotAngle > 359) { shotAngle = 0; }
                 uIshotBar.SetAngle(shotAngle);
@@ -248,6 +274,7 @@ public class Astronaut : MonoBehaviour
         else
         {
             timer = 0;
+            countedUnits = 0;
         }
     }
 
