@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiElement: {fileID: 0}
-  UIType: 0
+  UIType: 2
 --- !u!1 &6784258320777472305
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +407,7 @@ MonoBehaviour:
   maxSpeed: 5
   sensitivityShotAngle: 0.03
   sensitivityShotAngle2: 0.008
-  sensitivityShotPower: 0.03
+  sensitivityShotPower: 0.04
   sensitivityShotPower2: 0.015
   health: 100
   isAlive: 1

@@ -7,18 +7,14 @@ public class ClampUiElement : MonoBehaviour
     public GameObject uiElement;
     public UITypeEnum UIType;
 
-    public enum UITypeEnum {IsActive_Dependant, LifeBar};
+    public enum UITypeEnum {IsActive_Dependant, LifeBar, ActiveIndicator};
 
     private Astronaut parent;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (UIType == UITypeEnum.IsActive_Dependant)
-        {
-            parent = GetComponentInParent<Astronaut>();
-        }
-        else if (UIType == UITypeEnum.LifeBar)
+        if (UIType == UITypeEnum.LifeBar)
         {
             parent = GetComponentInParent<Astronaut>();
             char team = '\0';
@@ -40,6 +36,10 @@ public class ClampUiElement : MonoBehaviour
             char astronaut = parent.AstronautNo.ToString()[0];
             uiElement = GameObject.Find("LifeBar" + team + astronaut);
         }
+        else
+        {
+            parent = GetComponentInParent<Astronaut>();
+        }
     }
 
     // Update is called once per frame
@@ -56,6 +56,13 @@ public class ClampUiElement : MonoBehaviour
                 return; 
             }
         }
+        else if(UIType == UITypeEnum.ActiveIndicator)
+        {
+            if (!parent.isActive) { return; }
+            Quaternion thisRot = this.transform.rotation;
+            uiElement.transform.rotation = thisRot;
+        }
+
         Vector3 thisPos = Camera.main.WorldToScreenPoint(this.transform.position);
         uiElement.transform.position = thisPos;
     }

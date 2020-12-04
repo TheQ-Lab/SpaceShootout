@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
     private float zoomFactor = -0.15f;
     private float zoomLerpSpeed = 0.15f;
 
-    private bool projectileExistiert = false;
+    private bool isProjectileExistent = false;
 
     private void Awake()
     {
@@ -70,7 +70,7 @@ public class Projectile : MonoBehaviour
     {
         if (Time.time >= deathTimer + lifetime) { DespawnThisProjectile(); }
 
-        if (projectileExistiert)
+        if (isProjectileExistent)
         {
             MoveCamera();
         }
@@ -159,7 +159,7 @@ public class Projectile : MonoBehaviour
         rBody.AddForce(launchForce);
         this.parentAstronaut = parentAstronaut;
         camTarget = this.GetComponent<Transform>();
-        projectileExistiert = true;
+        isProjectileExistent = true;
     }
 
     private void DespawnThisProjectile()
@@ -170,7 +170,7 @@ public class Projectile : MonoBehaviour
         Destroy(this.gameObject);
         camTrans.position = startCameraPosition;
         mainCamera.orthographicSize = startCameraSize;
-        projectileExistiert = false;
+        isProjectileExistent = false;
     }
 
     void MoveCamera()

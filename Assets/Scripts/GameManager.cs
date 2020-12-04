@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
 
-    public int PlayerAtTurn = 1; // obsolete
+    //public int PlayerAtTurn = 1; // obsolete
     public int NumberTeamsPlaying = 2;
     public int NumberAstronautsPerTeam = 3;
-    public List<Astronaut> Astronauts; //obsolete
+    //public List<Astronaut> Astronauts; //obsolete
     public int ActiveTeam = 1;
     public int[] ActiveAstronautPerTeam = new int[4] { 1, 0, 0, 0 };
     public List<Astronaut> TurnHistory;
@@ -21,7 +22,10 @@ public class GameManager : MonoBehaviour
     public bool[] TeamsAlive = new bool[4];
 
     public GameObject GameOverText;
+    public Text TurnTimeText;
+    public int maxTurnTime = 15;
 
+    private double turnTimer;
 
     private void Awake()
     {
@@ -62,22 +66,40 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CheckTurnTime();
+    }
+
+    private void CheckTurnTime()
+    {
+        Astronaut currentAstronautScript = TurnHistory[TurnHistory.Count - 1].GetComponent<Astronaut>();
+        if (currentAstronautScript.shotFlying)
+            return;
+
+        if (turnTimer > 0)
+        {
+            turnTimer -= Time.deltaTime;
+            TurnTimeText.text = Mathf.RoundToInt((float)turnTimer).ToString();
+        }
+        else
+        {
+            currentAstronautScript.EndShootingPhase();
+        }
     }
 
     public void HandOverTurn()
     {
         
         ActiveTeam = GetNextValidTeam();
-        Debug.Log("(next) Active Team" + ActiveTeam);
+        //Debug.Log("(next) Active Team" + ActiveTeam);
         if(ActiveTeam == -1) { GameOver(); return; }
         //Debug.Log(nextActiveTeam);
         int activeAstronaut = GetNextValidAstronaut(ActiveTeam);
         Astronaut nextAstronaut = TeamsAll[ActiveTeam-1][activeAstronaut-1];
-        Debug.Log(nextAstronaut);
+        //Debug.Log(nextAstronaut);
         TransferAcitveAstronaut(TurnHistory[TurnHistory.Count-1], nextAstronaut);
 
         ActiveAstronautPerTeam[ActiveTeam-1] = activeAstronaut;
+        turnTimer = (double)maxTurnTime;
         /*
         int nextPlayerAtTurn = PlayerAtTurn + 1;
         if (PlayerAtTurn > Astronauts.Count-1)
