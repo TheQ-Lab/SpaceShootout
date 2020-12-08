@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI; // because Text
 
 public class Astronaut : MonoBehaviour
@@ -30,8 +29,8 @@ public class Astronaut : MonoBehaviour
 
     private Rigidbody2D rBody;
     private UILifeBars uILifeBars;
-    private PostProcessVolume postProcessVolume;
-    private Vignette vignetteLayer;
+    private PostProcessing postProcessingScript;
+
     //private float RotateSpeed = 5f;
     //private float Radius = 0.1f;
 
@@ -66,8 +65,8 @@ public class Astronaut : MonoBehaviour
         uILifeBars = GameObject.FindGameObjectWithTag("ControllerLifeBars").GetComponent<UILifeBars>();
 
         //_centre = transform.position;
-        postProcessVolume = GameObject.Find("PostProcessing").GetComponent<PostProcessVolume>();
-        postProcessVolume.profile.TryGetSettings(out vignetteLayer);
+
+        postProcessingScript = GameObject.Find("PostProcessingVolume").GetComponent<PostProcessing>();
     }
 
     private void FixedUpdate()
@@ -184,7 +183,8 @@ public class Astronaut : MonoBehaviour
             uIshotBar.Deactivate();
             uIshotText.gameObject.SetActive(false);
 
-            vignetteLayer.enabled.value = true;
+            postProcessingScript.vignette.active = true;
+            postProcessingScript.filmGrain.active = true;
 
             shotFlying = true;
         }
@@ -279,8 +279,9 @@ public class Astronaut : MonoBehaviour
 
     public void EndShootingPhase()
     {
-        uIActiveIndicator.Deactivate();        
-        vignetteLayer.enabled.value = false;
+        uIActiveIndicator.Deactivate();
+        postProcessingScript.vignette.active = false;
+        postProcessingScript.filmGrain.active = false;
         shotFlying = false;
         shootPhase = false;
         isActive = false;
