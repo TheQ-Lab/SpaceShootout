@@ -101,7 +101,7 @@ public class Projectile : MonoBehaviour
         explosionDuration += Time.deltaTime;
         if (explosionDuration > MissileExplosionDelay)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1f);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1f);
             foreach (Collider2D nearbyObject in colliders)
             {
                 //Debug.Log(nearbyObject);
