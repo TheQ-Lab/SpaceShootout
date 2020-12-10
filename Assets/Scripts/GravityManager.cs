@@ -63,13 +63,7 @@ public class GravityManager : MonoBehaviour
         {
             Rigidbody2D astronaut = rBodyAstronauts[i];
             if (!scriptAstronauts[i].isStationary) {
-                foreach (Vector2 posPlanet in posPlanets)
-                {
-                    //Vector2 direction = (Vector2)p.transform.position - e.position;
-                    ApplyGravity(astronaut, posPlanet);
-                    //Debug.Log(direction);
-                    //Debug.Log(rBody);
-                }
+                ApplyGravityTowardsAllPlanets(astronaut);
             } 
             else
             {
@@ -80,11 +74,18 @@ public class GravityManager : MonoBehaviour
 
         foreach(Rigidbody2D projectile in rBodyProjectiles)
         {
-            foreach(Vector2 posPlanet in posPlanets)
-            {
-                ApplyGravity(projectile, posPlanet);
-            }
-            ApplyDrag(projectile);
+            ApplyGravityTowardsAllPlanets(projectile);
+            //ApplyDrag(projectile);
+        }
+    }
+
+    public void ApplyGravityTowardsAllPlanets(Rigidbody2D subject)
+    {
+        foreach (Vector2 posPlanet in posPlanets)
+        {
+            
+            //Debug.LogError(posPlanets.Count);
+            ApplyGravity(subject, posPlanet);
         }
     }
 
@@ -101,7 +102,7 @@ public class GravityManager : MonoBehaviour
         //Debug.Log(newGravity);
     }
 
-    private void ApplyDrag(Rigidbody2D rBody)
+    public void ApplyDrag(Rigidbody2D rBody)
     {
         double velX = rBody.velocity.x;
         double velY = rBody.velocity.y;

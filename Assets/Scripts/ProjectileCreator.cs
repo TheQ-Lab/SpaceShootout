@@ -104,7 +104,24 @@ public class ProjectileCreator : MonoBehaviour
         }
         
     }
-    void SelectProjectile(int index)
+
+    public void SimulateProjectile(Vector2 spawnPosition, int shotAngle, int shotPower, GameObject parentAstronaut)
+    {
+        float powerFactor = 1600f; //for missile specific probably
+
+        Vector2 directionalVector = Quaternion.Euler(0, 0, shotAngle) * Vector2.up;
+
+        spawnPosition = spawnPosition + directionalVector * 2f;
+        float clampedShotPower = 35f + shotPower * 0.5f;
+        Vector2 launchVector = directionalVector * (clampedShotPower * 0.01f) * powerFactor;
+
+        Missile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
+
+        PredictionManager.Instance.predict(MissilePrefab, spawnPosition, launchVector);
+        Destroy(Missile);
+    }
+
+        void SelectProjectile(int index)
     {
         for (int i = 0; i < transform.childCount; i++)
         {

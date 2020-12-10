@@ -141,7 +141,6 @@ public class Astronaut : MonoBehaviour
         {
             InputManager.Instance.Inputs.Remove("space");
 
-            shootPhase = true;
             rBody.constraints = RigidbodyConstraints2D.FreezeAll;
 
             uIshotBar.Activate();
@@ -149,6 +148,10 @@ public class Astronaut : MonoBehaviour
             uIshotBar.SetAngle(shotAngle);
             uIshotText.gameObject.SetActive(true);
             uIshotText.text = shotAngle + ", " + shotPower;
+
+            PredictionManager.Instance.lineRenderer.enabled = true;
+
+            shootPhase = true;
         }
         else
         {
@@ -186,6 +189,8 @@ public class Astronaut : MonoBehaviour
             postProcessingScript.vignette.active = true;
             postProcessingScript.filmGrain.active = true;
 
+            PredictionManager.Instance.lineRenderer.enabled = false;
+
             shotFlying = true;
         }
         else if (Input.GetKey(KeyCode.Escape))
@@ -194,6 +199,12 @@ public class Astronaut : MonoBehaviour
             uIshotBar.Deactivate();
             uIshotText.gameObject.SetActive(false);
             rBody.constraints = RigidbodyConstraints2D.None;
+        }
+        else
+        {
+            Vector2 launchPosition = rBody.transform.position /*+ rBody.transform.up * 2.5f*/;
+
+            projectileCreatorScript.SimulateProjectile(launchPosition, shotAngle, shotPower, this.gameObject);
         }
 
 
