@@ -33,9 +33,10 @@ public class Projectile : MonoBehaviour
     float startCameraSize;
     private float smoothSpeed = 0.125f;
 
-    private float targetZoom;
-    private float zoomFactor = -0.15f;
-    private float zoomLerpSpeed = 0.15f;
+    private Animator cameraAnimator;
+    //private float targetZoom;
+    //private float zoomFactor = -0.15f;
+    //private float zoomLerpSpeed = 0.15f;
 
     private bool isProjectileExistent = false;
 
@@ -49,12 +50,13 @@ public class Projectile : MonoBehaviour
     {
         deathTimer = Time.time;
         countdown = delay;
+
         mainCamera = Camera.main;
         startCameraPosition = mainCamera.transform.position;
         startCameraSize = mainCamera.orthographicSize;
         camTrans = mainCamera.GetComponent<Transform>();
-        targetZoom = mainCamera.orthographicSize;
-
+        cameraAnimator = mainCamera.GetComponent<Animator>();
+        //targetZoom = mainCamera.orthographicSize;
     }
 
     // Update is called once per frame
@@ -169,7 +171,8 @@ public class Projectile : MonoBehaviour
         parentAstronautScript.EndShootingPhase();
         Destroy(this.gameObject);
         camTrans.position = startCameraPosition;
-        mainCamera.orthographicSize = startCameraSize;
+        cameraAnimator.SetBool("Zoomed In", false);
+        //mainCamera.orthographicSize = startCameraSize;
         isProjectileExistent = false;
     }
 
@@ -179,9 +182,10 @@ public class Projectile : MonoBehaviour
         Vector3 desiredPosition = camTarget.position + offset;
         Vector3 smoothPosition = Vector3.Lerp(camTrans.position, desiredPosition, smoothSpeed);
         camTrans.position = smoothPosition;
-        targetZoom = targetZoom + zoomFactor;
+        cameraAnimator.SetBool("Zoomed In", true);
+        /*targetZoom = targetZoom + zoomFactor;
         targetZoom = Mathf.Clamp(targetZoom, 0.05f, 0.1f);
-        mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
+        mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);*/
     }
 }
 
