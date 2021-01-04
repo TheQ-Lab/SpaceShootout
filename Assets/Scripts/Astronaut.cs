@@ -288,7 +288,7 @@ public class Astronaut : MonoBehaviour
         }
     }
 
-    public void EndShootingPhase()
+    public void EndShootingPhase(float delay)
     {
         uIActiveIndicator.Deactivate();
         postProcessingScript.vignette.active = false;
@@ -297,7 +297,7 @@ public class Astronaut : MonoBehaviour
         shootPhase = false;
         isActive = false;
         initializeTurn = true;
-        GameManager.Instance.HandOverTurn();
+        GameManager.Instance.HandOverTurn(delay);
     }
 
 

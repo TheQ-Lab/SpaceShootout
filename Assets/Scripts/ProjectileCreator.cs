@@ -7,9 +7,12 @@ public class ProjectileCreator : MonoBehaviour
 {
     public GameObject MissilePrefab;
     public GameObject BombPrefab;
+    public GameObject ExplosionEffect;
+    public GameObject MissileEffect;
 
     public int selectedProjectile = 0;
     public string currentProjectile;
+    
 
     public float lifetime;
    
@@ -86,6 +89,7 @@ public class ProjectileCreator : MonoBehaviour
             Bomb = Instantiate(BombPrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
             Bomb.AddComponent<Projectile>();
             Projectile projectileScript = Bomb.GetComponent<Projectile>();
+            projectileScript.explosionEffect = ExplosionEffect;
             projectileScript.SetInitialParameters(projectiles[selectedProjectile], launchVector, lifetime, parentAstronaut);
             GravityManager.Instance.AddProjectileToGravity(Bomb);
             
@@ -97,6 +101,8 @@ public class ProjectileCreator : MonoBehaviour
             Missile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
             Missile.AddComponent<Projectile>();
             Projectile projectileScript = Missile.GetComponent<Projectile>();
+            projectileScript.missileEffect = MissileEffect;
+            Debug.Log("Missile"+MissileEffect);
             projectileScript.SetInitialParameters(projectiles[selectedProjectile], launchVector, lifetime, parentAstronaut);
             GravityManager.Instance.AddProjectileToGravity(Missile);
             

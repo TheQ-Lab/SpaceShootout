@@ -96,8 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56c811897dd193488421882f4b74bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
-  force: 700
 --- !u!58 &-3835249997714833517
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -129,7 +127,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
