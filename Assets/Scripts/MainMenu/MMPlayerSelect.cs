@@ -6,6 +6,7 @@ public class MMPlayerSelect : MonoBehaviour
 {
     public void OnClickPlayerAmmountSelect(int num)
     {
-        Debug.Log(num + " players play this game!");
+        Debug.Log("Selected: " + num + " players");
+        AppManager.Instance.SelectedPlayerCount = num;
     }
 }

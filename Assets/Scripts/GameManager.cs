@@ -24,9 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverText;
     public Text TurnTimeText;
     public int maxTurnTime = 15;
-
     private double turnTimer;
-    float delay;
 
     //for returning camera 
     private Camera mainCamera;
@@ -52,6 +50,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // CameraStartup
         mainCamera = Camera.main;
         startCameraPosition = mainCamera.transform.position;
         camTrans = mainCamera.GetComponent<Transform>();
