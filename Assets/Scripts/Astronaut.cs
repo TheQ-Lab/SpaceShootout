@@ -5,19 +5,22 @@ using UnityEngine.UI; // because Text
 
 public class Astronaut : MonoBehaviour
 {
-    public UIShotBar uIshotBar;
-    public Text uIshotText;
-    public UIActiveIndicator uIActiveIndicator;
+    
 
+    [Header("Association/Initials:")]
     public int TeamNo = 1;
     public int AstronautNo = 1;
+    [Tooltip("Only set active initially on Astronaut A1")]
     public bool isActive = false;
+
+    [Header("Constants")]
     public float movementSpeed = 1f;
     public float maxSpeed = 5f;
     public double sensitivityShotAngle = 0.03d;
     public double sensitivityShotAngle2 = 0.008d;
     public double sensitivityShotPower = 0.04d;
     public double sensitivityShotPower2 = 0.01d;
+    [Header("Variables")]
     public int health = 100;
     public bool isAlive = true;
     public bool shootPhase = false;
@@ -27,7 +30,11 @@ public class Astronaut : MonoBehaviour
     public bool initializeTurn = true;
     public GameObject nearestPlanet;
 
+    [Header("Private References")]
     private Rigidbody2D rBody;
+    private UIShotBar uIshotBar;
+    private Text uIshotText;
+    private UIActiveIndicator uIActiveIndicator;
     private UILifeBars uILifeBars;
     private PostProcessing postProcessingScript;
 
@@ -62,10 +69,13 @@ public class Astronaut : MonoBehaviour
         //for ProjectileCreation
         projectileCreatorScript = GetComponentInChildren<ProjectileCreator>();
 
+        uIshotBar = CoolFunctions.FindInArray("ShotBarContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).GetComponent<UIShotBar>();
+        uIshotText = CoolFunctions.FindInArray("ShotTextContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<Text>();
+        uIActiveIndicator = CoolFunctions.FindInArray("ActiveIndicatorContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<UIActiveIndicator>();
+
         uILifeBars = GameObject.FindGameObjectWithTag("ControllerLifeBars").GetComponent<UILifeBars>();
 
         //_centre = transform.position;
-
         postProcessingScript = GameObject.Find("PostProcessingVolume").GetComponent<PostProcessing>();
     }
 

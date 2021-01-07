@@ -8,24 +8,37 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance = null;
 
     //public int PlayerAtTurn = 1; // obsolete
+    [Tooltip("Should get set to player count from AppMgr")]
     public int NumberTeamsPlaying = 2;
+    [Tooltip("Set to Astreonaut count")]
     public int NumberAstronautsPerTeam = 3;
-    //public List<Astronaut> Astronauts; //obsolete
+    [Tooltip("LEAVE AT 4")]
     public int ActiveTeam = 1;
-    public int[] ActiveAstronautPerTeam = new int[4] { 1, 0, 0, 0 };
-    public List<Astronaut> TurnHistory;
-    public List<Astronaut> TeamA;
-    public List<Astronaut> TeamB;
-    public List<Astronaut> TeamC;
-    public List<Astronaut> TeamD;
-    private List<List<Astronaut>> TeamsAll = new List<List<Astronaut>>();
+    [Tooltip("Leave at 0,0,0,0")]
     public bool[] TeamsAlive = new bool[4];
+    [Tooltip("LEAVE AT 0,0,0,0")]
+    public int[] ActiveAstronautPerTeam = new int[4] { 1, 0, 0, 0 };
+    [Tooltip("LEAVE blank")]
+    public List<Astronaut> TurnHistory;
 
-    public GameObject GameOverText;
-    public Text TurnTimeText;
+    [Header("Fill this:")]
+    [Tooltip("Fill with Astronauts from Team A")]
+    public List<Astronaut> TeamA;
+    [Tooltip("Fill with Astronauts from Team B")]
+    public List<Astronaut> TeamB;
+    [Tooltip("Fill with Astronauts from Team C")]
+    public List<Astronaut> TeamC;
+    [Tooltip("Fill with Astronauts from Team D")]
+    public List<Astronaut> TeamD;
+
+    private List<List<Astronaut>> TeamsAll = new List<List<Astronaut>>();
+    
+
     public int maxTurnTime = 15;
     private double turnTimer;
 
+    public GameObject GameOverText;
+    public Text TurnTimeText;
     //for returning camera 
     private Camera mainCamera;
     private Vector3 startCameraPosition;
@@ -72,8 +85,8 @@ public class GameManager : MonoBehaviour
         TeamsAll.Add(TeamC);
         TeamsAll.Add(TeamD);
 
-        //TurnHistory.Add(TeamA[0]);
-        TransferAcitveAstronaut(TeamsAll[1][0], TeamsAll[0][0]);
+        TurnHistory.Add(TeamA[0]);
+        //TransferAcitveAstronaut(TeamsAll[1][0], TeamsAll[0][0]); Does not work
 
         turnActive = true;
     }
