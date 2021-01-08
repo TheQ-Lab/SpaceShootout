@@ -102,6 +102,12 @@ public class Astronaut : MonoBehaviour
         {
             TurnUpright();
         }
+        else
+        {
+
+        }
+
+
         //ALWAYS
         //When Astronaut is too fast, limit its velocity/speed
         if (rBody.velocity.magnitude > maxSpeed)
@@ -194,6 +200,7 @@ public class Astronaut : MonoBehaviour
             projectileCreatorScript.ShootProjectile(launchPosition, shotAngle, shotPower, this.gameObject);
 
             uIshotBar.Deactivate();
+            PredictionManager.Instance.lineRenderer.enabled = false;
             uIshotText.gameObject.SetActive(false);
 
             postProcessingScript.vignette.active = true;
@@ -207,6 +214,7 @@ public class Astronaut : MonoBehaviour
         {
             shootPhase = false;
             uIshotBar.Deactivate();
+            PredictionManager.Instance.lineRenderer.enabled = false;
             uIshotText.gameObject.SetActive(false);
             rBody.constraints = RigidbodyConstraints2D.None;
         }
@@ -376,5 +384,46 @@ public class Astronaut : MonoBehaviour
     public void DeactivateAstronaut()
     {
         isActive = false;
+        SetStationary(true);
+        uIshotBar.Deactivate();
+        PredictionManager.Instance.lineRenderer.enabled = false;
+    }
+
+    public void SetStationary(bool val)
+    {
+        if (val == true)
+        {
+            isStationary = true;
+            if (!isActive)
+                rBody.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else if (val == false)
+        {
+            //to be determined
+            //probably called when hit by launching missile o.Ä.
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!isStationary)
+        {
+            // especially for beginning when spawning to get stationary upon hitting the ground
+            if (collision.collider.tag == "Ground")
+                SetStationary(true);
+        }
+        else
+        {
+            // when walking do not glitch up other Astronauts
+            /*does not work!
+            if (collision.collider.tag == "Astronaut")
+            {
+                Debug.Log("collide with astronaut");
+                rBody.velocity = Vector2.zero;
+            }
+            */
+        }
+
+
     }
 }

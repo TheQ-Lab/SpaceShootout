@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ControllerLifeBars
   - UIReferences
+  - Ground
+  - Astronaut
   layers:
   - Default
   - TransparentFX

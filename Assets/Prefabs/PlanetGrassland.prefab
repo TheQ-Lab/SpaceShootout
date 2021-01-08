@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3008951405840552794}
   m_Layer: 0
   m_Name: PlanetGrassland
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 80e84cfd347c7054d8a2270b8dc12409, type: 2}
+  - {fileID: 2100000, guid: 2371fc243e8dda14e9ad3181f96d4c8e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

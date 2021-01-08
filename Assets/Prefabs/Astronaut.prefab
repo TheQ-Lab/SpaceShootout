@@ -259,6 +259,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MissilePrefab: {fileID: 8128423303125053964, guid: 7abc4ee3531fa474796042d9cc504527, type: 3}
   BombPrefab: {fileID: 0}
+  ExplosionEffect: {fileID: 0}
+  MissileEffect: {fileID: 0}
   selectedProjectile: 1
   currentProjectile: 
   lifetime: 5
@@ -278,7 +280,7 @@ GameObject:
   - component: {fileID: 8788362985070429236}
   m_Layer: 0
   m_Name: Astronaut
-  m_TagString: Untagged
+  m_TagString: Astronaut
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,7 +370,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 0
 --- !u!70 &8788362985070429241
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -397,9 +399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67cda6d99b4b5f4d83f7abda4b6368b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIshotBar: {fileID: 0}
-  uIshotText: {fileID: 0}
-  uIActiveIndicator: {fileID: 0}
   TeamNo: 1
   AstronautNo: 1
   isActive: 0
@@ -413,6 +412,6 @@ MonoBehaviour:
   isAlive: 1
   shootPhase: 0
   shotFlying: 0
-  isStationary: 1
+  isStationary: 0
   initializeTurn: 1
   nearestPlanet: {fileID: 0}
