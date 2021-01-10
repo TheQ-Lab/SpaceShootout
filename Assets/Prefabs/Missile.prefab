@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6406547810427569162}
   - component: {fileID: 2907953012453476028}
   - component: {fileID: 553386804848944502}
+  - component: {fileID: 8417646766682523071}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -120,3 +121,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0.000000059604645, y: 0}
   m_Size: {x: 1.0000001, y: 2}
   m_Direction: 0
+--- !u!114 &8417646766682523071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128423303125053964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 707a816d8b3775149a4f8e18f5c98743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileType: 
+  lifetime: 0
+  explosionEffect: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+  explosionEffectDuration: 0.5

@@ -39,13 +39,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject GameOverText;
     public Text TurnTimeText;
-    //for returning camera 
-    private Camera mainCamera;
-    private Vector3 startCameraPosition;
-    private Animator cameraAnimator;
-    private Transform camTrans;
-    bool turnActive;
-    float turnDelay; //seconds before new turn is started
+    
 
     private void Awake()
     {
@@ -63,11 +57,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // CameraStartup
-        mainCamera = Camera.main;
-        startCameraPosition = mainCamera.transform.position;
-        camTrans = mainCamera.GetComponent<Transform>();
-        cameraAnimator = mainCamera.GetComponent<Animator>();
 
         //Set TeamsAlive[4] initial according to NumberTeamsPlaying
         for (int i = 0; i < TeamsAlive.Length; i++)
@@ -87,21 +76,12 @@ public class GameManager : MonoBehaviour
 
         TurnHistory.Add(TeamA[0]);
         //TransferAcitveAstronaut(TeamsAll[1][0], TeamsAll[0][0]); Does not work
-
-        turnActive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (turnActive)
-        {
             CheckTurnTime();
-        }
-        else
-        {
-            StartNewTurn();
-        }
        
     }
 
@@ -118,15 +98,12 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            currentAstronautScript.EndShootingPhase(0f);
+            currentAstronautScript.EndShootingPhase();
         }
     }
 
-    public void HandOverTurn(float delay)
+    public void HandOverTurn()
     {
-        turnActive = false;
-        turnDelay = delay;
-
         ActiveTeam = GetNextValidTeam();
         //Debug.Log("(next) Active Team" + ActiveTeam);
         if(ActiveTeam == -1) { GameOver(); return; }
@@ -236,20 +213,5 @@ public class GameManager : MonoBehaviour
     {
         Debug.LogWarning("Game is Over. Somebody has won, there is nothing to see here.");
         GameOverText.SetActive(true);
-    }
-
-    private void StartNewTurn()
-    {
-        if (turnDelay < 0)
-        {
-            camTrans.position = startCameraPosition;
-            cameraAnimator.SetBool("Zoomed In", false);
-            turnActive = true;
-        }
-        else
-        {
-            turnDelay -= Time.deltaTime;
-        }
-        
     }
 }

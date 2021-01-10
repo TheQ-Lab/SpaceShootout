@@ -7,19 +7,14 @@ public class ProjectileCreator : MonoBehaviour
 {
     public GameObject MissilePrefab;
     public GameObject BombPrefab;
-    public GameObject ExplosionEffect;
-    public GameObject MissileEffect;
 
+    private GameObject projectile;
+   
     public int selectedProjectile = 0;
     public string currentProjectile;
     
 
     public float lifetime;
-   
-
-    private GameObject Bomb;
-    private GameObject Missile;
-     
 
     private String[] projectiles = {"Bomb", "Missile"};
 
@@ -86,29 +81,14 @@ public class ProjectileCreator : MonoBehaviour
 
         if (selectedProjectile == 0)
         {
-            Bomb = Instantiate(BombPrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
-            Bomb.AddComponent<Projectile>();
-            Projectile projectileScript = Bomb.GetComponent<Projectile>();
-            projectileScript.explosionEffect = ExplosionEffect;
-            projectileScript.SetInitialParameters(projectiles[selectedProjectile], launchVector, lifetime, parentAstronaut);
-            GravityManager.Instance.AddProjectileToGravity(Bomb);
-            
-
-
+            projectile = Instantiate(BombPrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
         }
         else if (selectedProjectile == 1)
         {
-            Missile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
-            Missile.AddComponent<Projectile>();
-            Projectile projectileScript = Missile.GetComponent<Projectile>();
-            projectileScript.missileEffect = MissileEffect;
-            Debug.Log("Missile"+MissileEffect);
-            projectileScript.SetInitialParameters(projectiles[selectedProjectile], launchVector, lifetime, parentAstronaut);
-            GravityManager.Instance.AddProjectileToGravity(Missile);
-            
-            
+            projectile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
         }
-        
+        GravityManager.Instance.AddProjectileToGravity(projectile);
+        projectile.GetComponent<Projectile>().launch(launchVector, lifetime, parentAstronaut);
     }
 
     public void SimulateProjectile(Vector2 spawnPosition, int shotAngle, int shotPower, GameObject parentAstronaut)
@@ -121,10 +101,10 @@ public class ProjectileCreator : MonoBehaviour
         float clampedShotPower = 35f + shotPower * 0.5f;
         Vector2 launchVector = directionalVector * (clampedShotPower * 0.01f) * powerFactor;
 
-        Missile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
+        projectile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
 
         PredictionManager.Instance.predict(MissilePrefab, spawnPosition, launchVector);
-        Destroy(Missile);
+        Destroy(projectile);
     }
 
         void SelectProjectile(int index)

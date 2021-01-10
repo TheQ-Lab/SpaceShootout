@@ -96,6 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56c811897dd193488421882f4b74bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileType: 
+  lifetime: 0
+  explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+  explosionEffectDuration: 2
 --- !u!58 &-3835249997714833517
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -111,7 +115,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!50 &-7735390460923590167
 Rigidbody2D:
   serializedVersion: 4
