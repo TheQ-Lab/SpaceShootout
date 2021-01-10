@@ -11,7 +11,7 @@ public class Missile : Projectile
 
         // damage
         damage = 50;
-        radius = 1f;
+        radius = 0.8f;
     }
 
     IEnumerator Explode()
