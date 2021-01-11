@@ -22,7 +22,9 @@ public class Missile : Projectile
             //Debug.Log(nearbyObject);
             if (nearbyObject.GetComponent<Astronaut>())
             {
-                Instantiate(explosionEffect, transform.position, transform.rotation);
+                Vector3 offset = new Vector3(0, 0, -5);
+                Vector3 explosionPos = transform.position + offset;
+                Instantiate(explosionEffect, explosionPos, Quaternion.LookRotation(rBody.velocity));
                 Debug.Log("Do something, cause collider is with astronaut");
                 Astronaut victim = nearbyObject.GetComponent<Astronaut>();
                 victim.Damage(damage);
