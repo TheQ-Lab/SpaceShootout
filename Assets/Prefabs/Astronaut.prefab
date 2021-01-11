@@ -258,9 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MissilePrefab: {fileID: 8128423303125053964, guid: 7abc4ee3531fa474796042d9cc504527, type: 3}
-  BombPrefab: {fileID: 0}
-  ExplosionEffect: {fileID: 0}
-  MissileEffect: {fileID: 0}
+  BombPrefab: {fileID: 5345671137095647768, guid: 36f4c79b779c20b4685864ad6d959637, type: 3}
   selectedProjectile: 1
   currentProjectile: 
   lifetime: 5

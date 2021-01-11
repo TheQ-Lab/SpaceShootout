@@ -64,7 +64,19 @@ public class ProjectileCreator : MonoBehaviour
             lifetime = 7f;
         else if (selectedProjectile == 1)
             lifetime = 10f;
-        
+
+        //ONLY TEMPORARY, projectileCreator is a MESS, Strings instead of enums, a FUCK ton of hard code instead of Serialized class and above all PERMANENT listening for projectileChange commands, regardless of isActive of the parent Astronaut!!!
+        //nobody'll know where to change timings etc.
+        if (previousSelectedProjectile != selectedProjectile && transform.parent.GetComponent<Astronaut>().isActive)
+        {
+            Projectile.ProjectileTypeEnum newType = Projectile.ProjectileTypeEnum.Missile;
+            if (selectedProjectile == 1)
+                newType = Projectile.ProjectileTypeEnum.Missile;
+            else if (selectedProjectile == 0)
+                newType = Projectile.ProjectileTypeEnum.Bomb;
+            transform.parent.GetComponent<Astronaut>().uIProjectileSelection.SelectIcon(newType);
+        }
+
     }
    
     public void ShootProjectile(Vector2 spawnPosition, int shotAngle, int shotPower, GameObject parentAstronaut)

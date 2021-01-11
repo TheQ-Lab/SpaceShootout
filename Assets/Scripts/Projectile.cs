@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public enum ProjectileTypeEnum {Missile, Bomb};
 
     public string projectileType; // name
     public float lifetime;
@@ -38,15 +39,6 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         rBody = GetComponent<Rigidbody2D>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     private void FixedUpdate()

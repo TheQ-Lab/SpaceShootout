@@ -36,6 +36,7 @@ public class Astronaut : MonoBehaviour
     private Text uIshotText;
     private UIActiveIndicator uIActiveIndicator;
     private UILifeBars uILifeBars;
+    public UIProjectileSelection uIProjectileSelection;
     private PostProcessing postProcessingScript;
 
     //private float RotateSpeed = 5f;
@@ -72,6 +73,7 @@ public class Astronaut : MonoBehaviour
         uIshotBar = CoolFunctions.FindInArray("ShotBarContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).GetComponent<UIShotBar>();
         uIshotText = CoolFunctions.FindInArray("ShotTextContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<Text>();
         uIActiveIndicator = CoolFunctions.FindInArray("ActiveIndicatorContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<UIActiveIndicator>();
+        uIProjectileSelection = CoolFunctions.FindInArray("ProjectileSelectionContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<UIProjectileSelection>();
 
         uILifeBars = GameObject.FindGameObjectWithTag("ControllerLifeBars").GetComponent<UILifeBars>();
 
@@ -304,6 +306,8 @@ public class Astronaut : MonoBehaviour
             moveInputTimer = 0;
             moveUnitCount = 0;
         }
+
+
     }
 
     public void EndShootingPhase()
