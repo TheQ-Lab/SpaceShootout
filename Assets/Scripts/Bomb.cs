@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Bomb : Projectile
 {
     public float countDown;
-    private Vector3 plusSize = new Vector3(0.02f, 0.02f, 0.02f);
+    private Vector3 plusSize = new Vector3(0.05f, 0.05f, 0.05f);
 
     void Start()
     {
@@ -14,7 +14,7 @@ public class Bomb : Projectile
 
         // damage
         damage = 50;
-        delay = 3f;
+        delay = 1.5f;
         radius = 7f;
     }
     protected new void OnCollisionEnter2D(Collision2D collision)

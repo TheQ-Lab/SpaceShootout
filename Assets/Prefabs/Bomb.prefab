@@ -99,7 +99,7 @@ MonoBehaviour:
   projectileType: 
   lifetime: 0
   explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
-  explosionEffectDuration: 2
+  explosionEffectDuration: 1.5
   countDown: 0
 --- !u!58 &-3835249997714833517
 CircleCollider2D:

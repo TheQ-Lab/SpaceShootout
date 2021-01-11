@@ -135,5 +135,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileType: 
   lifetime: 0
-  explosionEffect: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
-  explosionEffectDuration: 0.5
+  explosionEffect: {fileID: 3770191637580980741, guid: a13d4bf811447034a8313d4b583bee8d, type: 3}
+  explosionEffectDuration: 1
