@@ -88,8 +88,13 @@ public class GameManager : MonoBehaviour
     private void CheckTurnTime()
     {
         Astronaut currentAstronautScript = TurnHistory[TurnHistory.Count - 1].GetComponent<Astronaut>();
+        // During Flying Shot
         if (currentAstronautScript.shotFlying)
+        {
+            TurnTimeText.gameObject.GetComponent<Animator>().SetBool("IsAlert", false);
+            TurnTimeText.text = "";
             return;
+        }
 
         if (turnTimer > 0)
         {
