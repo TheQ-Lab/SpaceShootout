@@ -94,10 +94,14 @@ public class GameManager : MonoBehaviour
         if (turnTimer > 0)
         {
             turnTimer -= Time.deltaTime;
-            TurnTimeText.text = Mathf.RoundToInt((float)turnTimer).ToString();
+            int intTurnTime = Mathf.RoundToInt((float)turnTimer);
+            TurnTimeText.text = intTurnTime.ToString();
+            if(intTurnTime == 5)
+                TurnTimeText.gameObject.GetComponent<Animator>().SetBool("IsAlert", true);
         }
         else
         {
+            TurnTimeText.gameObject.GetComponent<Animator>().SetBool("IsAlert", false);
             currentAstronautScript.EndShootingPhase();
         }
     }

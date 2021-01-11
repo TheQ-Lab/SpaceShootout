@@ -1971,7 +1971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &694878698
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2267,6 +2267,7 @@ GameObject:
   - component: {fileID: 809622155}
   - component: {fileID: 809622157}
   - component: {fileID: 809622156}
+  - component: {fileID: 809622158}
   m_Layer: 5
   m_Name: TurnTimeText
   m_TagString: Untagged
@@ -2290,9 +2291,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -742.9, y: 448.3}
+  m_AnchoredPosition: {x: -899.96405, y: 480}
   m_SizeDelta: {x: 314.12805, y: 71.49616}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &809622156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2320,7 +2321,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 50
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2335,6 +2336,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809622154}
   m_CullTransparentMesh: 0
+--- !u!95 &809622158
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809622154}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0c0e1fc1ef43d2e4eaf6fe0150820d23, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &822883166
 PrefabInstance:
   m_ObjectHideFlags: 0
