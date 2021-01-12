@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public enum ProjectileTypeEnum {Missile, Bomb};
+    public enum Type {Missile, Bomb};
 
     public string projectileType; // name
     public float lifetime;

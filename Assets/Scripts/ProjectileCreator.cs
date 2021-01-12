@@ -11,7 +11,7 @@ public class ProjectileCreator : MonoBehaviour
     private GameObject projectile;
    
     public int selectedProjectile = 0;
-    public string currentProjectile;
+    public Projectile.Type currentProjectile = Projectile.Type.Missile;
     
 
     public float lifetime;
@@ -23,60 +23,27 @@ public class ProjectileCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SelectProjectile(selectedProjectile);
-        currentProjectile = projectiles[selectedProjectile];
-
+        SetCurrentProjectile(Projectile.Type.Missile);
     }
 
     // Update is called once per frame
     void Update()
     {
-        int previousSelectedProjectile = selectedProjectile;
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-        {
-            if (selectedProjectile >= projectiles.Length - 1)
-                selectedProjectile = 0;
-            else
-                selectedProjectile++;
-        }
-
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-        {
-            if (selectedProjectile <= 0)
-                selectedProjectile = projectiles.Length - 1;
-            else
-                selectedProjectile--;
-        }
-
-        if (previousSelectedProjectile != selectedProjectile)
-        {
-            SelectProjectile(selectedProjectile);
-        }
-        
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            selectedProjectile = 0;
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            selectedProjectile = 1;
-
-        currentProjectile = projectiles[selectedProjectile];
-
-        if (selectedProjectile == 0)
-            lifetime = 7f;
-        else if (selectedProjectile == 1)
-            lifetime = 10f;
+            SetCurrentProjectile(Projectile.Type.Missile);
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+            SetCurrentProjectile(Projectile.Type.Bomb);
+        else if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+        {
+            if (currentProjectile == Projectile.Type.Missile)
+                SetCurrentProjectile(Projectile.Type.Bomb);
+            else if (currentProjectile == Projectile.Type.Bomb)
+                SetCurrentProjectile(Projectile.Type.Missile);
+        }
 
         //ONLY TEMPORARY, projectileCreator is a MESS, Strings instead of enums, a FUCK ton of hard code instead of Serialized class and above all PERMANENT listening for projectileChange commands, regardless of isActive of the parent Astronaut!!!
         //nobody'll know where to change timings etc.
-        if (previousSelectedProjectile != selectedProjectile && transform.parent.GetComponent<Astronaut>().isActive)
-        {
-            Projectile.ProjectileTypeEnum newType = Projectile.ProjectileTypeEnum.Missile;
-            if (selectedProjectile == 1)
-                newType = Projectile.ProjectileTypeEnum.Missile;
-            else if (selectedProjectile == 0)
-                newType = Projectile.ProjectileTypeEnum.Bomb;
-            transform.parent.GetComponent<Astronaut>().uIProjectileSelection.SelectIcon(newType);
-        }
-
+        
     }
    
     public void ShootProjectile(Vector2 spawnPosition, int shotAngle, int shotPower, GameObject parentAstronaut)
@@ -91,13 +58,13 @@ public class ProjectileCreator : MonoBehaviour
 
         //Debug.Log(launchVector);
 
-        if (selectedProjectile == 0)
-        {
-            projectile = Instantiate(BombPrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
-        }
-        else if (selectedProjectile == 1)
+        if (currentProjectile == Projectile.Type.Missile)
         {
             projectile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
+        }
+        else if (currentProjectile == Projectile.Type.Bomb)
+        {
+            projectile = Instantiate(BombPrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
         }
         GravityManager.Instance.AddProjectileToGravity(projectile);
         projectile.GetComponent<Projectile>().launch(launchVector, lifetime, parentAstronaut);
@@ -119,17 +86,27 @@ public class ProjectileCreator : MonoBehaviour
         Destroy(projectile);
     }
 
-        void SelectProjectile(int index)
+    private void SetCurrentProjectile(Projectile.Type t)
     {
-        for (int i = 0; i < transform.childCount; i++)
+        currentProjectile = t;
+
+        if (t == Projectile.Type.Missile)
         {
-            if (i == index)
-                transform.GetChild(i).gameObject.SetActive(true);
-            else
-                transform.GetChild(i).gameObject.SetActive(false);
+            lifetime = 10f;
         }
+        else if (t == Projectile.Type.Bomb)
+        {
+            lifetime = 7f;
+        }
+
+
+        if (transform.parent.GetComponent<Astronaut>().isActive)
+        {
+            transform.parent.GetComponent<Astronaut>().uIProjectileSelection.SelectIcon(t);
+        }
+
     }
-     
-   
+
+
 
 }

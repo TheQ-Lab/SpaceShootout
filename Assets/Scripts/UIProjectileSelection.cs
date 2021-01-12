@@ -11,9 +11,9 @@ public class UIProjectileSelection : MonoBehaviour
         public Image ImageGameObject;
         public Sprite DeselectedIcon;
         public Sprite SelectedIcon;
-        public Projectile.ProjectileTypeEnum ProjectileType;
+        public Projectile.Type ProjectileType;
 
-        ProjectileIconSet(Image ImageGameObject, Sprite DeselectedIcon, Sprite SelectedIcon, Projectile.ProjectileTypeEnum ProjectileType)
+        ProjectileIconSet(Image ImageGameObject, Sprite DeselectedIcon, Sprite SelectedIcon, Projectile.Type ProjectileType)
         {
             this.ImageGameObject = ImageGameObject;
             this.DeselectedIcon = DeselectedIcon;
@@ -23,14 +23,14 @@ public class UIProjectileSelection : MonoBehaviour
 
         public ProjectileIconSet zero()
         {
-            return new ProjectileIconSet(null, null, null, Projectile.ProjectileTypeEnum.Bomb);
+            return new ProjectileIconSet(null, null, null, Projectile.Type.Bomb);
         }
     }
 
     public List<ProjectileIconSet> Icons;
 
 
-    public void SelectIcon(Projectile.ProjectileTypeEnum newProjectileType)
+    public void SelectIcon(Projectile.Type newProjectileType)
     {
         foreach(ProjectileIconSet I in Icons)
         {
