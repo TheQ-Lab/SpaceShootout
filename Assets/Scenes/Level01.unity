@@ -1227,10 +1227,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1045444154}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: BombPrefab
-      value: 
-      objectReference: {fileID: 5345671137095647768, guid: 36f4c79b779c20b4685864ad6d959637, type: 3}
-    - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: ExplosionEffect
       value: 
       objectReference: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
@@ -3054,10 +3050,6 @@ PrefabInstance:
       propertyPath: uiElement
       value: 
       objectReference: {fileID: 1045444154}
-    - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: BombPrefab
-      value: 
-      objectReference: {fileID: 5345671137095647768, guid: 36f4c79b779c20b4685864ad6d959637, type: 3}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: offset.x
       value: 5

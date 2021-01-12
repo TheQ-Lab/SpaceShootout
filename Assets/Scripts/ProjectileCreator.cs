@@ -5,47 +5,56 @@ using UnityEngine;
 
 public class ProjectileCreator : MonoBehaviour
 {
-    public GameObject MissilePrefab;
-    public GameObject BombPrefab;
+    [System.Serializable]
+    public class ProjectileConfiguration
+    {
+        public Projectile.Type Type;
+        public GameObject Prefab;
+        public float Lifetime;
+
+        ProjectileConfiguration(Projectile.Type type, GameObject prefab, float lifetime)
+        {
+            Type = type;
+            Prefab = prefab;
+            Lifetime = lifetime;
+        }
+
+        public static ProjectileConfiguration zero()
+        {
+            ProjectileConfiguration ret = new ProjectileConfiguration(Projectile.Type.Missile, null, 0f);
+            return ret;
+        }
+    }
+
+
+    public List<ProjectileConfiguration> projectileConfigurations;
+
+    // REFERENCES
+    private UIProjectileSelection uIProjectileSelection;
 
     private GameObject projectile;
-   
-    public int selectedProjectile = 0;
-    public Projectile.Type currentProjectile = Projectile.Type.Missile;
-    
-
-    public float lifetime;
-
-    private String[] projectiles = {"Bomb", "Missile"};
-
-   
+    private ProjectileConfiguration currentProjectileConfig = ProjectileConfiguration.zero();
 
     // Start is called before the first frame update
     void Start()
     {
+        uIProjectileSelection = CoolFunctions.FindInArray("ProjectileSelectionContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<UIProjectileSelection>();
+
         SetCurrentProjectile(Projectile.Type.Missile);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            SetCurrentProjectile(Projectile.Type.Missile);
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-            SetCurrentProjectile(Projectile.Type.Bomb);
-        else if (Input.GetAxis("Mouse ScrollWheel") != 0f)
-        {
-            if (currentProjectile == Projectile.Type.Missile)
-                SetCurrentProjectile(Projectile.Type.Bomb);
-            else if (currentProjectile == Projectile.Type.Bomb)
-                SetCurrentProjectile(Projectile.Type.Missile);
-        }
+        if (this.GetComponentInParent<Astronaut>().isActive)
+            CheckWeaponChangeInputs();
 
         //ONLY TEMPORARY, projectileCreator is a MESS, Strings instead of enums, a FUCK ton of hard code instead of Serialized class and above all PERMANENT listening for projectileChange commands, regardless of isActive of the parent Astronaut!!!
         //nobody'll know where to change timings etc.
         
     }
    
+    // +++Shooting + Simulation+++
     public void ShootProjectile(Vector2 spawnPosition, int shotAngle, int shotPower, GameObject parentAstronaut)
     {
         float powerFactor = 1600f; //for missile specific probably
@@ -58,16 +67,10 @@ public class ProjectileCreator : MonoBehaviour
 
         //Debug.Log(launchVector);
 
-        if (currentProjectile == Projectile.Type.Missile)
-        {
-            projectile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
-        }
-        else if (currentProjectile == Projectile.Type.Bomb)
-        {
-            projectile = Instantiate(BombPrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
-        }
+        projectile = Instantiate(currentProjectileConfig.Prefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
+
         GravityManager.Instance.AddProjectileToGravity(projectile);
-        projectile.GetComponent<Projectile>().launch(launchVector, lifetime, parentAstronaut);
+        projectile.GetComponent<Projectile>().launch(launchVector, currentProjectileConfig.Lifetime, parentAstronaut);
     }
 
     public void SimulateProjectile(Vector2 spawnPosition, int shotAngle, int shotPower, GameObject parentAstronaut)
@@ -80,33 +83,54 @@ public class ProjectileCreator : MonoBehaviour
         float clampedShotPower = 35f + shotPower * 0.5f;
         Vector2 launchVector = directionalVector * (clampedShotPower * 0.01f) * powerFactor;
 
-        projectile = Instantiate(MissilePrefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
+        projectile = Instantiate(currentProjectileConfig.Prefab, spawnPosition, Quaternion.Euler(0, 0, shotAngle));
 
-        PredictionManager.Instance.predict(MissilePrefab, spawnPosition, launchVector);
+        PredictionManager.Instance.predict(currentProjectileConfig.Prefab, spawnPosition, launchVector);
         Destroy(projectile);
+    }
+
+
+    // +++Weapon selection+++
+    public void InitializeTurn()
+    {
+        SetCurrentProjectile(currentProjectileConfig.Type);
+    }
+
+    private void CheckWeaponChangeInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            SetCurrentProjectile(Projectile.Type.Missile);
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+            SetCurrentProjectile(Projectile.Type.Bomb);
+        else if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+        {
+            if (currentProjectileConfig.Type == Projectile.Type.Missile)
+                SetCurrentProjectile(Projectile.Type.Bomb);
+            else if (currentProjectileConfig.Type == Projectile.Type.Bomb)
+                SetCurrentProjectile(Projectile.Type.Missile);
+        }
     }
 
     private void SetCurrentProjectile(Projectile.Type t)
     {
-        currentProjectile = t;
+        currentProjectileConfig = GetProjectileConfig(t);
 
-        if (t == Projectile.Type.Missile)
-        {
-            lifetime = 10f;
-        }
-        else if (t == Projectile.Type.Bomb)
-        {
-            lifetime = 7f;
-        }
-
-
-        if (transform.parent.GetComponent<Astronaut>().isActive)
-        {
-            transform.parent.GetComponent<Astronaut>().uIProjectileSelection.SelectIcon(t);
-        }
-
+        // TEMP
+        //if (transform.parent.GetComponent<Astronaut>().isActive)
+        uIProjectileSelection.SelectIcon(t);
+        Debug.LogWarning("Select" + t.ToString());
     }
 
-
-
+    private ProjectileConfiguration GetProjectileConfig(Projectile.Type t)
+    {
+        ProjectileConfiguration ret = ProjectileConfiguration.zero();
+        foreach(ProjectileConfiguration c in projectileConfigurations)
+        {
+            if (c.Type.Equals(t))
+            {
+                ret = c;
+            }
+        }
+        return ret;
+    }
 }

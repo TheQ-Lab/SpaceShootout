@@ -36,7 +36,6 @@ public class Astronaut : MonoBehaviour
     private Text uIshotText;
     private UIActiveIndicator uIActiveIndicator;
     private UILifeBars uILifeBars;
-    public UIProjectileSelection uIProjectileSelection;
     private PostProcessing postProcessingScript;
 
     //private float RotateSpeed = 5f;
@@ -73,7 +72,6 @@ public class Astronaut : MonoBehaviour
         uIshotBar = CoolFunctions.FindInArray("ShotBarContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).GetComponent<UIShotBar>();
         uIshotText = CoolFunctions.FindInArray("ShotTextContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<Text>();
         uIActiveIndicator = CoolFunctions.FindInArray("ActiveIndicatorContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<UIActiveIndicator>();
-        uIProjectileSelection = CoolFunctions.FindInArray("ProjectileSelectionContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<UIProjectileSelection>();
 
         uILifeBars = GameObject.FindGameObjectWithTag("ControllerLifeBars").GetComponent<UILifeBars>();
 
@@ -85,10 +83,12 @@ public class Astronaut : MonoBehaviour
     {
         if (!this.gameObject.activeSelf) return;
 
-        if (initializeTurn) { InitializeTurnFixed(); }
+        
 
         if (isActive)
         {
+            if (initializeTurn) { InitializeTurnFixed(); }
+
             if (!shootPhase)
             {
                 AstronautMoverFixed();
@@ -143,6 +143,8 @@ public class Astronaut : MonoBehaviour
         /*uIActiveIndicator.Activate();
         uIActiveIndicator.SelectColor(TeamNo);*/
         initializeTurn = false;
+        Debug.LogWarning(this.gameObject.name);
+        projectileCreatorScript.InitializeTurn();
     }
 
     private void AstronautMoverFixed()
@@ -318,11 +320,15 @@ public class Astronaut : MonoBehaviour
         shotFlying = false;
         shootPhase = false;
         isActive = false;
-        initializeTurn = true;
+        StartCoroutine(EndShootingPhaseDelay());
         GameManager.Instance.HandOverTurn();
     }
 
-
+    IEnumerator EndShootingPhaseDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        initializeTurn = true;
+    }
 
 
 
