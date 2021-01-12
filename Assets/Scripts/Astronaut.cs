@@ -320,14 +320,8 @@ public class Astronaut : MonoBehaviour
         shotFlying = false;
         shootPhase = false;
         isActive = false;
-        StartCoroutine(EndShootingPhaseDelay());
-        GameManager.Instance.HandOverTurn();
-    }
-
-    IEnumerator EndShootingPhaseDelay()
-    {
-        yield return new WaitForSeconds(0.1f);
         initializeTurn = true;
+        GameManager.Instance.HandOverTurn();
     }
 
 
