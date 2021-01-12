@@ -111,5 +111,9 @@ PrefabInstance:
       propertyPath: lengthInSec
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4335976643840357544, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+      propertyPath: lifetime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
