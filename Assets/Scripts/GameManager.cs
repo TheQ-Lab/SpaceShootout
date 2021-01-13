@@ -55,11 +55,14 @@ public class GameManager : MonoBehaviour
         }
         */
         Instance = this;
+        NumberTeamsPlaying = AppManager.Instance.SelectedPlayerCount;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+
+        InitializePlayerCount();
 
         //Set TeamsAlive[4] initial according to NumberTeamsPlaying
         for (int i = 0; i < TeamsAlive.Length; i++)
@@ -84,8 +87,30 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            CheckTurnTime();
-       
+        CheckTurnTime();
+    }
+
+
+    private void InitializePlayerCount()
+    {
+        if (NumberTeamsPlaying < 4)
+        {
+            for (int i = NumberAstronautsPerTeam-1; i >= 0; i--)
+            {
+                GravityManager.Instance.RemoveAnyObjectFromGravity(TeamD[i].gameObject);
+                Destroy(TeamD[i].gameObject);
+            }
+            TeamD.Clear();
+        }
+        if (NumberTeamsPlaying < 3)
+        {
+            for (int i = NumberAstronautsPerTeam - 1; i >= 0; i--)
+            {
+                GravityManager.Instance.RemoveAnyObjectFromGravity(TeamC[i].gameObject);
+                Destroy(TeamC[i].gameObject);
+            }
+            TeamC.Clear();
+        }
     }
 
     private void CheckTurnTime()
