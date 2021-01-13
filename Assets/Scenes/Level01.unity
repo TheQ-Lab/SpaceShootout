@@ -130,14 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1040116839646270671, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 385639557}
-    - target: {fileID: 8243953711063152044, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 1045444154}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: BombPrefab
       value: 
@@ -238,10 +230,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AstronautB2
       objectReference: {fileID: 0}
-    - target: {fileID: 8830397492741908407, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 556204668}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
 --- !u!1 &83851751
@@ -579,7 +567,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &182350794 stripped
 GameObject:
@@ -923,7 +911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7387491242107290898, guid: e540b35f94f9ea8469cf2b12078b6279, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7387491242107290898, guid: e540b35f94f9ea8469cf2b12078b6279, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1263,14 +1251,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1040116839646270671, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 385639557}
-    - target: {fileID: 8243953711063152044, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 1045444154}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: ExplosionEffect
       value: 
@@ -1306,10 +1286,6 @@ PrefabInstance:
     - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: TeamNo
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: AstronautNo
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429237, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_Constraints
@@ -1367,10 +1343,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AstronautB1
       objectReference: {fileID: 0}
-    - target: {fileID: 8830397492741908407, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 556204668}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
 --- !u!1 &490337484
@@ -1694,14 +1666,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1040116839646270671, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 385639557}
-    - target: {fileID: 8243953711063152044, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 1045444154}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: BombPrefab
       value: 
@@ -1802,10 +1766,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AstronautB3
       objectReference: {fileID: 0}
-    - target: {fileID: 8830397492741908407, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 556204668}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
 --- !u!1 &612811331
@@ -1911,7 +1871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7387491242107290898, guid: e540b35f94f9ea8469cf2b12078b6279, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7387491242107290898, guid: e540b35f94f9ea8469cf2b12078b6279, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1990,7 +1950,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &694878697
 GameObject:
@@ -2402,14 +2362,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1040116839646270671, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 385639557}
-    - target: {fileID: 8243953711063152044, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 1045444154}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: BombPrefab
       value: 
@@ -2422,10 +2374,6 @@ PrefabInstance:
       propertyPath: MissileEffect
       value: 
       objectReference: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
-    - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: isActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: shotBar
       value: 
@@ -2506,10 +2454,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AstronautC1
       objectReference: {fileID: 0}
-    - target: {fileID: 8830397492741908407, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 556204668}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
 --- !u!1 &823577750 stripped
@@ -2877,7 +2821,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -3086,14 +3030,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1040116839646270671, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 385639557}
-    - target: {fileID: 8243953711063152044, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 1045444154}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: offset.x
       value: 5
@@ -3110,10 +3046,6 @@ PrefabInstance:
       propertyPath: MissileEffect
       value: 
       objectReference: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
-    - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: isActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: shotBar
       value: 
@@ -3194,10 +3126,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AstronautA3
       objectReference: {fileID: 0}
-    - target: {fileID: 8830397492741908407, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 556204668}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
 --- !u!1 &1011339510
@@ -3540,7 +3468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7912389724842303400, guid: e540b35f94f9ea8469cf2b12078b6279, type: 3}
       propertyPath: m_Name
-      value: PlanetGrassland00 (1)
+      value: PlanetGrassland02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e540b35f94f9ea8469cf2b12078b6279, type: 3}
@@ -3893,14 +3821,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1040116839646270671, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 385639557}
-    - target: {fileID: 8243953711063152044, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 1045444154}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: BombPrefab
       value: 
@@ -4001,10 +3921,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AstronautC2
       objectReference: {fileID: 0}
-    - target: {fileID: 8830397492741908407, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 556204668}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
 --- !u!1001 &1584245895
@@ -4014,14 +3930,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1040116839646270671, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 385639557}
-    - target: {fileID: 8243953711063152044, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 1045444154}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: explosionEffect
       value: 
@@ -4057,10 +3965,6 @@ PrefabInstance:
     - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: PostProcessLayer
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: sensitivityShotAngle
-      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429237, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_Constraints
@@ -4118,10 +4022,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AstronautA1
       objectReference: {fileID: 0}
-    - target: {fileID: 8830397492741908407, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 556204668}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
 --- !u!1 &1606508539
@@ -4490,14 +4390,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1040116839646270671, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 385639557}
-    - target: {fileID: 8243953711063152044, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 1045444154}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: offset.x
       value: 5
@@ -4514,10 +4406,6 @@ PrefabInstance:
       propertyPath: MissileEffect
       value: 
       objectReference: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
-    - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: isActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: shotBar
       value: 
@@ -4598,10 +4486,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AstronautA2
       objectReference: {fileID: 0}
-    - target: {fileID: 8830397492741908407, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 556204668}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
 --- !u!1 &1832572437 stripped
@@ -4817,14 +4701,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1040116839646270671, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 385639557}
-    - target: {fileID: 8243953711063152044, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 1045444154}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: BombPrefab
       value: 
@@ -4857,10 +4733,6 @@ PrefabInstance:
       propertyPath: MissileEffect
       value: 
       objectReference: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
-    - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: isActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429236, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: shotBar
       value: 
@@ -4945,10 +4817,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AstronautC3
       objectReference: {fileID: 0}
-    - target: {fileID: 8830397492741908407, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 556204668}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
 --- !u!1 &2024517741

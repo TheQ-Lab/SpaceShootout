@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiElement: {fileID: 0}
-  UIType: 0
+  UIType: 4
 --- !u!1 &3158983914058573940
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiElement: {fileID: 0}
-  UIType: 0
+  UIType: 3
 --- !u!1 &8788362983743038757
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,10 +264,6 @@ MonoBehaviour:
   - Type: 1
     Prefab: {fileID: 5345671137095647768, guid: 36f4c79b779c20b4685864ad6d959637, type: 3}
     Lifetime: 7
-  MissilePrefab: {fileID: 8128423303125053964, guid: 7abc4ee3531fa474796042d9cc504527, type: 3}
-  BombPrefab: {fileID: 5345671137095647768, guid: 36f4c79b779c20b4685864ad6d959637, type: 3}
-  currentProjectile: 0
-  lifetime: 5
 --- !u!1 &8788362985070429242
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,4 +415,3 @@ MonoBehaviour:
   isStationary: 0
   initializeTurn: 1
   nearestPlanet: {fileID: 0}
-  uIProjectileSelection: {fileID: 0}
