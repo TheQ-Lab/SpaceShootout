@@ -21,6 +21,7 @@ public class PredictionManager : MonoBehaviour
 
     private void Awake()
     {
+        /*
         if (Instance == null)
         {
             Instance = this;
@@ -30,6 +31,8 @@ public class PredictionManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        */
+        Instance = this;
     }
 
     void Start()

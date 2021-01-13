@@ -21,6 +21,7 @@ public class GravityManager : MonoBehaviour
     // Awake is called before all Start()
     private void Awake()
     {
+        /*
         if(Instance == null)
         {
             Instance = this;
@@ -29,7 +30,8 @@ public class GravityManager : MonoBehaviour
         else if(Instance != this)
         {
             Destroy(this.gameObject);
-        }
+        }*/
+        Instance = this;
     }
 
     // Start is called before the first frame update
@@ -49,11 +51,6 @@ public class GravityManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     // FixedUpdate is by default executed 50Hz
     private void FixedUpdate()

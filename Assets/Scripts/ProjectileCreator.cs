@@ -118,7 +118,7 @@ public class ProjectileCreator : MonoBehaviour
         // TEMP
         //if (transform.parent.GetComponent<Astronaut>().isActive)
         uIProjectileSelection.SelectIcon(t);
-        Debug.LogWarning("Select" + t.ToString());
+        //Debug.LogWarning("Select" + t.ToString());
     }
 
     private ProjectileConfiguration GetProjectileConfig(Projectile.Type t)

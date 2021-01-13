@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
+        /*
         if(Instance == null)
         {
             Instance = this;
@@ -20,13 +21,8 @@ public class InputManager : MonoBehaviour
         } else if(Instance != this)
         {
             Destroy(this.gameObject);
-        }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        }*/
+        Instance = this;
     }
 
     // Update is called once per frame

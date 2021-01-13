@@ -143,7 +143,7 @@ public class Astronaut : MonoBehaviour
         /*uIActiveIndicator.Activate();
         uIActiveIndicator.SelectColor(TeamNo);*/
         initializeTurn = false;
-        Debug.LogWarning(this.gameObject.name);
+        //Debug.LogWarning(this.gameObject.name);
         projectileCreatorScript.InitializeTurn();
     }
 
