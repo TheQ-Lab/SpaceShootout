@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     public GameObject GameOverText;
     public Text TurnTimeText;
+    private MenuTurnStart menuTurnStart;
     
 
     private void Awake()
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        menuTurnStart = Resources.FindObjectsOfTypeAll<MenuTurnStart>()[0];
 
         InitializePlayerCount();
 
@@ -168,6 +170,11 @@ public class GameManager : MonoBehaviour
 
         ActiveAstronautPerTeam[ActiveTeam-1] = activeAstronaut;
         turnTimer = (double)maxTurnTime;
+
+        //Activate TurnStart Window
+        SetGameplayPause(true);
+        menuTurnStart.gameObject.SetActive(true);
+        menuTurnStart.SelectTurnStartScreen(ActiveTeam);
         /*
         int nextPlayerAtTurn = PlayerAtTurn + 1;
         if (PlayerAtTurn > Astronauts.Count-1)
