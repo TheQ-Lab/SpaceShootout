@@ -31,12 +31,15 @@ public class GameManager : MonoBehaviour
     [Tooltip("Fill with Astronauts from Team D")]
     public List<Astronaut> TeamD;
 
-    private List<List<Astronaut>> TeamsAll = new List<List<Astronaut>>();
-    
-
     public int maxTurnTime = 15;
     private double turnTimer;
 
+    [Header("Internals, Public for accessability:")]
+    [Tooltip("LEAVE TRUE")]
+    public bool IsGameplayActive = true;
+    private List<List<Astronaut>> TeamsAll = new List<List<Astronaut>>();
+
+    [Header("References")]
     public GameObject GameOverText;
     public Text TurnTimeText;
     
@@ -90,6 +93,19 @@ public class GameManager : MonoBehaviour
         CheckTurnTime();
     }
 
+    public void SetGameplayPause(bool isPause)
+    {
+        if (isPause)
+        {
+            IsGameplayActive = false;
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            IsGameplayActive = true;
+            Time.timeScale = 1f;
+        }
+    }
 
     private void InitializePlayerCount()
     {

@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class MenuIngame : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void OnClickPause()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("PAUSE GAME");
+        GameManager.Instance.SetGameplayPause(true);
     }
 }

@@ -28,6 +28,9 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.Instance.IsGameplayActive)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!Inputs.Contains("space")) Inputs.Add("space");

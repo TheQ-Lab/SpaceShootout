@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuPause : MonoBehaviour
 {
+    public void OnClickResume()
+    {
+        Debug.Log("RESUME GAME");
+        GameManager.Instance.SetGameplayPause(false);
+    }
+
     public void OnClickMainMenu()
     {
         Debug.Log("MAIN MENU");
