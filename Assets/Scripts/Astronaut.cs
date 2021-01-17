@@ -123,6 +123,9 @@ public class Astronaut : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.Instance.IsGameplayActive)
+            return;
+
         if (isActive)
         {
             if (!shootPhase)
@@ -156,7 +159,6 @@ public class Astronaut : MonoBehaviour
 
     private void AstronautMover()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
         if (InputManager.Instance.Inputs.Contains("space"))
         {
             InputManager.Instance.Inputs.Remove("space");
