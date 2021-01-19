@@ -456,6 +456,7 @@ public class Astronaut : MonoBehaviour
         rBody.constraints = RigidbodyConstraints2D.None;
         uIActiveIndicator.Activate();
         uIActiveIndicator.SelectColor(TeamNo);
+        ProjectileCreator.Instance = projectileCreatorScript;
     }
 
     public void DeactivateAstronaut()
