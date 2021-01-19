@@ -7,6 +7,16 @@ public class MenuTurnStart : MonoBehaviour
 {
     public Image[] TurnScreenColours;
 
+    private void Update()
+    {
+        if (InputManager.Instance.Inputs.Contains("space"))
+        {
+            
+            InputManager.Instance.Inputs.Remove("space");
+            OnClickStartTurn();
+            gameObject.SetActive(false);
+        }
+    }
     public void SelectTurnStartScreen(int team)
     {
         for (int i=1; i<=TurnScreenColours.Length; i++)

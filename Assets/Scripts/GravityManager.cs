@@ -9,8 +9,12 @@ public class GravityManager : MonoBehaviour
 
     public float GravityScale = 1f;
     public double dragConstant = 0.5d;
+    [Tooltip("Fill this")]
     public List<GameObject> Planets = new List<GameObject>();
+    [Header("Can be left empty")]
+    [Tooltip("Can be left empty; filled Trom Teams Lists in GameManager")]
     public List<GameObject> Astronauts = new List<GameObject>();
+    [Tooltip("Can be left empty")]
     public List<GameObject> Projectiles = new List<GameObject>();
 
     private List<Vector2> posPlanets = new List<Vector2>();
@@ -21,22 +25,13 @@ public class GravityManager : MonoBehaviour
     // Awake is called before all Start()
     private void Awake()
     {
-        /*
-        if(Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else if(Instance != this)
-        {
-            Destroy(this.gameObject);
-        }*/
         Instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        FillAstronautsFromGameMan();
         foreach (GameObject p in Planets)
         {
             Vector2 v = p.transform.position;
@@ -128,6 +123,17 @@ public class GravityManager : MonoBehaviour
         Projectiles.Add(newProjectile);
 
         rBodyProjectiles.Add(newProjectile.GetComponent<Rigidbody2D>());
+    }
+
+    private void FillAstronautsFromGameMan()
+    {
+        List<Astronaut> teamSkriptList = GameManager.Instance.TeamA;
+        teamSkriptList.AddRange(GameManager.Instance.TeamB);
+        teamSkriptList.AddRange(GameManager.Instance.TeamC);
+        teamSkriptList.AddRange(GameManager.Instance.TeamD);
+
+        foreach (Astronaut s in teamSkriptList)
+            Astronauts.Add(s.gameObject);
     }
 
     public void RemoveAnyObjectFromGravity(GameObject ObjectToRemove)

@@ -40,9 +40,10 @@ public class GameManager : MonoBehaviour
     private List<List<Astronaut>> TeamsAll = new List<List<Astronaut>>();
 
     [Header("References")]
-    public GameObject GameOverText;
     public Text TurnTimeText;
+    private MenuIngame menuInGame;
     private MenuTurnStart menuTurnStart;
+    private MenuGameOver menuGameOver;
     
 
     private void Awake()
@@ -65,7 +66,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        menuInGame = Resources.FindObjectsOfTypeAll<MenuIngame>()[0];
         menuTurnStart = Resources.FindObjectsOfTypeAll<MenuTurnStart>()[0];
+        menuGameOver = Resources.FindObjectsOfTypeAll<MenuGameOver>()[0];
 
         InitializePlayerCount();
 
@@ -272,6 +275,22 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         Debug.LogWarning("Game is Over. Somebody has won, there is nothing to see here.");
-        GameOverText.SetActive(true);
+        int winningTeam = 1;
+        for(int i=1; i <= TeamsAlive.Length; i++)
+        {
+            if (TeamsAlive[i - 1])
+                winningTeam = i;
+        }
+        StartCoroutine(DelayGameplayPause(winningTeam));
+        menuInGame.gameObject.SetActive(false);
+        menuGameOver.gameObject.SetActive(true);
+    }
+
+    IEnumerator DelayGameplayPause(int winningTeam)
+    {
+        yield return new WaitForSeconds(2f);
+        SetGameplayPause(true);
+        menuGameOver.SelectWinScreen(winningTeam);
+        Debug.Log("Pasue Gameplay 2s after Game over to let Camera Zoom finish");
     }
 }

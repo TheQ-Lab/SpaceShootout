@@ -25,13 +25,14 @@ public class Astronaut : MonoBehaviour
     public bool isAlive = true;
     public bool shootPhase = false;
     public bool shotFlying = false;
-
     public bool isStationary = true;
     public bool initializeTurn = true;
     public GameObject nearestPlanet;
+    private char facing = 'r';
 
     [Header("Private References")]
     private Rigidbody2D rBody;
+    private Animator modelAnim;
     private UIShotBar uIshotBar;
     private Text uIshotText;
     private UIActiveIndicator uIActiveIndicator;
@@ -47,7 +48,7 @@ public class Astronaut : MonoBehaviour
 
     // private Vector3 inputVector;//up axis always being equal to the Y axis
 
-
+    float downAngle, aimAngle;
 
     private int shotAngle = 0;
     private int shotPower = 50;
@@ -63,6 +64,7 @@ public class Astronaut : MonoBehaviour
     void Start()
     {
         rBody = GetComponent<Rigidbody2D>();
+        modelAnim = CoolFunctions.FindChildWithTag(gameObject, "Model", true).GetComponent<Animator>();
         nearestPlanet = GetNearestPlanet();
         //Debug.Log(nearestPlanet);
 
@@ -123,6 +125,9 @@ public class Astronaut : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.Instance.IsGameplayActive)
+            return;
+
         if (isActive)
         {
             if (!shootPhase)
@@ -133,6 +138,7 @@ public class Astronaut : MonoBehaviour
             {
                 AstronautShooter();
             }
+
         }
     }
 
@@ -147,6 +153,21 @@ public class Astronaut : MonoBehaviour
         projectileCreatorScript.InitializeTurn();
     }
 
+    private void UpdateFacing(char n)
+    {
+        if (n == facing)
+            return;
+        if (n == 'r')
+        {
+            modelAnim.SetInteger("Facing", 1);
+        }
+        else if (n == 'l')
+        {
+            modelAnim.SetInteger("Facing", -1);
+        }
+        facing = n;
+    }
+
     private void AstronautMoverFixed()
     {   
         Vector3 localVelocity = transform.InverseTransformDirection(rBody.velocity);
@@ -156,7 +177,6 @@ public class Astronaut : MonoBehaviour
 
     private void AstronautMover()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
         if (InputManager.Instance.Inputs.Contains("space"))
         {
             InputManager.Instance.Inputs.Remove("space");
@@ -177,6 +197,10 @@ public class Astronaut : MonoBehaviour
         else
         {
             horizontalMove = Input.GetAxis("Horizontal");
+            if (horizontalMove > 0)
+                UpdateFacing('r');
+            else if (horizontalMove < 0)
+                UpdateFacing('l');
         }
     }
 
@@ -288,6 +312,21 @@ public class Astronaut : MonoBehaviour
                 if (shotAngle < 0) { shotAngle = 359; }
                 uIshotBar.SetAngle(shotAngle);
                 uIshotText.text = shotAngle + ", " + shotPower;
+
+                /*
+                aimAngle = shotAngle;
+                if (aimAngle > 180f)
+                {
+                    aimAngle = shotAngle - 360f;
+                }
+                float upAngle = rBody.transform.rotation.eulerAngles.z;
+                if (upAngle < 0f)
+                    upAngle += 360f;
+                downAngle = upAngle + 180f;
+                if ((aimAngle > upAngle && aimAngle < downAngle) || (aimAngle > upAngle && aimAngle < downAngle - 360f))
+                {
+                    UpdateFacing('r');
+                }*/
             }
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
@@ -337,6 +376,13 @@ public class Astronaut : MonoBehaviour
             moveUnitCount = 0;
             
         }
+
+        //Face in direction of Aiming
+        Vector2 differenceVector = Quaternion.Inverse(rBody.transform.rotation) * (Quaternion.Euler(0, 0, shotAngle) * Vector2.up);
+        if (differenceVector.x > 0)
+            UpdateFacing('r');
+        else if (differenceVector.x < 0)
+            UpdateFacing('l');
     }
 
     public void EndShootingPhase()
