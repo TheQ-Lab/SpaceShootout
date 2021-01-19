@@ -1805,7 +1805,7 @@ MonoBehaviour:
   - {fileID: 1903539685}
   - {fileID: 471054491}
   - {fileID: 795303683}
-  maxTurnTime: 20
+  maxTurnTime: 400
   IsGameplayActive: 1
   TurnTimeText: {fileID: 809622156}
 --- !u!4 &597351699

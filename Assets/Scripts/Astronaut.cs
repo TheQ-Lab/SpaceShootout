@@ -48,7 +48,7 @@ public class Astronaut : MonoBehaviour
 
     // private Vector3 inputVector;//up axis always being equal to the Y axis
 
-
+    float downAngle, aimAngle;
 
     private int shotAngle = 0;
     private int shotPower = 50;
@@ -307,6 +307,21 @@ public class Astronaut : MonoBehaviour
                 if (shotAngle < 0) { shotAngle = 359; }
                 uIshotBar.SetAngle(shotAngle);
                 uIshotText.text = shotAngle + ", " + shotPower;
+
+                /*
+                aimAngle = shotAngle;
+                if (aimAngle > 180f)
+                {
+                    aimAngle = shotAngle - 360f;
+                }
+                float upAngle = rBody.transform.rotation.eulerAngles.z;
+                if (upAngle < 0f)
+                    upAngle += 360f;
+                downAngle = upAngle + 180f;
+                if ((aimAngle > upAngle && aimAngle < downAngle) || (aimAngle > upAngle && aimAngle < downAngle - 360f))
+                {
+                    UpdateFacing('r');
+                }*/
             }
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
@@ -333,7 +348,12 @@ public class Astronaut : MonoBehaviour
             moveUnitCount = 0;
         }
 
-
+        //Face in direction of Aiming
+        Vector2 differenceVector = Quaternion.Inverse(rBody.transform.rotation) * (Quaternion.Euler(0, 0, shotAngle) * Vector2.up);
+        if (differenceVector.x > 0)
+            UpdateFacing('r');
+        else if (differenceVector.x < 0)
+            UpdateFacing('l');
     }
 
     public void EndShootingPhase()
