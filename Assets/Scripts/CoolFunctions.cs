@@ -35,4 +35,20 @@ public class CoolFunctions : MonoBehaviour
         Debug.LogWarning("GameObject " + target + " could not be found in array");
         return null;
     }
+
+    public static GameObject FindChildWithTag(GameObject parent, string tag, bool mustBeActive)
+    {
+        GameObject[] array = new GameObject[parent.transform.childCount];
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] = parent.transform.GetChild(i).gameObject;
+            if (mustBeActive && !array[i].activeSelf)
+                continue;
+            if (array[i].tag == tag)
+                return array[i];
+        }
+        Debug.LogWarning("GameObject with Tag '" + tag + "' could not be found in array");
+        return null;
+    }
 }

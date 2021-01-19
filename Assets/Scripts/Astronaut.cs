@@ -25,13 +25,14 @@ public class Astronaut : MonoBehaviour
     public bool isAlive = true;
     public bool shootPhase = false;
     public bool shotFlying = false;
-
     public bool isStationary = true;
     public bool initializeTurn = true;
     public GameObject nearestPlanet;
+    private char facing = 'r';
 
     [Header("Private References")]
     private Rigidbody2D rBody;
+    private Animator modelAnim;
     private UIShotBar uIshotBar;
     private Text uIshotText;
     private UIActiveIndicator uIActiveIndicator;
@@ -63,6 +64,7 @@ public class Astronaut : MonoBehaviour
     void Start()
     {
         rBody = GetComponent<Rigidbody2D>();
+        modelAnim = CoolFunctions.FindChildWithTag(gameObject, "Model", true).GetComponent<Animator>();
         nearestPlanet = GetNearestPlanet();
         //Debug.Log(nearestPlanet);
 
@@ -136,6 +138,7 @@ public class Astronaut : MonoBehaviour
             {
                 AstronautShooter();
             }
+
         }
     }
 
@@ -148,6 +151,21 @@ public class Astronaut : MonoBehaviour
         initializeTurn = false;
         //Debug.LogWarning(this.gameObject.name);
         projectileCreatorScript.InitializeTurn();
+    }
+
+    private void UpdateFacing(char n)
+    {
+        if (n == facing)
+            return;
+        if (n == 'r')
+        {
+            modelAnim.SetInteger("Facing", 1);
+        }
+        else if (n == 'l')
+        {
+            modelAnim.SetInteger("Facing", -1);
+        }
+        facing = n;
     }
 
     private void AstronautMoverFixed()
@@ -178,6 +196,10 @@ public class Astronaut : MonoBehaviour
         else
         {
             horizontalMove = Input.GetAxis("Horizontal");
+            if (horizontalMove > 0)
+                UpdateFacing('r');
+            else if (horizontalMove < 0)
+                UpdateFacing('l');
         }
     }
 

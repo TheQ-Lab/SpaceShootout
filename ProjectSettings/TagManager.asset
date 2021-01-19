@@ -8,6 +8,7 @@ TagManager:
   - UIReferences
   - Ground
   - Astronaut
+  - Model
   layers:
   - Default
   - TransparentFX
