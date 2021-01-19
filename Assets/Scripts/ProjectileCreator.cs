@@ -26,6 +26,7 @@ public class ProjectileCreator : MonoBehaviour
         }
     }
 
+    public static ProjectileCreator Instance = null;
 
     public List<ProjectileConfiguration> projectileConfigurations;
 
@@ -43,6 +44,11 @@ public class ProjectileCreator : MonoBehaviour
         SetCurrentProjectile(Projectile.Type.Missile);
     }
 
+
+    void Awake()
+    {
+        Instance = this;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -111,7 +117,7 @@ public class ProjectileCreator : MonoBehaviour
         }
     }
 
-    private void SetCurrentProjectile(Projectile.Type t)
+    public void SetCurrentProjectile(Projectile.Type t)
     {
         currentProjectileConfig = GetProjectileConfig(t);
 

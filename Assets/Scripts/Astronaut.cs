@@ -160,6 +160,7 @@ public class Astronaut : MonoBehaviour
         if (InputManager.Instance.Inputs.Contains("space"))
         {
             InputManager.Instance.Inputs.Remove("space");
+           
 
             rBody.constraints = RigidbodyConstraints2D.FreezeAll;
 
@@ -213,6 +214,7 @@ public class Astronaut : MonoBehaviour
             PredictionManager.Instance.lineRenderer.enabled = false;
 
             shotFlying = true;
+            InputManager.Instance.Inputs.Remove("arrow");
         }
         else if (Input.GetKey(KeyCode.Escape))
         {
@@ -221,6 +223,8 @@ public class Astronaut : MonoBehaviour
             PredictionManager.Instance.lineRenderer.enabled = false;
             uIshotText.gameObject.SetActive(false);
             rBody.constraints = RigidbodyConstraints2D.None;
+            InputManager.Instance.Inputs.Remove("arrow");
+
         }
         else
         {
@@ -229,9 +233,9 @@ public class Astronaut : MonoBehaviour
             projectileCreatorScript.SimulateProjectile(launchPosition, shotAngle, shotPower, this.gameObject);
         }
 
-
         if (Input.GetKey(KeyCode.UpArrow))
         {
+            
             moveInputTimer -= Time.deltaTime;
             if (moveInputTimer < 0)
             {
@@ -270,6 +274,7 @@ public class Astronaut : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
+            
             moveInputTimer -= Time.deltaTime;
             if (moveInputTimer < 0)
             {
@@ -287,6 +292,7 @@ public class Astronaut : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
+            
             moveInputTimer -= Time.deltaTime;
             if (moveInputTimer < 0)
             {
@@ -303,13 +309,34 @@ public class Astronaut : MonoBehaviour
                 uIshotText.text = shotAngle + ", " + shotPower;
             }
         }
+        else if (InputManager.Instance.Inputs.Contains("arrow"))
+        {
+            Vector3 mousePos = Input.mousePosition;
+            Vector3 direction = uIshotBar.transform.rotation * Vector3.up;
+            float angle = Vector3.SignedAngle(direction, mousePos - uIshotBar.transform.position, Vector3.forward);
+
+            //Debug.Log(angle + " " + uIshotBar.transform.rotation.eulerAngles.z);
+            if (angle < -90 || angle > 90)
+            {
+                shotAngle++;
+                if (shotAngle > 359) { shotAngle = 0; }
+                uIshotBar.SetAngle(shotAngle);
+                uIshotText.text = shotAngle + ", " + shotPower;
+            }
+            else
+            {
+                shotAngle--;
+                if (shotAngle < 0) { shotAngle = 359; }
+                uIshotBar.SetAngle(shotAngle);
+                uIshotText.text = shotAngle + ", " + shotPower;
+            }
+        }
         else
         {
             moveInputTimer = 0;
             moveUnitCount = 0;
+            
         }
-
-
     }
 
     public void EndShootingPhase()
