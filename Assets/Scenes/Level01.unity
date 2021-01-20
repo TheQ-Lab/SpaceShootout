@@ -538,7 +538,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowKey: 0
   Inputs: []
-  icon: {fileID: 0}
 --- !u!4 &109734112
 Transform:
   m_ObjectHideFlags: 0
@@ -1835,7 +1834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac1aefe2a4b17e4fac59adcd1826431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxIterations: 40
+  maxIterations: 25
   lineRenderer: {fileID: 0}
 --- !u!120 &597351701
 LineRenderer:
@@ -3050,7 +3049,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843403951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 0.86060214, y: 0.86060214, z: 0.86060214}
   m_Children: []
   m_Father: {fileID: 0}
