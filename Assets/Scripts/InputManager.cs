@@ -11,10 +11,8 @@ public class InputManager : MonoBehaviour
 
     public char arrowKey = '\0'; // \0 === empty char
     public List<string> Inputs; // has keys that are pressed down and not yet used
-    public UIProjectileSelection icon;
-    public PointerEventData data;
-    public BaseEventData dataEvent;
-    GraphicRaycaster raycaster;
+   // private float delay = 1.0f;
+    //private float clickTime = 0;
 
 
     private void Awake()
@@ -51,20 +49,12 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (!Inputs.Contains("arrow")) Inputs.Add("arrow");
+           if (!Inputs.Contains("arrow")) Inputs.Add("arrow");
+            
         } else if (Input.GetMouseButtonUp(0))
         {
             if (Inputs.Contains("arrow")) Inputs.Remove("arrow");
         }
-
-            //Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-            //Debug.Log(mousePos2D);
-            // OnPointerClick(data);
-            //OnSelect(dataEvent);
-
-        
-
     }
 
 

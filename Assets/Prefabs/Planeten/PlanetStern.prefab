@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 6375905331948996601}
   - component: {fileID: 7361205840707433755}
   - component: {fileID: 3878735324106356468}
-  - component: {fileID: 7209739186846029898}
+  - component: {fileID: 566265873538971084}
   m_Layer: 0
   m_Name: PlanetStern
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6633290464156648901}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.14695643, y: -0.13204558, z: 0.04723822, w: 0.9791509}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 17.473, y: -14.865, z: 3.227}
 --- !u!33 &6375905331948996601
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!60 &7209739186846029898
+--- !u!60 &566265873538971084
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,13 +129,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.008, y: 0.018}
-      - {x: -0.0001, y: 0.044}
-      - {x: -0.008, y: 0.018}
-      - {x: -0.034, y: 0.017}
-      - {x: -0.011, y: 0.003}
-      - {x: -0.021, y: -0.022}
-      - {x: -0.0001, y: -0.0067}
-      - {x: 0.022, y: -0.023}
-      - {x: 0.012, y: 0.003}
-      - {x: 0.034, y: 0.017}
+    - - {x: 1.1591735, y: 2.656259}
+      - {x: -0.090775624, y: 5.9007792}
+      - {x: -1.0902665, y: 2.5266635}
+      - {x: -4.6726985, y: 2.46098}
+      - {x: -1.5259213, y: 0.44793212}
+      - {x: -2.8364825, y: -2.8254507}
+      - {x: -2.9509304, y: -2.9390833}
+      - {x: -0.055023596, y: -0.9292562}
+      - {x: 2.9984994, y: -2.9668882}
+      - {x: 1.5446501, y: 0.5134947}
+      - {x: 4.354838, y: 2.4231448}
