@@ -31,14 +31,15 @@ public class ProjectileCreator : MonoBehaviour
     public List<ProjectileConfiguration> projectileConfigurations;
 
     // REFERENCES
+    private Astronaut astronaut;
     private UIProjectileSelection uIProjectileSelection;
-
     private GameObject projectile;
     private ProjectileConfiguration currentProjectileConfig = ProjectileConfiguration.zero();
 
     // Start is called before the first frame update
     void Start()
     {
+        astronaut = GetComponentInParent<Astronaut>();
         uIProjectileSelection = CoolFunctions.FindInArray("ProjectileSelectionContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<UIProjectileSelection>();
 
         SetCurrentProjectile(Projectile.Type.Missile);
@@ -52,9 +53,11 @@ public class ProjectileCreator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.GetComponentInParent<Astronaut>().isActive)
+        if (!GameManager.Instance.IsGameplayActive)
+            return;
+        if (astronaut.isActive)
             CheckWeaponChangeInputs();
-
+        //nice relic （＾∀＾●）ﾉｼ
         //ONLY TEMPORARY, projectileCreator is a MESS, Strings instead of enums, a FUCK ton of hard code instead of Serialized class and above all PERMANENT listening for projectileChange commands, regardless of isActive of the parent Astronaut!!!
         //nobody'll know where to change timings etc.
         

@@ -288,7 +288,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DelayGameplayPause(int winningTeam)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         SetGameplayPause(true);
         menuGameOver.SelectWinScreen(winningTeam);
         Debug.Log("Pasue Gameplay 2s after Game over to let Camera Zoom finish");
