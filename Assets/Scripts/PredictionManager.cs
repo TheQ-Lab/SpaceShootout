@@ -49,6 +49,12 @@ public class PredictionManager : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
     }
 
+    private void Update()
+    {
+        float width = lineRenderer.startWidth;
+        lineRenderer.material.mainTextureScale = new Vector2(1f / width, 1.0f);
+    }
+
     private void FixedUpdate()
     {
         //advance the normal Physics in standard time
