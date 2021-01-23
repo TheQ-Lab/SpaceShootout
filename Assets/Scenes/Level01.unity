@@ -1901,7 +1901,7 @@ MonoBehaviour:
   - {fileID: 1903539685}
   - {fileID: 471054491}
   - {fileID: 795303683}
-  maxTurnTime: 20
+  maxTurnTime: 30
   IsGameplayActive: 1
   TurnTimeText: {fileID: 809622156}
 --- !u!4 &597351699
@@ -2325,6 +2325,8 @@ MonoBehaviour:
   - {fileID: 416287255}
   - {fileID: 272674042}
   - {fileID: 243884532}
+  - {fileID: 121156026}
+  - {fileID: 840202874}
   Astronauts: []
   Projectiles: []
 --- !u!4 &674243446
@@ -6244,11 +6246,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3822933658810589911, guid: 4676788d0d445e347bba3ad5281bf4ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.15
+      value: 14.19
       objectReference: {fileID: 0}
     - target: {fileID: 3822933658810589911, guid: 4676788d0d445e347bba3ad5281bf4ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.34
+      value: -0.29
       objectReference: {fileID: 0}
     - target: {fileID: 3822933658810589911, guid: 4676788d0d445e347bba3ad5281bf4ae, type: 3}
       propertyPath: m_LocalPosition.z
