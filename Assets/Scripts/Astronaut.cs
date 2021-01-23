@@ -52,10 +52,16 @@ public class Astronaut : MonoBehaviour
 
     private int shotAngle = 0;
     private int shotPower = 50;
+    private bool sliderHasEventListener = false;
+
+    private double moveInputTimer = 0;
+    private int moveUnitCount = 0;
 
 
     private float horizontalMove;
     private float horizontalMoveAcceleration = 5;
+
+    Slider mySlider;
 
     //for ProjectileCreation
     private ProjectileCreator projectileCreatorScript;
@@ -79,6 +85,9 @@ public class Astronaut : MonoBehaviour
 
         //_centre = transform.position;
         postProcessingScript = GameObject.Find("PostProcessingVolume").GetComponent<PostProcessing>();
+
+        
+        
     }
 
     private void FixedUpdate()
@@ -177,10 +186,13 @@ public class Astronaut : MonoBehaviour
 
     private void AstronautMover()
     {
+        
         if (InputManager.Instance.Inputs.Contains("space"))
         {
             InputManager.Instance.Inputs.Remove("space");
-           
+            
+
+
 
             rBody.constraints = RigidbodyConstraints2D.FreezeAll;
 
@@ -189,7 +201,11 @@ public class Astronaut : MonoBehaviour
             uIshotBar.SetAngle(shotAngle);
             uIshotText.gameObject.SetActive(true);
             uIshotText.text = shotAngle + ", " + shotPower;
-
+            if (!sliderHasEventListener)
+            {
+                sliderHasEventListener = true;
+                uIshotBar.slider.onValueChanged.AddListener(delegate { SliderValueChangeCheck(); });
+            }
             PredictionManager.Instance.lineRenderer.enabled = true;
 
             shootPhase = true;
@@ -212,8 +228,7 @@ public class Astronaut : MonoBehaviour
 
     }
 
-    private double moveInputTimer = 0;
-    private int moveUnitCount = 0;
+    
     private void AstronautShooter()
     {
         if (shotFlying) return;
@@ -352,20 +367,22 @@ public class Astronaut : MonoBehaviour
         {
             Vector3 mousePos = Input.mousePosition;
             Vector3 direction = uIshotBar.transform.rotation * Vector3.up;
+            
             float angle = Vector3.SignedAngle(direction, mousePos - uIshotBar.transform.position, Vector3.forward);
 
             //Debug.Log(angle + " " + uIshotBar.transform.rotation.eulerAngles.z);
             if (angle < -90 || angle > 90)
             {
-                shotAngle++;
-                if (shotAngle > 359) { shotAngle = 0; }
+                shotAngle--;
+                if (shotAngle < 0) { shotAngle = 359; }
                 uIshotBar.SetAngle(shotAngle);
                 uIshotText.text = shotAngle + ", " + shotPower;
+                
             }
             else
             {
-                shotAngle--;
-                if (shotAngle < 0) { shotAngle = 359; }
+                shotAngle++;
+                if (shotAngle > 359) { shotAngle = 0; }
                 uIshotBar.SetAngle(shotAngle);
                 uIshotText.text = shotAngle + ", " + shotPower;
             }
@@ -383,6 +400,12 @@ public class Astronaut : MonoBehaviour
             UpdateFacing('r');
         else if (differenceVector.x < 0)
             UpdateFacing('l');
+    }
+
+    public void SliderValueChangeCheck()
+    {
+        //Debug.Log("slider changed" + uIshotBar.slider.value);
+        shotPower = (int)(uIshotBar.slider.value / 0.01f);
     }
 
     public void EndShootingPhase()

@@ -52,6 +52,7 @@ public class PredictionManager : MonoBehaviour
     private void Update()
     {
         float width = lineRenderer.startWidth;
+        //1 / width is the repetition of the texture per unit
         lineRenderer.material.mainTextureScale = new Vector2(1f / width, 1.0f);
     }
 

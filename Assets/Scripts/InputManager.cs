@@ -11,9 +11,6 @@ public class InputManager : MonoBehaviour
 
     public char arrowKey = '\0'; // \0 === empty char
     public List<string> Inputs; // has keys that are pressed down and not yet used
-   // private float delay = 1.0f;
-    //private float clickTime = 0;
-
 
     private void Awake()
     {
@@ -47,14 +44,20 @@ public class InputManager : MonoBehaviour
                 Inputs.Remove("space");
         }
 
-        if (Input.GetMouseButtonDown(0))
+        Vector3 mouseCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (Input.GetMouseButtonDown(0) && mouseCoord.y > -10)
         {
-           if (!Inputs.Contains("arrow")) Inputs.Add("arrow");
-            
-        } else if (Input.GetMouseButtonUp(0))
+            //Debug.Log("mouse " + mouseCoord.y);
+            if (!Inputs.Contains("arrow")) Inputs.Add("arrow");
+
+        }
+        else if (Input.GetMouseButtonUp(0))
         {
             if (Inputs.Contains("arrow")) Inputs.Remove("arrow");
         }
+        
+          
     }
 
 

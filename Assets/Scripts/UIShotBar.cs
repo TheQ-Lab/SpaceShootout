@@ -6,7 +6,7 @@ using UnityEngine.UI; // for all UI-Elements
 
 public class UIShotBar : MonoBehaviour
 {
-    private Slider slider;
+    public Slider slider;
     
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class UIShotBar : MonoBehaviour
 
     public void SetAngle(int angle)
     {
-        this.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 270 + angle));
+        this.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90 + angle));
     }
 
     public void SetPower(int power)
