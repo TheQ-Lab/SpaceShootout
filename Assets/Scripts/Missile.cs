@@ -12,6 +12,8 @@ public class Missile : Projectile
         // damage
         damage = 50;
         radius = 0.8f;
+
+        base.rBody = GetComponent<Rigidbody2D>();
     }
 
     IEnumerator Explode()
@@ -24,7 +26,7 @@ public class Missile : Projectile
             {
                 Vector3 offset = new Vector3(0, 0, -5);
                 Vector3 explosionPos = transform.position + offset;
-                Instantiate(explosionEffect, explosionPos, Quaternion.LookRotation(rBody.velocity));
+                Instantiate(explosionEffect, explosionPos, Quaternion.LookRotation(base.rBody.velocity));
                 Debug.Log("Do something, cause collider is with astronaut");
                 Astronaut victim = nearbyObject.GetComponent<Astronaut>();
                 victim.Damage(damage);
@@ -37,10 +39,9 @@ public class Missile : Projectile
 
     void Update()
     {
-
+        Quaternion dir = Quaternion.LookRotation(base.rBody.velocity);
+        dir *= Quaternion.Euler(0,0,-90f);
+        base.rBody.SetRotation(dir);
     }
-
-
-
 
 }
