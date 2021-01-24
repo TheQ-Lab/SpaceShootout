@@ -28,7 +28,12 @@ public class UIProjectileSelection : MonoBehaviour
     }
 
     public List<ProjectileIconSet> Icons;
+    private Image explanation;
 
+    void Start()
+    {
+        explanation = transform.Find("ExplanationWeaponChange").GetComponent<Image>();
+    }
 
     public void SelectIcon(Projectile.Type newProjectileType)
     {
@@ -39,5 +44,18 @@ public class UIProjectileSelection : MonoBehaviour
             else
                 I.ImageGameObject.sprite = I.DeselectedIcon;
         }
+    }
+
+    public void ShowExplanation(float time)
+    {
+        explanation.enabled = true;
+        StartCoroutine(DisableExplanation(time));
+
+    }
+
+    IEnumerator DisableExplanation(float time)
+    {
+        yield return new WaitForSeconds(time);
+        explanation.enabled = false;
     }
 }

@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     private MenuIngame menuInGame;
     private MenuTurnStart menuTurnStart;
     private MenuGameOver menuGameOver;
-    
+    private UIProjectileSelection uIProjectileSelection;
 
     private void Awake()
     {
@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
         menuInGame = Resources.FindObjectsOfTypeAll<MenuIngame>()[0];
         menuTurnStart = Resources.FindObjectsOfTypeAll<MenuTurnStart>()[0];
         menuGameOver = Resources.FindObjectsOfTypeAll<MenuGameOver>()[0];
+        uIProjectileSelection = CoolFunctions.FindInArray("ProjectileSelectionContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<UIProjectileSelection>();
 
         InitializePlayerCount();
 
@@ -88,8 +89,8 @@ public class GameManager : MonoBehaviour
         TeamsAll.Add(TeamC);
         TeamsAll.Add(TeamD);
 
-        TurnHistory.Add(TeamA[0]);
-        //TransferAcitveAstronaut(TeamsAll[1][0], TeamsAll[0][0]); Does not work
+        //TurnHistory.Add(TeamA[0]);
+        TransferAcitveAstronaut(null, TeamA[0]); //Does not work
     }
 
     // Update is called once per frame
@@ -265,10 +266,16 @@ public class GameManager : MonoBehaviour
 
     public void TransferAcitveAstronaut(Astronaut OldAstronaut, Astronaut NewAstronaut)
     {
-        OldAstronaut.DeactivateAstronaut();
+        if (OldAstronaut != null)
+            OldAstronaut.DeactivateAstronaut();
         NewAstronaut.ActivateAstronaut();
+        //if this is astronauts first turn show weapon swap explanation
+        if (!TurnHistory.Contains(NewAstronaut))
+            uIProjectileSelection.ShowExplanation(4f);
+
         TurnHistory.Add(NewAstronaut);
-        ActiveAstronautPerTeam[ActiveTeam - 1] = TeamsAll[ActiveTeam - 1].FindIndex(a => a == NewAstronaut) + 1;
+        if (OldAstronaut != null)
+            ActiveAstronautPerTeam[ActiveTeam - 1] = TeamsAll[ActiveTeam - 1].FindIndex(a => a == NewAstronaut) + 1;
         //Debug.Log("Added Astronaut #" + (TeamsAll[ActiveTeam - 1].FindIndex(a => a == NewAstronaut) + 1) + " to ActiveAstronautPerTeam");
     }
 
