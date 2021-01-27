@@ -46,7 +46,7 @@ public class InputManager : MonoBehaviour
 
         Vector3 mouseCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetMouseButtonDown(0) && mouseCoord.y > -10)
+        if (Input.GetMouseButtonDown(0) && mouseCoord.y > -15)
         {
             //Debug.Log("mouse " + mouseCoord.y);
             if (!Inputs.Contains("arrow")) Inputs.Add("arrow");

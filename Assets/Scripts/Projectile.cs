@@ -98,8 +98,8 @@ public class Projectile : MonoBehaviour
         this.GetComponent<MeshRenderer>().enabled = false;
         yield return new WaitForSeconds(explosionEffectDuration);
         //             
-        //camTrans.position = startCameraPosition;
-        //cameraAnimator.SetBool("Zoomed In", false);
+        camTrans.position = startCameraPosition;
+        cameraAnimator.SetBool("Zoomed In", false);
         //
         Astronaut parentAstronautScript = parentAstronaut.GetComponent<Astronaut>();
         parentAstronautScript.EndShootingPhase();
