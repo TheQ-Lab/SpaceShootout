@@ -34,7 +34,8 @@ public class Astronaut : MonoBehaviour
     private Rigidbody2D rBody;
     private Animator modelAnim;
     private UIShotBar uIshotBar;
-    private Text uIshotText;
+    //private Text uIshotText;
+    private UIShotStats uIShotStats;
     private UIActiveIndicator uIActiveIndicator;
     private UILifeBars uILifeBars;
     private PostProcessing postProcessingScript;
@@ -78,7 +79,7 @@ public class Astronaut : MonoBehaviour
         projectileCreatorScript = GetComponentInChildren<ProjectileCreator>();
 
         uIshotBar = CoolFunctions.FindInArray("ShotBarContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).GetComponent<UIShotBar>();
-        uIshotText = CoolFunctions.FindInArray("ShotTextContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<Text>();
+        uIShotStats = CoolFunctions.FindInArray("ShotStatsContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<UIShotStats>();
         uIActiveIndicator = CoolFunctions.FindInArray("ActiveIndicatorContainer", GameObject.FindGameObjectsWithTag("UIReferences")).transform.GetChild(0).transform.GetComponent<UIActiveIndicator>();
 
         uILifeBars = GameObject.FindGameObjectWithTag("ControllerLifeBars").GetComponent<UILifeBars>();
@@ -199,8 +200,9 @@ public class Astronaut : MonoBehaviour
             uIshotBar.Activate();
             uIshotBar.SetPower(shotPower);
             uIshotBar.SetAngle(shotAngle);
-            uIshotText.gameObject.SetActive(true);
-            uIshotText.text = shotAngle + ", " + shotPower;
+            uIShotStats.SetActive(true);
+            uIShotStats.SetPower(shotPower);
+            uIShotStats.SetAngle(shotAngle);
             if (!sliderHasEventListener)
             {
                 sliderHasEventListener = true;
@@ -245,7 +247,7 @@ public class Astronaut : MonoBehaviour
 
             uIshotBar.Deactivate();
             PredictionManager.Instance.lineRenderer.enabled = false;
-            uIshotText.gameObject.SetActive(false);
+            uIShotStats.SetActive(false);
 
             postProcessingScript.vignette.active = true;
             postProcessingScript.filmGrain.active = true;
@@ -260,7 +262,7 @@ public class Astronaut : MonoBehaviour
             shootPhase = false;
             uIshotBar.Deactivate();
             PredictionManager.Instance.lineRenderer.enabled = false;
-            uIshotText.gameObject.SetActive(false);
+            uIShotStats.SetActive(false);
             rBody.constraints = RigidbodyConstraints2D.None;
             InputManager.Instance.Inputs.Remove("arrow");
 
@@ -272,7 +274,7 @@ public class Astronaut : MonoBehaviour
             projectileCreatorScript.SimulateProjectile(launchPosition, shotAngle, shotPower, this.gameObject);
         }
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             
             moveInputTimer -= Time.deltaTime;
@@ -288,11 +290,11 @@ public class Astronaut : MonoBehaviour
                 {
                     shotPower++;
                     uIshotBar.SetPower(shotPower);
-                    uIshotText.text = shotAngle + ", " + shotPower;
+                    uIShotStats.SetPower(shotPower);
                 }
             }
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             moveInputTimer -= Time.deltaTime;
             if (moveInputTimer < 0)
@@ -307,11 +309,11 @@ public class Astronaut : MonoBehaviour
                 {
                     shotPower--;
                     uIshotBar.SetPower(shotPower);
-                    uIshotText.text = shotAngle + ", " + shotPower;
+                    uIShotStats.SetPower(shotPower);
                 }
             }
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             
             moveInputTimer -= Time.deltaTime;
@@ -326,7 +328,7 @@ public class Astronaut : MonoBehaviour
                 shotAngle--;
                 if (shotAngle < 0) { shotAngle = 359; }
                 uIshotBar.SetAngle(shotAngle);
-                uIshotText.text = shotAngle + ", " + shotPower;
+                uIShotStats.SetAngle(shotAngle);
 
                 /*
                 aimAngle = shotAngle;
@@ -344,7 +346,7 @@ public class Astronaut : MonoBehaviour
                 }*/
             }
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             
             moveInputTimer -= Time.deltaTime;
@@ -360,7 +362,7 @@ public class Astronaut : MonoBehaviour
                 shotAngle++;
                 if (shotAngle > 359) { shotAngle = 0; }
                 uIshotBar.SetAngle(shotAngle);
-                uIshotText.text = shotAngle + ", " + shotPower;
+                uIShotStats.SetAngle(shotAngle);
             }
         }
         else if (InputManager.Instance.Inputs.Contains("arrow"))
@@ -376,15 +378,15 @@ public class Astronaut : MonoBehaviour
                 shotAngle--;
                 if (shotAngle < 0) { shotAngle = 359; }
                 uIshotBar.SetAngle(shotAngle);
-                uIshotText.text = shotAngle + ", " + shotPower;
-                
+                uIShotStats.SetAngle(shotAngle);
+
             }
             else
             {
                 shotAngle++;
                 if (shotAngle > 359) { shotAngle = 0; }
                 uIshotBar.SetAngle(shotAngle);
-                uIshotText.text = shotAngle + ", " + shotPower;
+                uIShotStats.SetAngle(shotAngle);
             }
         }
         else
