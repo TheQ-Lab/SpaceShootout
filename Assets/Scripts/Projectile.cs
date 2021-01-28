@@ -45,8 +45,11 @@ public class Projectile : MonoBehaviour
     {
         if (Time.time >= deathTimer + lifetime) {
             delay = 0;
-            explosionStarted = true;
-            StartCoroutine(Explode());
+            if (!explosionStarted)
+            {
+                explosionStarted = true;
+                StartCoroutine("Explode");
+            }
         }
 
         if (isProjectileExistent)
