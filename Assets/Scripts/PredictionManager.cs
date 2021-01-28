@@ -34,6 +34,8 @@ public class PredictionManager : MonoBehaviour
         */
         Instance = this;
     }
+    //unity simulation prediction
+    //https://meepy.medium.com/advanced-gravity-simulation-using-unity-a7f983c5a314
 
     void Start()
     {
