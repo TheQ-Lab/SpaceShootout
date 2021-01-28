@@ -89,8 +89,9 @@ public class GameManager : MonoBehaviour
         TeamsAll.Add(TeamC);
         TeamsAll.Add(TeamD);
 
-        //TurnHistory.Add(TeamA[0]);
-        TransferAcitveAstronaut(null, TeamA[0]); //Does not work
+        TurnHistory.Add(TeamA[0]);
+        //TeamA[0].ActivateAstronaut();
+        //TransferAcitveAstronaut(null, TeamA[0]); //Does not work
     }
 
     // Update is called once per frame
@@ -137,6 +138,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckTurnTime()
     {
+        Debug.LogWarning("TurnHist Size" + TurnHistory.Count);
         Astronaut currentAstronautScript = TurnHistory[TurnHistory.Count - 1].GetComponent<Astronaut>();
         // During Flying Shot
         if (currentAstronautScript.shotFlying)
