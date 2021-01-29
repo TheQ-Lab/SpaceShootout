@@ -3,7 +3,17 @@ guid: 715ee79e6d4845b4fa13192e8e68de77
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: anzug
+    second: {fileID: 2100000, guid: 5c364597eaa403841934e48d6dd8bd03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: scheibe
+    second: {fileID: 2100000, guid: f2904ebc263e3c0459cafea3160f4407, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -85,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.5
+    globalScale: 50
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

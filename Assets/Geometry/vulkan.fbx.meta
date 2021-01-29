@@ -3,7 +3,12 @@ guid: 2980da24dce5f184eb6c6cb6129eba3b
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: StingrayPBS1
+    second: {fileID: 2100000, guid: dd3516e85756472499fb453076eecaf6, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -85,7 +90,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1.5
+    globalScale: 150
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
