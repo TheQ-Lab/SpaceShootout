@@ -2592,6 +2592,7 @@ MonoBehaviour:
   - {fileID: 416287255}
   - {fileID: 272674042}
   - {fileID: 243884532}
+  Stars:
   - {fileID: 121156026}
   - {fileID: 840202874}
   Astronauts: []
@@ -4243,11 +4244,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.57
+      value: 8.15
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.7
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 8788362985070429238, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: m_LocalPosition.z

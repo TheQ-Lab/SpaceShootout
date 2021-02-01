@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckTurnTime()
     {
-        Debug.LogWarning("TurnHist Size" + TurnHistory.Count);
+        //Debug.LogWarning("TurnHist Size" + TurnHistory.Count);
         Astronaut currentAstronautScript = TurnHistory[TurnHistory.Count - 1].GetComponent<Astronaut>();
         // During Flying Shot
         if (currentAstronautScript.shotFlying)

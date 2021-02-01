@@ -11,13 +11,15 @@ public class GravityManager : MonoBehaviour
     public double dragConstant = 0.5d;
     [Tooltip("Fill this")]
     public List<GameObject> Planets = new List<GameObject>();
+    public List<GameObject> Stars = new List<GameObject>();
     [Header("Can be left empty")]
     [Tooltip("Can be left empty; filled Trom Teams Lists in GameManager")]
     public List<GameObject> Astronauts = new List<GameObject>();
     [Tooltip("Can be left empty")]
     public List<GameObject> Projectiles = new List<GameObject>();
 
-    private List<Vector2> posPlanets = new List<Vector2>();
+    private List<Rigidbody2D> rBodyPlanets = new List<Rigidbody2D>();
+    private List<Rigidbody2D> rBodyStars = new List<Rigidbody2D>();
     private List<Rigidbody2D> rBodyAstronauts = new List<Rigidbody2D>();
     private List<Astronaut> scriptAstronauts = new List<Astronaut>();
     private List<Rigidbody2D> rBodyProjectiles = new List<Rigidbody2D>();
@@ -34,8 +36,13 @@ public class GravityManager : MonoBehaviour
         FillAstronautsFromGameMan();
         foreach (GameObject p in Planets)
         {
-            Vector2 v = p.transform.position;
-            posPlanets.Add(v); //Vector3 is implicitly converted to Vector2 (z is discarded)
+            Rigidbody2D v = p.GetComponent<Rigidbody2D>();
+            rBodyPlanets.Add(v); //Vector3 is implicitly converted to Vector2 (z is discarded)
+        }
+        foreach (GameObject p in Stars)
+        {
+            Rigidbody2D v = p.GetComponent<Rigidbody2D>();
+            rBodyStars.Add(v); //Vector3 is implicitly converted to Vector2 (z is discarded)
         }
         foreach (GameObject e in Astronauts)
         {
@@ -54,40 +61,46 @@ public class GravityManager : MonoBehaviour
         //foreach(Rigidbody2D astronaut in rBodyAstronauts)
         {
             Rigidbody2D astronaut = rBodyAstronauts[i];
-            if (!scriptAstronauts[i].isStationary) {
-                ApplyGravityTowardsAllPlanets(astronaut);
-            } 
+            if (!scriptAstronauts[i].isStationary)
+                ApplyGravityTowardsAllPlanets(astronaut, false);
             else
-            {
-                ApplyGravity(astronaut, scriptAstronauts[i].nearestPlanet.transform.position);
-            }
+                ApplyGravity(astronaut, scriptAstronauts[i].nearestPlanet.GetComponent<Rigidbody2D>(), false);
             ApplyDrag(astronaut);
         }
 
         foreach(Rigidbody2D projectile in rBodyProjectiles)
         {
-            ApplyGravityTowardsAllPlanets(projectile);
+            ApplyGravityTowardsAllPlanets(projectile, true);
             //ApplyDrag(projectile);
         }
     }
 
-    public void ApplyGravityTowardsAllPlanets(Rigidbody2D subject)
+
+    public void ApplyGravityTowardsAllPlanets(Rigidbody2D subject, bool withStars)
     {
-        foreach (Vector2 posPlanet in posPlanets)
+        foreach (Rigidbody2D posPlanet in rBodyPlanets)
         {
-            
-            //Debug.LogError(posPlanets.Count);
-            ApplyGravity(subject, posPlanet);
+            ApplyGravity(subject, posPlanet, true);
         }
+        if (withStars)
+            foreach (Rigidbody2D posStar in rBodyStars)
+            {
+                ApplyGravity(subject, posStar, false);
+            }
     }
 
-    private void ApplyGravity(Rigidbody2D EntityRBody, Vector2 posPlanet)
+    private void ApplyGravity(Rigidbody2D EntityRBody, Rigidbody2D PlanetRBody, bool calculateFromSurface)
     {
-        Vector2 direction = posPlanet - EntityRBody.position;
+        Vector2 direction = PlanetRBody.position - EntityRBody.position;
         float distance = direction.magnitude;
         Vector2 normatedDir = direction / distance;
+        if (calculateFromSurface)
+        {
+            float rPlanet = PlanetRBody.GetComponent<CircleCollider2D>().radius;
+            distance = distance - rPlanet;
+        }
         //float distanceFactor = (float) (1d / Math.Pow(distance - Planet.transform.localScale.x, 2f));
-        float distanceFactor = (float)(1d / Math.Pow(distance, 2f)) * 10f;
+        float distanceFactor = (float)(1d / Math.Pow(distance, 2f)) * 6f;
         //Debug.Log(distanceFactor);
         Vector2 newGravity = normatedDir * (9.81f / 10f) * GravityScale * distanceFactor; // Gravity / FixedUPdate() called 50x a Second
         EntityRBody.AddForce(newGravity);

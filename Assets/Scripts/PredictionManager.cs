@@ -84,7 +84,7 @@ public class PredictionManager : MonoBehaviour
 
             for (int i=0; i<maxIterations; i++)
             {
-                GravityManager.Instance.ApplyGravityTowardsAllPlanets(dummyRBody);
+                GravityManager.Instance.ApplyGravityTowardsAllPlanets(dummyRBody, true);
                 //GravityManager.Instance.ApplyDrag(dummy.GetComponent<Rigidbody2D>());
                 predictionPhysicsScene.Simulate(Time.fixedDeltaTime);
                 lineRenderer.SetPosition(i, dummy.transform.position + new Vector3(0,0,-0.1f));

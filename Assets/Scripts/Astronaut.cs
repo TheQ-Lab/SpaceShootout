@@ -373,7 +373,11 @@ public class Astronaut : MonoBehaviour
             float angle = Vector3.SignedAngle(direction, mousePos - uIshotBar.transform.position, Vector3.forward);
 
             //Debug.Log(angle + " " + uIshotBar.transform.rotation.eulerAngles.z);
-            if (angle < -90 || angle > 90)
+            if (angle < -89 && angle > -91)
+            {
+
+            }
+            else if (angle < -90 || angle > 90)
             {
                 shotAngle--;
                 if (shotAngle < 0) { shotAngle = 359; }
