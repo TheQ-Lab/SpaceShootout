@@ -44,9 +44,9 @@ public class InputManager : MonoBehaviour
                 Inputs.Remove("space");
         }
 
-        Vector3 mouseCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mouseCoord = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
-        if (Input.GetMouseButtonDown(0) && mouseCoord.y > -15)
+        if (Input.GetMouseButtonDown(0) && mouseCoord.y > 0.15)
         {
             //Debug.Log("mouse " + mouseCoord.y);
             if (!Inputs.Contains("arrow")) Inputs.Add("arrow");

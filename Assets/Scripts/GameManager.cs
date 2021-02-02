@@ -153,8 +153,15 @@ public class GameManager : MonoBehaviour
             turnTimer -= Time.deltaTime;
             int intTurnTime = Mathf.RoundToInt((float)turnTimer);
             TurnTimeText.text = intTurnTime.ToString();
-            if(intTurnTime == 5)
+            if(intTurnTime <= 5)
+            {
                 TurnTimeText.gameObject.GetComponent<Animator>().SetBool("IsAlert", true);
+                //if (intTurnTime % 2 == 0)
+                //{
+                    FindObjectOfType<AudioManager>().Play("timer");
+                //}
+            }
+                
         }
         else
         {

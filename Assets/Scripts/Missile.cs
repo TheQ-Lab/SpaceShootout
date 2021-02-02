@@ -15,10 +15,12 @@ public class Missile : Projectile
         
 
         base.rBody = GetComponent<Rigidbody2D>();
+        FindObjectOfType<AudioManager>().Play("missileFly");
     }
 
     IEnumerator Explode()
     {
+        
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (Collider2D nearbyObject in colliders)
         {
@@ -28,6 +30,7 @@ public class Missile : Projectile
                 Vector3 offset = new Vector3(0, 0, -5);
                 Vector3 explosionPos = transform.position + offset;
                 Instantiate(explosionEffect, explosionPos, Quaternion.LookRotation(base.rBody.velocity));
+                FindObjectOfType<AudioManager>().Play("missileExplosion");
                 Debug.Log("Do something, cause collider is with astronaut");
                 Astronaut victim = nearbyObject.GetComponent<Astronaut>();
                 victim.Damage(damage);

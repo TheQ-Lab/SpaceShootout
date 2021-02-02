@@ -1382,6 +1382,86 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4676788d0d445e347bba3ad5281bf4ae, type: 3}
+--- !u!1 &395068962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 395068964}
+  - component: {fileID: 395068963}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &395068963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395068962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab614294c3efebb4ba0bcd035ac528f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: bombExplosion
+    clip: {fileID: 8300000, guid: f99e34e8680975d458fc63b8282eb3e3, type: 3}
+    volume: 0.5
+    pitch: 1.41
+    loop: 0
+    source: {fileID: 0}
+  - name: missileExplosion
+    clip: {fileID: 8300000, guid: fc92f70944020124199c65008ef1cc22, type: 3}
+    volume: 0.14
+    pitch: 1.41
+    loop: 0
+    source: {fileID: 0}
+  - name: bombWait
+    clip: {fileID: 8300000, guid: e98336b9679191a44afba8db6b9bfc45, type: 3}
+    volume: 0.3
+    pitch: 1.41
+    loop: 0
+    source: {fileID: 0}
+  - name: missileFly
+    clip: {fileID: 8300000, guid: c24e579eb3355204c81220d787ba3a5c, type: 3}
+    volume: 0.5
+    pitch: 1.41
+    loop: 0
+    source: {fileID: 0}
+  - name: timer
+    clip: {fileID: 8300000, guid: 7a557485f6853264bac90c8ee4a33964, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: gameMusic
+    clip: {fileID: 0}
+    volume: 0.27
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+--- !u!4 &395068964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395068962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 35
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &407919227
 GameObject:
   m_ObjectHideFlags: 0

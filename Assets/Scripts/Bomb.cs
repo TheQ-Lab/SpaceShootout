@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Bomb : Projectile
 {
+   
     public float countDown;
     private Vector3 plusSize = new Vector3(0.05f, 0.05f, 0.05f);
 
@@ -42,6 +43,9 @@ public class Bomb : Projectile
         Vector3 offset = new Vector3(0, 0, -10);
         Vector3 explosionPos = transform.position + offset;
         Instantiate(explosionEffect, explosionPos, Quaternion.LookRotation(rBody.velocity));
+        FindObjectOfType<AudioManager>().Play("bombExplosion");
+
+        
 
         // Get nearest Objects
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
@@ -78,9 +82,10 @@ public class Bomb : Projectile
         {
             rBody.GetComponent<MeshRenderer>().material.color = Color.red;
             rBody.transform.localScale += plusSize;
-           
+            FindObjectOfType<AudioManager>().Play("bombWait");
+
             //Debug.Log(rBody.transform.localScale);
-            
+
             if (rBody.GetComponent<MeshRenderer>().enabled)
             {
                 rBody.GetComponent<MeshRenderer>().enabled = false;
@@ -101,6 +106,7 @@ public class Bomb : Projectile
     {
        
     }
+   
 
  
 
