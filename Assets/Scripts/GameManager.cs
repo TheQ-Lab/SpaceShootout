@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     private MenuGameOver menuGameOver;
     private UIProjectileSelection uIProjectileSelection;
 
+    bool isSoundPlayed;
+
     private void Awake()
     {
         /*
@@ -92,6 +94,8 @@ public class GameManager : MonoBehaviour
         TurnHistory.Add(TeamA[0]);
         //TeamA[0].ActivateAstronaut();
         //TransferAcitveAstronaut(null, TeamA[0]); //Does not work
+
+        isSoundPlayed = false;
     }
 
     // Update is called once per frame
@@ -153,15 +157,11 @@ public class GameManager : MonoBehaviour
             turnTimer -= Time.deltaTime;
             int intTurnTime = Mathf.RoundToInt((float)turnTimer);
             TurnTimeText.text = intTurnTime.ToString();
-            if(intTurnTime <= 5)
+            if (intTurnTime <= 5)
             {
                 TurnTimeText.gameObject.GetComponent<Animator>().SetBool("IsAlert", true);
-                //if (intTurnTime % 2 == 0)
-                //{
-                    FindObjectOfType<AudioManager>().Play("timer");
-                //}
+                TimerRing(intTurnTime);
             }
-                
         }
         else
         {
@@ -308,5 +308,64 @@ public class GameManager : MonoBehaviour
         SetGameplayPause(true);
         menuGameOver.SelectWinScreen(winningTeam);
         Debug.Log("Pasue Gameplay 2s after Game over to let Camera Zoom finish");
+    }
+
+    private void TimerRing(int intTurnTime)
+    {
+        if (intTurnTime == 5)
+        {
+
+            if (!isSoundPlayed)
+            {
+                FindObjectOfType<AudioManager>().Play("timer");
+                isSoundPlayed = true;
+            }
+            return;
+        }
+        if (intTurnTime == 4)
+        {
+            if (isSoundPlayed)
+            {
+                FindObjectOfType<AudioManager>().Play("timer");
+                isSoundPlayed = false;
+            }
+            return;
+        }
+        if (intTurnTime == 3)
+        {
+            if (!isSoundPlayed)
+            {
+                FindObjectOfType<AudioManager>().Play("timer");
+                isSoundPlayed = true;
+            }
+            return;
+        }
+        if (intTurnTime == 2)
+        {
+            if (isSoundPlayed)
+            {
+                FindObjectOfType<AudioManager>().Play("timer");
+                isSoundPlayed = false;
+            }
+            return;
+        }
+        if (intTurnTime == 1)
+        {
+            if (!isSoundPlayed)
+            {
+                FindObjectOfType<AudioManager>().Play("timer");
+                isSoundPlayed = true;
+            }
+            return;
+        }
+        if (intTurnTime == 0)
+        {
+            if (isSoundPlayed)
+            {
+                FindObjectOfType<AudioManager>().Play("timer");
+                isSoundPlayed = false;
+            }
+            return;
+        }
     }
 }

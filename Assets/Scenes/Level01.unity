@@ -1415,29 +1415,29 @@ MonoBehaviour:
   - name: bombExplosion
     clip: {fileID: 8300000, guid: f99e34e8680975d458fc63b8282eb3e3, type: 3}
     volume: 0.5
-    pitch: 1.41
+    pitch: 2
     loop: 0
     source: {fileID: 0}
   - name: missileExplosion
     clip: {fileID: 8300000, guid: fc92f70944020124199c65008ef1cc22, type: 3}
-    volume: 0.14
-    pitch: 1.41
+    volume: 0.3
+    pitch: 3
     loop: 0
     source: {fileID: 0}
   - name: bombWait
     clip: {fileID: 8300000, guid: e98336b9679191a44afba8db6b9bfc45, type: 3}
     volume: 0.3
-    pitch: 1.41
+    pitch: 2
     loop: 0
     source: {fileID: 0}
   - name: missileFly
     clip: {fileID: 8300000, guid: c24e579eb3355204c81220d787ba3a5c, type: 3}
-    volume: 0.5
-    pitch: 1.41
+    volume: 0.3
+    pitch: 1.7
     loop: 0
     source: {fileID: 0}
   - name: timer
-    clip: {fileID: 8300000, guid: 7a557485f6853264bac90c8ee4a33964, type: 3}
+    clip: {fileID: 8300000, guid: 4b3b92227ee094d4d95037f1878f9ca7, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
