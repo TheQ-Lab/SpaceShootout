@@ -46,7 +46,7 @@ public class Missile : Projectile
         if (base.rBody.velocity!=Vector2.zero)
         {
             Quaternion dir = Quaternion.LookRotation(base.rBody.velocity);
-            dir *= Quaternion.Euler(0, 0, 270f);
+            dir *= Quaternion.Euler(90f, 0, 0f);
             base.rBody.SetRotation(dir);
         }
     }
