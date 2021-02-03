@@ -96,6 +96,7 @@ public class Projectile : MonoBehaviour
         isProjectileExistent = false;
         GravityManager.Instance.RemoveAnyObjectFromGravity(this.gameObject);
         this.GetComponent<MeshRenderer>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
         yield return new WaitForSeconds(explosionEffectDuration);
         //             
         camTrans.position = startCameraPosition;

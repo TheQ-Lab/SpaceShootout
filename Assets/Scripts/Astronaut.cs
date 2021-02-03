@@ -525,7 +525,7 @@ public class Astronaut : MonoBehaviour
         {
             // especially for beginning when spawning to get stationary upon hitting the ground
             if (collision.collider.tag == "Ground")
-                SetStationary(true);
+                StartCoroutine(TouchdownOnGround());
         }
         else
         {
@@ -538,7 +538,12 @@ public class Astronaut : MonoBehaviour
             }
             */
         }
+    }
 
-
+    IEnumerator TouchdownOnGround()
+    {
+        isStationary = true;
+        yield return new WaitForSeconds(0.05f);
+        SetStationary(true);
     }
 }
