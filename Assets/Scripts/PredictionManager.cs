@@ -18,6 +18,7 @@ public class PredictionManager : MonoBehaviour
     public LineRenderer lineRenderer;
     GameObject dummy;
     Rigidbody2D dummyRBody;
+    
 
     private void Awake()
     {
@@ -65,6 +66,8 @@ public class PredictionManager : MonoBehaviour
             currentPhysicsScene.Simulate(Time.fixedDeltaTime);
     }
 
+    
+
     public void predict(GameObject subject, Vector2 currentPosition, Vector2 force)
     {
         if (currentPhysicsScene.IsValid() && predictionPhysicsScene.IsValid())
@@ -84,6 +87,11 @@ public class PredictionManager : MonoBehaviour
 
             for (int i=0; i<maxIterations; i++)
             {
+                if (GravityManager.Instance.checkCollision(dummy))
+                {
+                    lineRenderer.positionCount = i;
+                    break;
+                }
                 GravityManager.Instance.ApplyGravityTowardsAllPlanets(dummyRBody, true);
                 //GravityManager.Instance.ApplyDrag(dummy.GetComponent<Rigidbody2D>());
                 predictionPhysicsScene.Simulate(Time.fixedDeltaTime);

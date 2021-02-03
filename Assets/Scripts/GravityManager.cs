@@ -75,7 +75,6 @@ public class GravityManager : MonoBehaviour
         }
     }
 
-
     public void ApplyGravityTowardsAllPlanets(Rigidbody2D subject, bool withStars)
     {
         foreach (Rigidbody2D posPlanet in rBodyPlanets)
@@ -158,5 +157,27 @@ public class GravityManager : MonoBehaviour
         rBodyAstronauts.Remove(ObjectToRemove.GetComponent<Rigidbody2D>());
         scriptAstronauts.Remove(ObjectToRemove.GetComponent<Astronaut>());
 
+    }
+
+    public bool checkCollision(GameObject obj)
+    {
+        foreach (GameObject collider in Planets)
+        {
+            Vector3 closestPoint = collider.GetComponent<Collider2D>().ClosestPoint(obj.transform.position);
+            if (Vector3.Distance(closestPoint, obj.transform.position) < 0.3f || closestPoint == obj.transform.position) return true;
+        }
+
+        foreach (GameObject collider in Stars)
+        {
+            Vector3 closestPoint = collider.GetComponent<Collider2D>().ClosestPoint(obj.transform.position);
+            if (Vector3.Distance(closestPoint, obj.transform.position) < 0.1f || closestPoint == obj.transform.position) return true;
+        }
+        foreach (GameObject collider in Astronauts)
+        {
+            Vector3 closestPoint = collider.GetComponent<Collider2D>().ClosestPoint(obj.transform.position);
+            if (Vector3.Distance(closestPoint, obj.transform.position) < 0.1f || closestPoint == obj.transform.position) return true;
+        }
+
+        return false;
     }
 }
