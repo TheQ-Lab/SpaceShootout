@@ -44,6 +44,29 @@ public class InputManager : MonoBehaviour
                 Inputs.Remove("space");
         }
 
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (!Inputs.Contains("mouse1"))
+                Inputs.Add("mouse1");
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            if (Inputs.Contains("mouse1"))
+                Inputs.Remove("mouse1");
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!Inputs.Contains("mouse0"))
+                Inputs.Add("mouse0");
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (Inputs.Contains("mouse0"))
+                Inputs.Remove("mouse0");
+        }
+
         Vector3 mouseCoord = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
         if (Input.GetMouseButtonDown(0) && mouseCoord.y > 0.15)
@@ -56,8 +79,10 @@ public class InputManager : MonoBehaviour
         {
             if (Inputs.Contains("arrow")) Inputs.Remove("arrow");
         }
+
         
-          
+
+
     }
 
 

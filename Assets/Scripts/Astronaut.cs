@@ -188,10 +188,11 @@ public class Astronaut : MonoBehaviour
     private void AstronautMover()
     {
         
-        if (InputManager.Instance.Inputs.Contains("space"))
+        if (InputManager.Instance.Inputs.Contains("space") || InputManager.Instance.Inputs.Contains("mouse0"))
         {
             InputManager.Instance.Inputs.Remove("space");
-            
+            InputManager.Instance.Inputs.Remove("mouse0");
+
 
 
 
@@ -235,10 +236,11 @@ public class Astronaut : MonoBehaviour
     {
         if (shotFlying) return;
 
-        if (InputManager.Instance.Inputs.Contains("space"))
+        if (InputManager.Instance.Inputs.Contains("space") || InputManager.Instance.Inputs.Contains("mouse1"))
         {
             InputManager.Instance.Inputs.Remove("space");
-            
+            InputManager.Instance.Inputs.Remove("mouse1");
+
 
             Vector2 launchPosition = rBody.transform.position /*+ rBody.transform.up * 2.5f*/;
 
@@ -393,6 +395,12 @@ public class Astronaut : MonoBehaviour
                 uIShotStats.SetAngle(shotAngle);
             }
         }
+
+        else if (InputManager.Instance.Inputs.Contains("fire"))
+        {
+            //InputManager.Instance.Inputs.Add("space");
+        }
+
         else
         {
             moveInputTimer = 0;
