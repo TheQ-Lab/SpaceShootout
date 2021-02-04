@@ -1714,7 +1714,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 03f720df8ffcb7646acf04ce6024d5ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6868b92bea279504ea82362e9489673e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3868,7 +3868,7 @@ MonoBehaviour:
   prevBtn: {fileID: 785754659}
   nextBtn: {fileID: 2142479214}
   prevBtnActive: {fileID: 21300000, guid: 75c71faaf2bf43b4ca8a782de7044be3, type: 3}
-  prevBtnInactive: {fileID: 21300000, guid: 03f720df8ffcb7646acf04ce6024d5ea, type: 3}
+  prevBtnInactive: {fileID: 21300000, guid: 6868b92bea279504ea82362e9489673e, type: 3}
   nextBtnActive: {fileID: 21300000, guid: 5f3b4fb82997ef34daa3c5fdaca6a3ea, type: 3}
   nextBtnInactive: {fileID: 21300000, guid: 03f720df8ffcb7646acf04ce6024d5ea, type: 3}
   CurrentSlide: 1
