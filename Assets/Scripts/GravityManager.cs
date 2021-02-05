@@ -99,9 +99,9 @@ public class GravityManager : MonoBehaviour
             distance = distance - (rPlanet*0.8f); //if directly on ground -> bugs
         }
         //float distanceFactor = (float) (1d / Math.Pow(distance - Planet.transform.localScale.x, 2f));
-        float distanceFactor = (float)(1d / Math.Pow(distance, 2f)) * 6f;
-        //Debug.Log(distanceFactor);
-        Vector2 newGravity = normatedDir * (9.81f / 10f) * GravityScale * distanceFactor; // Gravity / FixedUPdate() called 50x a Second
+        float distanceFactor = (float)(1d / Math.Pow(distance, 2f)) * 3f;
+        float planetSize = (PlanetRBody.transform.localScale.x + PlanetRBody.transform.localScale.y) / 2f;
+        Vector2 newGravity = normatedDir * (9.81f / 10f) * GravityScale * planetSize * distanceFactor; // Gravity / FixedUPdate() called 50x a Second
         EntityRBody.AddForce(newGravity);
         //Debug.Log(newGravity);
     }
