@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
     protected float radius;
 
    
-
+    /*
     //for camera movement
     Transform camTarget;
     Transform camTrans;
@@ -32,7 +32,7 @@ public class Projectile : MonoBehaviour
     private Vector3 startCameraPosition;
     private float smoothSpeed = 0.125f;
     private Animator cameraAnimator;
-
+    */
     private bool explosionStarted = false;
     private bool isProjectileExistent = false;
 
@@ -54,7 +54,7 @@ public class Projectile : MonoBehaviour
 
         if (isProjectileExistent)
         {
-            MoveCamera();
+            //MoveCamera();
         }
     }
 
@@ -77,30 +77,34 @@ public class Projectile : MonoBehaviour
     public void launch(Vector2 launchForce, float lifetime, GameObject parentAstronaut)
     {
         deathTimer = Time.time;
-        mainCamera = Camera.main;
-        startCameraPosition = mainCamera.transform.position;
-        camTrans = mainCamera.GetComponent<Transform>();
-        cameraAnimator = mainCamera.GetComponent<Animator>();
+        //mainCamera = Camera.main;
+        //startCameraPosition = mainCamera.transform.position;
+        //camTrans = mainCamera.GetComponent<Transform>();
+        //cameraAnimator = mainCamera.GetComponent<Animator>();
         //
         this.lifetime = lifetime;
         float angle = Vector2.SignedAngle(new Vector2(0, 100), launchForce);
         rBody.transform.rotation = Quaternion.Euler(0, 0, angle);
         rBody.AddForce(launchForce);
         this.parentAstronaut = parentAstronaut;
-        camTarget = this.GetComponent<Transform>();
+        //camTarget = this.GetComponent<Transform>();
+        CameraManager.Instance.EnableTargetNZoom(transform);
         isProjectileExistent = true;
     }
 
     protected IEnumerator DespawnThisProjectile()
     {
+        CameraManager.Instance.DisableTarget();
         isProjectileExistent = false;
         GravityManager.Instance.RemoveAnyObjectFromGravity(this.gameObject);
         this.GetComponent<MeshRenderer>().enabled = false;
         transform.GetChild(0).gameObject.SetActive(false);
         yield return new WaitForSeconds(explosionEffectDuration);
-        //             
-        camTrans.position = startCameraPosition;
-        cameraAnimator.SetBool("Zoomed In", false);
+        //     
+        CameraManager.Instance.ResetPos();
+        CameraManager.Instance.DisableZoom();
+        //camTrans.position = startCameraPosition;
+        //cameraAnimator.SetBool("Zoomed In", false);
         //
         Astronaut parentAstronautScript = parentAstronaut.GetComponent<Astronaut>();
         parentAstronautScript.EndShootingPhase();
@@ -108,6 +112,7 @@ public class Projectile : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    /*
     void MoveCamera()
     {
         Vector3 offset = new Vector3(0, 0, -10);
@@ -116,6 +121,7 @@ public class Projectile : MonoBehaviour
         camTrans.position = smoothPosition;
         cameraAnimator.SetBool("Zoomed In", true);
     }
+    */
 }
 
 

@@ -188,6 +188,8 @@ public class GameManager : MonoBehaviour
         SetGameplayPause(true);
         menuTurnStart.gameObject.SetActive(true);
         menuTurnStart.SelectTurnStartScreen(ActiveTeam);
+
+        
         /*
         int nextPlayerAtTurn = PlayerAtTurn + 1;
         if (PlayerAtTurn > Astronauts.Count-1)
@@ -200,7 +202,7 @@ public class GameManager : MonoBehaviour
 
         PlayerAtTurn = nextPlayerAtTurn;*/
     }
-
+    
     /*
     private List<Astronaut> GetTeamReference(int TeamNo)
     {
@@ -286,6 +288,22 @@ public class GameManager : MonoBehaviour
         if (OldAstronaut != null)
             ActiveAstronautPerTeam[ActiveTeam - 1] = TeamsAll[ActiveTeam - 1].FindIndex(a => a == NewAstronaut) + 1;
         //Debug.Log("Added Astronaut #" + (TeamsAll[ActiveTeam - 1].FindIndex(a => a == NewAstronaut) + 1) + " to ActiveAstronautPerTeam");
+
+        //CameraManager.Instance.GetComponent<Transform>().position.Set(NewAstronaut.transform.position.x, NewAstronaut.transform.position.y, CameraManager.Instance.stdCameraPosition.z);
+        CameraManager.Instance.EnableTargetNZoom(NewAstronaut.transform);
+        //CameraManager.Instance.EnableZoom();
+        StartCoroutine(ResetCam());
+    }
+
+    IEnumerator ResetCam()
+    {
+        yield return new WaitForSeconds(1f);
+        CameraManager.Instance.EnableTarget(transform);
+        CameraManager.Instance.DisableZoom();
+        yield return new WaitForSeconds(1.5f);
+        //CameraManager.Instance.DisableZoom();
+        CameraManager.Instance.DisableTarget();
+        CameraManager.Instance.ResetPos();
     }
 
     private void GameOver()
