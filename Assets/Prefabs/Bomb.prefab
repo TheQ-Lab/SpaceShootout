@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &5345671137095647773
 Transform:
@@ -193,6 +193,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cd74899ee8d90dc4e9bf641ed39351a4, type: 3}
       propertyPath: m_Name
       value: bombe
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cd74899ee8d90dc4e9bf641ed39351a4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779745573541866595, guid: cd74899ee8d90dc4e9bf641ed39351a4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461885075831488399, guid: cd74899ee8d90dc4e9bf641ed39351a4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd74899ee8d90dc4e9bf641ed39351a4, type: 3}

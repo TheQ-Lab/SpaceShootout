@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &8388046675510091357
 Transform:
@@ -191,6 +191,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.903
       objectReference: {fileID: 0}
+    - target: {fileID: -8566124428584152321, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: -8513424388201257645, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: -8021756868504469128, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: -7609145667655734672, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: -7235015103121818086, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: -3957782524123411102, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: -2615453208677245630, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: -1059929460886147611, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: -344004081357383697, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: -8140499575222096, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
       propertyPath: m_Name
       value: stern-mit-stock-vorne
@@ -198,6 +238,38 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102227904637302750, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259602271755987605, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309868096826352713, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779745573541866595, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976127312175134112, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6085036178219441596, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701778573488020226, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19df71ae476f9ac4a88f517dc1abedd5, type: 3}
