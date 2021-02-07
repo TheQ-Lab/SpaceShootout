@@ -96,10 +96,10 @@ public class GravityManager : MonoBehaviour
         if (calculateFromSurface)
         {
             float rPlanet = PlanetRBody.GetComponent<CircleCollider2D>().radius;
-            distance = distance - (rPlanet*0.8f); //if directly on ground -> bugs
+            distance = distance - (rPlanet*0.5f); //if directly on ground -> bugs
         }
         //float distanceFactor = (float) (1d / Math.Pow(distance - Planet.transform.localScale.x, 2f));
-        float distanceFactor = (float)(1d / Math.Pow(distance, 2f)) * 3f;
+        float distanceFactor = (float)(1d / Math.Pow(distance, 2f)) * 5f;
         float planetSize = (PlanetRBody.transform.localScale.x + PlanetRBody.transform.localScale.y) / 2f;
         Vector2 newGravity = normatedDir * (9.81f / 10f) * GravityScale * planetSize * distanceFactor; // Gravity / FixedUPdate() called 50x a Second
         EntityRBody.AddForce(newGravity);
