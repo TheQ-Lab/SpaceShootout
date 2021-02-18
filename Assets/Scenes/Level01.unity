@@ -2166,7 +2166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac1aefe2a4b17e4fac59adcd1826431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxIterations: 50
+  maxIterations: 40
   lineRenderer: {fileID: 0}
 --- !u!120 &597351701
 LineRenderer:
