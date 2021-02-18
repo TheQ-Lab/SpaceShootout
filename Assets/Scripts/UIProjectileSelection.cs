@@ -32,7 +32,7 @@ public class UIProjectileSelection : MonoBehaviour
 
     void Start()
     {
-        explanation = transform.Find("ExplanationWeaponChange").GetComponent<Image>();
+        //explanation = transform.Find("ExplanationWeaponChange").GetComponent<Image>();
     }
 
     public void SelectIcon(Projectile.Type newProjectileType)
@@ -46,16 +46,16 @@ public class UIProjectileSelection : MonoBehaviour
         }
     }
 
-    public void ShowExplanation(float time)
+    /*public void ShowExplanation(float time)
     {
         explanation.enabled = true;
         StartCoroutine(DisableExplanation(time));
 
-    }
+    }*/
 
-    IEnumerator DisableExplanation(float time)
+    /*IEnumerator DisableExplanation(float time)
     {
         yield return new WaitForSeconds(time);
         explanation.enabled = false;
-    }
+    }*/
 }

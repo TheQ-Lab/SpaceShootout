@@ -44,6 +44,17 @@ public class InputManager : MonoBehaviour
                 Inputs.Remove("space");
         }
 
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (!Inputs.Contains("tab"))
+                Inputs.Add("tab");
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            if (Inputs.Contains("tab"))
+                Inputs.Remove("tab");
+        }
+
 
         if (Input.GetMouseButtonDown(1))
         {

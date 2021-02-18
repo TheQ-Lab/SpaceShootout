@@ -281,8 +281,8 @@ public class GameManager : MonoBehaviour
             OldAstronaut.DeactivateAstronaut();
         NewAstronaut.ActivateAstronaut();
         //if this is astronauts first turn show weapon swap explanation
-        if (!TurnHistory.Contains(NewAstronaut))
-            uIProjectileSelection.ShowExplanation(4f);
+        /*if (!TurnHistory.Contains(NewAstronaut))
+            uIProjectileSelection.ShowExplanation(4f);*/
 
         TurnHistory.Add(NewAstronaut);
         if (OldAstronaut != null)

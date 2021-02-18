@@ -188,10 +188,13 @@ public class Astronaut : MonoBehaviour
     private void AstronautMover()
     {
         
-        if (InputManager.Instance.Inputs.Contains("space") || InputManager.Instance.Inputs.Contains("mouse0"))
+        if (InputManager.Instance.Inputs.Contains("space") || 
+            InputManager.Instance.Inputs.Contains("mouse1") || 
+            InputManager.Instance.Inputs.Contains("tab"))
         {
             InputManager.Instance.Inputs.Remove("space");
-            InputManager.Instance.Inputs.Remove("mouse0");
+            InputManager.Instance.Inputs.Remove("mouse1");
+            InputManager.Instance.Inputs.Remove("tab");
 
 
 
@@ -259,8 +262,9 @@ public class Astronaut : MonoBehaviour
             shotFlying = true;
             InputManager.Instance.Inputs.Remove("arrow");
         }
-        else if (Input.GetKey(KeyCode.Escape))
+        else if (Input.GetKey(KeyCode.Escape) || InputManager.Instance.Inputs.Contains("tab"))
         {
+            InputManager.Instance.Inputs.Remove("tab");
             shootPhase = false;
             uIshotBar.Deactivate();
             PredictionManager.Instance.lineRenderer.enabled = false;
