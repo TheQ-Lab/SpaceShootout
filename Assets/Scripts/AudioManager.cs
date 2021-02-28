@@ -5,13 +5,14 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    public static AudioManager instance;
+    public static AudioManager Instance = null;
+    bool soundPlaying;
 
 
     void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else
         {
             Destroy(gameObject);
@@ -35,15 +36,28 @@ public class AudioManager : MonoBehaviour
         Play("gameMusic");
     }
 
-    // Update is called once per frame
+    
     public void Play (string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
+        
+         Sound s = Array.Find(sounds, sound => sound.name == name);
+         if (s == null)
+         {
+             Debug.Log("sound " + name + "not found");
+             return;
+         }
+         s.source.Play();
+        
+        
+    }
+
+    public void StopAllAudio()
+    {
+        foreach (Sound Audio in sounds)
         {
-            Debug.Log("sound " + name + "not found");
-            return;
+            Audio.source.Stop();
+           
+
         }
-            s.source.Play();
     }
 }

@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     private UIProjectileSelection uIProjectileSelection;
 
     bool isSoundPlayed;
+    private bool[] TeamsNeedLegend = new bool[4];
 
     private void Awake()
     {
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
         //Set TeamsAlive[4] initial according to NumberTeamsPlaying
         for (int i = 0; i < TeamsAlive.Length; i++)
         {
+            TeamsNeedLegend[i] = true;
             if (i < NumberTeamsPlaying)
             {
                 TeamsAlive[i] = true;
@@ -201,6 +203,16 @@ public class GameManager : MonoBehaviour
         TransferAcitveAstronaut(Astronauts[PlayerAtTurn - 1], Astronauts[nextPlayerAtTurn - 1]);
 
         PlayerAtTurn = nextPlayerAtTurn;*/
+    }
+
+    public void ShowLegend()
+    {
+        if (TeamsNeedLegend[ActiveTeam - 1])
+        {
+            TeamsNeedLegend[ActiveTeam - 1] = false;
+            SetGameplayPause(true);
+            menuInGame.ShowLegend();
+        }
     }
     
     /*

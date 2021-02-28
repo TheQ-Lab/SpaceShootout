@@ -7,6 +7,7 @@ public class Sound
     public string name;
     public AudioClip clip;
 
+    [HideInInspector]
     [Range(0f, 1f)]
     public float volume;
 

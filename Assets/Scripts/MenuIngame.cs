@@ -9,4 +9,9 @@ public class MenuIngame : MonoBehaviour
         Debug.Log("PAUSE GAME");
         GameManager.Instance.SetGameplayPause(true);
     }
+
+    public void ShowLegend()
+    {
+        transform.Find("InfoButton").GetComponent<UIInfoButtonClick>().ShowLegend();
+    }
 }

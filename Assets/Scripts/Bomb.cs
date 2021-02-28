@@ -14,7 +14,7 @@ public class Bomb : Projectile
         projectileType = "bomb";
 
         // damage
-        damage = 50;
+        damage = 80;
         delay = 1.5f;
         radius = 7f;
     }

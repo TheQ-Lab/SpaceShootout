@@ -12,6 +12,8 @@ public class InputManager : MonoBehaviour
     public char arrowKey = '\0'; // \0 === empty char
     public List<string> Inputs; // has keys that are pressed down and not yet used
 
+    Vector3 mouseCoord;
+
     private void Awake()
     {
         /*
@@ -55,8 +57,10 @@ public class InputManager : MonoBehaviour
                 Inputs.Remove("tab");
         }
 
+        mouseCoord = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
-        if (Input.GetMouseButtonDown(1))
+
+        if (Input.GetMouseButtonDown(1) && mouseCoord.y > 0.15)
         {
             if (!Inputs.Contains("mouse1"))
                 Inputs.Add("mouse1");
@@ -67,7 +71,7 @@ public class InputManager : MonoBehaviour
                 Inputs.Remove("mouse1");
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && mouseCoord.y > 0.15)
         {
             if (!Inputs.Contains("mouse0"))
                 Inputs.Add("mouse0");
@@ -78,7 +82,7 @@ public class InputManager : MonoBehaviour
                 Inputs.Remove("mouse0");
         }
 
-        Vector3 mouseCoord = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        
 
         if (Input.GetMouseButtonDown(0) && mouseCoord.y > 0.15)
         {

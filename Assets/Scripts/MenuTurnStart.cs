@@ -29,5 +29,7 @@ public class MenuTurnStart : MonoBehaviour
     {
         Debug.Log("START TURN");
         GameManager.Instance.SetGameplayPause(false);
+        GameManager.Instance.ShowLegend();
+
     }
 }
