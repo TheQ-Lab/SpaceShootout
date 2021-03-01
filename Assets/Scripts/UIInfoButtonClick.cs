@@ -12,24 +12,32 @@ public class UIInfoButtonClick : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         legend = transform.Find("LegendScreen").GetComponent<Image>();
-        legend.enabled = false;
+        ShowLegend();
     }
 
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         if (pointerEventData.pointerId == -1)
         {
-            legend.enabled = !legend.enabled;
-            if (!legend.enabled)
-            {
-                GameManager.Instance.SetGameplayPause(false);
-            }
-            
+            SetLegend(!legend.enabled);
         }
     }
 
     public void ShowLegend()
     {
-        legend.enabled = true;
+        SetLegend(true);
+    }
+
+    private void SetLegend(bool b)
+    {
+        legend.enabled = b;
+        if (!legend.enabled)
+        {
+            GameManager.Instance.SetGameplayPause(false);
+        }
+        else
+        {
+            GameManager.Instance.SetGameplayPause(true);
+        }
     }
 }
