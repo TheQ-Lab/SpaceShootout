@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Astronaut
   - Model
+  - Weapon
   layers:
   - Default
   - TransparentFX

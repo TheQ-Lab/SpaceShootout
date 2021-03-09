@@ -32,7 +32,8 @@ public class Astronaut : MonoBehaviour
 
     [Header("Private References")]
     private Rigidbody2D rBody;
-    private Animator animRotate, animModel;
+    private Animator animFacing, animModel, animWeapon;
+    private GameObject modelStandard, modelNoArms, modelWeapon;
     private UIShotBar uIshotBar;
     //private Text uIshotText;
     private UIShotStats uIShotStats;
@@ -71,8 +72,13 @@ public class Astronaut : MonoBehaviour
     void Start()
     {
         rBody = GetComponent<Rigidbody2D>();
-        animRotate = CoolFunctions.FindChildWithTag(gameObject, "Model", true).GetComponent<Animator>();
+        animFacing = CoolFunctions.FindChildWithTag(gameObject, "Model", true).GetComponent<Animator>();
         animModel = CoolFunctions.FindChildWithTag(gameObject, "Model", true).transform.GetChild(0).GetComponent<Animator>();
+        animWeapon = CoolFunctions.FindChildWithTag(gameObject, "Model", true).transform.GetChild(2).GetComponent<Animator>();
+        modelStandard = CoolFunctions.FindChildWithTag(gameObject, "Model", true).transform.GetChild(0).gameObject;
+        modelNoArms = CoolFunctions.FindChildWithTag(gameObject, "Model", true).transform.GetChild(1).gameObject;
+        modelWeapon = CoolFunctions.FindChildWithTag(gameObject, "Model", true).transform.GetChild(2).gameObject;
+
         nearestPlanet = GetNearestPlanet();
         //Debug.Log(nearestPlanet);
 
@@ -170,11 +176,11 @@ public class Astronaut : MonoBehaviour
             return;
         if (n == 'r')
         {
-            animRotate.SetInteger("Facing", 1);
+            animFacing.SetInteger("Facing", 1);
         }
         else if (n == 'l')
         {
-            animRotate.SetInteger("Facing", -1);
+            animFacing.SetInteger("Facing", -1);
         }
         facing = n;
     }
@@ -216,6 +222,7 @@ public class Astronaut : MonoBehaviour
             PredictionManager.Instance.lineRenderer.enabled = true;
 
             shootPhase = true;
+            SwapModel(true);
         }
         else
         {
@@ -267,6 +274,7 @@ public class Astronaut : MonoBehaviour
         {
             InputManager.Instance.Inputs.Remove("tab");
             shootPhase = false;
+            SwapModel(false);
             uIshotBar.Deactivate();
             PredictionManager.Instance.lineRenderer.enabled = false;
             uIShotStats.SetActive(false);
@@ -419,6 +427,16 @@ public class Astronaut : MonoBehaviour
             UpdateFacing('r');
         else if (differenceVector.x < 0)
             UpdateFacing('l');
+
+        float bodyAngle = (rBody.transform.rotation).eulerAngles.z;
+        float animAngle = shotAngle - bodyAngle;
+        animAngle = animAngle % 360;
+        //Debug.LogWarning("mod von " + (shotAngle + bodyAngle) + " ist " + animAngle);
+        if (animAngle < 0)
+            animAngle = 360f + animAngle;
+        if (animAngle > 180f)
+            animAngle = 180f - (animAngle - 180f);
+        animWeapon.SetFloat("angle", animAngle);
     }
 
     public void SliderValueChangeCheck()
@@ -507,6 +525,7 @@ public class Astronaut : MonoBehaviour
         SetStationary(true);
         uIshotBar.Deactivate();
         PredictionManager.Instance.lineRenderer.enabled = false;
+        SwapModel(false);
         animModel.SetFloat("velocity", 0f);
     }
 
@@ -522,6 +541,22 @@ public class Astronaut : MonoBehaviour
         {
             //to be determined
             //probably called when hit by launching missile o.Ä.
+        }
+    }
+
+    private void SwapModel(bool toShoot)
+    {
+        if (toShoot)
+        {
+            modelStandard.SetActive(false);
+            modelNoArms.SetActive(true);
+            modelWeapon.SetActive(true);
+        }
+        else
+        {
+            modelStandard.SetActive(true);
+            modelNoArms.SetActive(false);
+            modelWeapon.SetActive(false);
         }
     }
 
