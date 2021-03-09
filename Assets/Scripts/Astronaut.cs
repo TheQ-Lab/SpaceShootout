@@ -32,7 +32,7 @@ public class Astronaut : MonoBehaviour
 
     [Header("Private References")]
     private Rigidbody2D rBody;
-    private Animator modelAnim;
+    private Animator animRotate, animModel;
     private UIShotBar uIshotBar;
     //private Text uIshotText;
     private UIShotStats uIShotStats;
@@ -71,7 +71,8 @@ public class Astronaut : MonoBehaviour
     void Start()
     {
         rBody = GetComponent<Rigidbody2D>();
-        modelAnim = CoolFunctions.FindChildWithTag(gameObject, "Model", true).GetComponent<Animator>();
+        animRotate = CoolFunctions.FindChildWithTag(gameObject, "Model", true).GetComponent<Animator>();
+        animModel = CoolFunctions.FindChildWithTag(gameObject, "Model", true).transform.GetChild(0).GetComponent<Animator>();
         nearestPlanet = GetNearestPlanet();
         //Debug.Log(nearestPlanet);
 
@@ -148,7 +149,7 @@ public class Astronaut : MonoBehaviour
             {
                 AstronautShooter();
             }
-
+            animModel.SetFloat("velocity", rBody.velocity.magnitude);
         }
     }
 
@@ -169,11 +170,11 @@ public class Astronaut : MonoBehaviour
             return;
         if (n == 'r')
         {
-            modelAnim.SetInteger("Facing", 1);
+            animRotate.SetInteger("Facing", 1);
         }
         else if (n == 'l')
         {
-            modelAnim.SetInteger("Facing", -1);
+            animRotate.SetInteger("Facing", -1);
         }
         facing = n;
     }
@@ -506,6 +507,7 @@ public class Astronaut : MonoBehaviour
         SetStationary(true);
         uIshotBar.Deactivate();
         PredictionManager.Instance.lineRenderer.enabled = false;
+        animModel.SetFloat("velocity", 0f);
     }
 
     public void SetStationary(bool val)

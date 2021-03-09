@@ -1772,7 +1772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6591dd2ec209645976d18ff9f45874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedPlayerCount: 3
+  SelectedPlayerCount: 4
   SelectedLevel: Level01
 --- !u!1 &460681060
 GameObject:
