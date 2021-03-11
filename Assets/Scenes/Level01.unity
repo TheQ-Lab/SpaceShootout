@@ -2495,7 +2495,7 @@ MonoBehaviour:
   - {fileID: 1903539685}
   - {fileID: 471054491}
   - {fileID: 795303683}
-  maxTurnTime: 500
+  maxTurnTime: 30
   IsGameplayActive: 1
   TurnTimeText: {fileID: 809622156}
 --- !u!4 &597351699
@@ -6469,6 +6469,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3863153970030248419, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217861604841939059, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858205905299805406, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: explosionEffect
       value: 
@@ -7831,6 +7843,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3863153970030248419, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217861604841939059, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991598251069310101, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8788362983743038755, guid: 3a4d53252b7ccc449ad40a0ea0f220f6, type: 3}
       propertyPath: offset.x
       value: 5
