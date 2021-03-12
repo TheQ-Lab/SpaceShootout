@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     private List<List<Astronaut>> TeamsAll = new List<List<Astronaut>>();
 
     [Header("References")]
-    public Text TurnTimeText;
+    private Text TurnTimeText;
     private MenuIngame menuInGame;
     private MenuTurnStart menuTurnStart;
     private MenuGameOver menuGameOver;
@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TurnTimeText = CoolFunctions.FindInArray("TurnTimeText", GameObject.FindGameObjectsWithTag("UIReferences")).GetComponent<Text>();
         menuInGame = Resources.FindObjectsOfTypeAll<MenuIngame>()[0];
         menuTurnStart = Resources.FindObjectsOfTypeAll<MenuTurnStart>()[0];
         menuGameOver = Resources.FindObjectsOfTypeAll<MenuGameOver>()[0];
