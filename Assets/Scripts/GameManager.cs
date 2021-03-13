@@ -63,12 +63,12 @@ public class GameManager : MonoBehaviour
         }
         */
         Instance = this;
+        NumberTeamsPlaying = AppManager.Instance.SelectedPlayerCount;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        NumberTeamsPlaying = AppManager.Instance.SelectedPlayerCount;
 
 
         TurnTimeText = CoolFunctions.FindInArray("TurnTimeText", GameObject.FindGameObjectsWithTag("UIReferences")).GetComponent<Text>();
