@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &4510359622814521396
 Transform:
@@ -119,4 +119,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.37
+  m_Radius: 2.77
