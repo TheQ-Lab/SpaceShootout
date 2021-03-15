@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MenuIngame : MonoBehaviour
 {
-    public void OnClickPause()
+    /*public void OnClickPause()
     {
         Debug.Log("PAUSE GAME");
-        GameManager.Instance.SetGameplayPause(true);
-    }
+        //GameManager.Instance.SetGameplayPause(true);
+    }*/
 
     public void ShowLegend()
     {
