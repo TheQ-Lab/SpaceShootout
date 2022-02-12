@@ -7,6 +7,9 @@ public class MMStart : MonoBehaviour
     public void OnClickQuit()
     {
         Debug.Log("QUIT GAME!");
-        Application.Quit();
+        if (AppManager.Instance.IsWebGLBuild)
+            Application.OpenURL(AppManager.Instance.ExitURL);
+        else
+            Application.Quit();
     }
 }

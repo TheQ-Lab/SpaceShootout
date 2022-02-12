@@ -8,6 +8,8 @@ public class AppManager : MonoBehaviour
 
     public int SelectedPlayerCount = 0;
     public string SelectedLevel = "";
+    public bool IsWebGLBuild = true;
+    public string ExitURL = "www.marlin-ferlmann.de";
 
     private void Awake()
     {
